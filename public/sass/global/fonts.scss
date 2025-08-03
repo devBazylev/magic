@@ -1,0 +1,9 @@
+@import "mixins.scss";
+
+@font-face {
+  font-family: "HarryPotter";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/harry-potter.woff2") format("woff2");
+  font-display: swap;
+}

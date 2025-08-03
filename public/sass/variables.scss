@@ -1,0 +1,62 @@
+// Colors
+
+// Default
+
+$color-default-black:                      #000000;
+$color-default-white:                      #ffffff;
+$color-transparent:                        rgba(255, 255, 255, 0);
+$color-accent-main:                        $color-safety-orange;
+$color-accent-second:                      $color-lemon;
+
+// Project palette
+
+$color-black-pearl:                        #051320;
+$color-white-smoke:                        #f2f2f2;
+$color-shalimar:                           #fffaaf;
+$color-lemon:                              #ffe610;
+$color-safety-orange:                      #fd7004;
+$color-salmon:                             #f6716f;
+$color-red-orange:                         #fc2621;
+
+
+$color-swamp:                              #1f2020;
+$color-padua:                              #7bb899;
+$color-silver:                             #c4c4c4;
+$color-nero:                               #202020;
+
+// Project gradient
+
+$linear-yellow-red:                        linear-gradient(90deg, $color-lemon, $color-safety-orange, $color-red-orange);
+$linear-trans:                             linear-gradient(90deg, $color-transparent, $color-transparent);
+
+// Project transparent palette
+
+$color-black-trans:                        rgba(0, 0, 0, 0.1);
+$color-swamp-trans:                        rgba(31, 32, 32, 0.2);
+$color-black-pearl-trans-20:               rgba(5, 19, 32, 0.2);
+
+// Typography
+
+$fz-default:                               16px;
+$ff-harry-potter:                          "HarryPotter", "Arial", sans-serif;
+
+// Animation
+
+$tf-default:                               ease;
+$trans-default:                            0.3s $tf-default;
+
+// Viewports
+
+$vp-320:                                   320px;
+$vp-375:                                   375px;
+$vp-500:                                   500px;
+$vp-768:                                   768px;
+$vp-1024:                                  1024px;
+$vp-1280:                                  1280px;
+$vp-1440:                                  1440px;
+$vp-1920:                                  1920px;
+
+// Retina
+
+$retina-dpi:                               144dpi;
+$retina-dppx:                              1.5dppx;
