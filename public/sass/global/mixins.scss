@@ -1,3 +1,5 @@
+@use "../variables" as *;
+
 @mixin font($font_name, $file_name, $weight: 400, $style: normal) {
   @font-face {
     font-family: #{$font_name};

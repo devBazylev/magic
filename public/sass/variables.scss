@@ -1,13 +1,5 @@
 // Colors
 
-// Default
-
-$color-default-black:                      #000000;
-$color-default-white:                      #ffffff;
-$color-transparent:                        rgba(255, 255, 255, 0);
-$color-accent-main:                        $color-safety-orange;
-$color-accent-second:                      $color-lemon;
-
 // Project palette
 
 $color-black-pearl:                        #051320;
@@ -17,6 +9,14 @@ $color-lemon:                              #ffe610;
 $color-safety-orange:                      #fd7004;
 $color-salmon:                             #f6716f;
 $color-red-orange:                         #fc2621;
+
+// Default
+
+$color-default-black:                      #000000;
+$color-default-white:                      #ffffff;
+$color-transparent:                        rgba(255, 255, 255, 0);
+$color-accent-main:                        $color-safety-orange;
+$color-accent-second:                      $color-lemon;
 
 
 $color-swamp:                              #1f2020;

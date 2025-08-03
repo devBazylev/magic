@@ -1,3 +1,6 @@
+@use "../variables" as *;
+@use "../global/mixins" as *;
+
 .modal {
   position: fixed;
   top: 0;

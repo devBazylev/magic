@@ -4,12 +4,14 @@
   "type": "module",
   "homepage": "https://devbazylev.github.io/magic",
   "scripts": {
-    "start": "vite --open",
-    "build": "cross-env VITE_BASE_PATH=/magic/ tsc && cross-env VITE_BASE_PATH=/magic/ vite build",
+    "start": "npm run sass && vite --open",
+    "build": "npm run sass && cross-env VITE_BASE_PATH=/magic/ tsc && cross-env VITE_BASE_PATH=/magic/ vite build",
     "lint": "eslint src --ext ts,tsx",
     "preview": "vite preview",
     "test": "vitest --passWithNoTests",
-    "deploy": "npm run build && gh-pages -d dist"
+    "deploy": "npm run build && gh-pages -d dist",
+    "sass": "sass public/sass/style.scss public/css/main.css",
+    "sass:watch": "sass --watch public/sass/style.scss public/css/main.css"
   },
   "dependencies": {
     "@reduxjs/toolkit": "1.9.7",
@@ -46,6 +48,7 @@
     "faker": "5.5.3",
     "gh-pages": "6.3.0",
     "jsdom": "22.1.0",
+    "sass": "^1.89.2",
     "typescript": "5.2.2",
     "vite": "^7.0.6",
     "vitest": "^3.2.4"

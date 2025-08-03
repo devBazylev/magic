@@ -1,3 +1,7 @@
+@use "sass:color";
+@use "../variables" as *;
+@use "../global/mixins" as *;
+
 .info {
   // position: relative;
   display: grid;
@@ -328,13 +332,13 @@
       transition: all $trans-default;
 
       &:hover {
-        background: lighten($color-safety-orange, 10%);
+        background: color.adjust($color-safety-orange, $lightness: 10%);
         transform: scale(1.05);
       }
     }
 
     &::-webkit-scrollbar-thumb:active {
-      background: darken($color-safety-orange, 5%);
+      background: color.adjust($color-safety-orange, $lightness: -5%);
     }
 
     scrollbar-width: thin;
