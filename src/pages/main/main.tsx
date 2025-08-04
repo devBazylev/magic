@@ -1,36 +1,28 @@
 import Header from '../../components/header/header';
-import Nav from '../../components/nav/nav';
+import Filter from '../../components/filter/filter';
+import CheckboxList from '../../components/checkbox-list/checkbox-list';
+import Modal from '../../components/modal/modal';
 import { HelmetProvider } from 'react-helmet-async';
-import { useEffect } from 'react';
-import { useAppDispatch } from '../../hooks';
-import { fetchFavoriteOffers } from '../../store/action';
 
-function Main(): JSX.Element {
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(fetchFavoriteOffers());
-  }, [dispatch]);
-
+function Shop(): JSX.Element {
   return (
-    <div className="page page--gray page--main">
+    <div className="wrapper">
       <HelmetProvider >
-        <title>Главная страница</title>
+        <title>You can buy something</title>
       </HelmetProvider>
-      <Header>
-        <Nav />
-      </Header>
-      <main className="page__main page__main--index">
-        <h1 className="visually-hidden">Cities</h1>
-        <div className="tabs">
-          <section className="locations container"></section>
-        </div>
-        <div className="cities">
-          <div className="cities__places-container container"></div>
-        </div>
+      <Header />
+      <main>
+        <section className="info">
+          <h2 className="info__title">Shop</h2>
+          <CheckboxList />
+          <Filter />
+          <ul className="info__list" />
+        </section>
+        <Modal />
       </main>
+      <div className="overlay" />
     </div>
   );
 }
 
-export default Main;
+export default Shop;

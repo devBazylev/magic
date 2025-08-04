@@ -3,8 +3,8 @@ import { AppRoute } from '../../const';
 
 function Logo(): JSX.Element {
   return(
-    <Link className="header__logo-link header__logo-link--active" to={AppRoute.Root}>
-      <img className="header__logo" src={`${import.meta.env.BASE_URL}img/logo.svg`} alt="6 cities logo" width={81} height={41} />
+    <Link className="btn header__logo" to={AppRoute.Root}>
+      <img src={`${import.meta.env.BASE_URL}img/logo-@1x.png`} srcSet={`${import.meta.env.BASE_URL}img/logo-@2x.png 2x`} width={100} height={100} alt="Magic logo." />
     </Link>
   );
 }

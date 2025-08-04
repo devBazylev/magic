@@ -1,5 +1,6 @@
 import { Location, CityName } from './types';
 
+export const filters = ['Expensive', 'Cheap', 'Rare', 'Common'] as const;
 export const cities = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
 export const sortingValues = ['Popular', 'Price: low to high', 'Price: high to low', 'Top rated first'];
 
@@ -19,7 +20,9 @@ export enum AppRoute {
   Root = '/',
   Login = '/login',
   Favorites = '/favorites',
-  Offer = '/offer',
+  Tavern = '/tavern',
+  Quests = '/quests',
+  Inventory = '/inventory',
 }
 
 export enum APIRoute {
