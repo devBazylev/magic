@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, InternalAxiosRequestConfig } from 'axios';
 import { getToken } from './token';
 
-const BACKEND_URL = 'https://12.react.htmlacademy.pro/six-cities';
+const BACKEND_URL = 'https://12.react.htmlacademy.pro/magic-trip';
 const REQUEST_TIMEOUT = 5000;
 
 export const createAPI = (): AxiosInstance => {

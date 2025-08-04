@@ -1,6 +1,7 @@
 import Header from '../../components/header/header';
 import Filter from '../../components/filter/filter';
 import CheckboxList from '../../components/checkbox-list/checkbox-list';
+import CardList from '../../components/card-list/card-list';
 import Modal from '../../components/modal/modal';
 import { HelmetProvider } from 'react-helmet-async';
 
@@ -16,7 +17,7 @@ function Shop(): JSX.Element {
           <h2 className="info__title">Shop</h2>
           <CheckboxList />
           <Filter />
-          <ul className="info__list" />
+          <CardList />
         </section>
         <Modal />
       </main>
