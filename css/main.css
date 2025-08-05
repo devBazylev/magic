@@ -1459,7 +1459,7 @@ button,
   grid-template-columns: auto 1fr;
   grid-auto-flow: dense;
   gap: 0 6vw;
-  padding: 3vw calc((100vw - 1920px + 3.5vw) / 2) 7vw calc((100vw - 1920px + 3.5vw) / 2);
+  padding: 3vw 3.5vw 7vw 3.5vw;
 }
 @media (max-width: 1919px) {
   .info {
