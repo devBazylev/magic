@@ -4,7 +4,7 @@ function Card({id, name, text, price, tag, image}: CardProps): JSX.Element {
   return (
     <li className="info__item" data-id={id} {...{ [`data-${tag}`]: true }}>
       <div className="info__pic">
-        <img src={`/img/${image}@1x.png`} srcSet={`/img/${image}@2x.png 2x`} width={278} height={278} alt={`${text}.`} loading="lazy" />
+        <img src={`${import.meta.env.BASE_URL}img/${image}@1x.png`} srcSet={`${import.meta.env.BASE_URL}img/${image}@2x.png 2x`} width={278} height={278} alt={`${text}.`} loading="lazy" />
       </div>
       <div className="info__text">{name}</div>
       <div className="info__bag">

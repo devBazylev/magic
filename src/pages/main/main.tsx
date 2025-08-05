@@ -4,8 +4,9 @@ import CheckboxList from '../../components/checkbox-list/checkbox-list';
 import CardList from '../../components/card-list/card-list';
 import Modal from '../../components/modal/modal';
 import { HelmetProvider } from 'react-helmet-async';
+import Back from '../../components/back/back';
 
-function Shop(): JSX.Element {
+function Main(): JSX.Element {
   return (
     <div className="wrapper">
       <HelmetProvider >
@@ -21,9 +22,10 @@ function Shop(): JSX.Element {
         </section>
         <Modal />
       </main>
+      <Back />
       <div className="overlay" />
     </div>
   );
 }
 
-export default Shop;
+export default Main;
