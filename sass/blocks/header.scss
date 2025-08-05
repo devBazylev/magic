@@ -74,10 +74,10 @@
         height: 2px;
         flex-shrink: 0;
         transition: transform $trans-default;
-        background-color: $color-swamp;
+        background-color: $color-silver;
         box-shadow:
-          0 -6px 0 0 $color-swamp,
-          0 6px 0 0 $color-swamp;
+          0 -6px 0 0 $color-silver,
+          0 6px 0 0 $color-silver;
       }
     }
   }
