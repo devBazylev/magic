@@ -9,7 +9,6 @@
   grid-auto-flow: dense;
   gap: 0 6vw;
   padding: 3vw calc((100vw - 1920px + 3.5vw) / 2) 7vw calc((100vw - 1920px + 3.5vw) / 2);
-  overflow: hidden;
 
   @include vp-1919 {
     padding: 3vw 3vw 7vw 3vw;
@@ -280,51 +279,11 @@
     margin: 0;
     padding: 0;
     list-style: none;
-    max-height: 70vh;
-    overflow-y: auto;
-
-    &::-webkit-scrollbar {
-      width: 0.8vw;
-      background-color: rgba(255, 255, 255, 0.1);
-      border-radius: 0.4vw;
-    }
-
-    &::-webkit-scrollbar-track {
-      background-color: rgba(255, 255, 255, 0.05);
-      border-radius: 0.4vw;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: $color-safety-orange;
-      border-radius: 0.4vw;
-      border: 0.1vw solid rgba(255, 255, 255, 0.2);
-      transition: all $trans-default;
-
-      &:hover {
-        background: color.adjust($color-safety-orange, $lightness: 10%);
-        transform: scale(1.05);
-      }
-    }
-
-    &::-webkit-scrollbar-thumb:active {
-      background: color.adjust($color-safety-orange, $lightness: -5%);
-    }
-
-    scrollbar-width: thin;
-    scrollbar-color: $color-safety-orange rgba(255, 255, 255, 0.1);
 
     @include vp-1023 {
       grid-column: 1/3;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 1.2vw 0.75vw;
-
-      &::-webkit-scrollbar {
-        width: 0.6vw;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        border: 0.05vw solid rgba(255, 255, 255, 0.2);
-      }
     }
   }
 
