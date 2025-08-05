@@ -2,14 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import type { SiteData } from '../../types';
 import { StoreSlice } from '../../const';
-import { fetchOffers } from '../action';
+import { fetchCards } from '../action';
 
 const initialState: SiteData = {
-  offers: [],
-  isOffersLoading: false,
-  offer: null,
-  isOfferLoading: false,
-  comments: [],
+  cards: [],
+  isCardsLoading: false,
 };
 
 export const siteData = createSlice({
@@ -18,12 +15,12 @@ export const siteData = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(fetchOffers.pending, (state) => {
-        state.isOffersLoading = true;
+      .addCase(fetchCards.pending, (state) => {
+        state.isCardsLoading = true;
       })
-      .addCase(fetchOffers.fulfilled, (state, action) => {
-        state.offers = action.payload;
-        state.isOffersLoading = false;
+      .addCase(fetchCards.fulfilled, (state, action) => {
+        state.cards = action.payload;
+        state.isCardsLoading = false;
       });
   }
 });

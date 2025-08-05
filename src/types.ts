@@ -29,8 +29,7 @@ export type SortName = typeof sortingValues[number];
 
 export type SiteData = {
     cards: CardProps[];
-    isOffersLoading: boolean;
-    isOfferLoading: boolean;
+    isCardsLoading: boolean;
 };
 
 export type SiteProcess = {
