@@ -1,6 +1,6 @@
 function Spinner (): JSX.Element {
   return (
-    <div>Загрузка...</div>
+    <div>Loading...</div>
   );
 }
 

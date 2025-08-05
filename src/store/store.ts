@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { rootReducer } from './reducer';
 import { createAPI } from '../services/api';
-import { fetchOffers, fetchUserStatus } from './action';
+import { fetchCards, fetchUserStatus } from './action';
 import history from '../browser-history';
 
 export const api = createAPI();
@@ -17,5 +17,5 @@ export const store = configureStore({
   }),
 });
 
-store.dispatch(fetchOffers());
+store.dispatch(fetchCards());
 store.dispatch(fetchUserStatus());

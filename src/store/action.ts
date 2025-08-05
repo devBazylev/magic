@@ -1,5 +1,5 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
-import type { OfferProps, SortName, User, UserAuth } from '../types';
+import type { CardProps, SortName, User, UserAuth } from '../types';
 import type { AxiosInstance } from 'axios';
 import { APIRoute, AppRoute } from '../const';
 import { joinPaths } from '../utils';
@@ -16,7 +16,7 @@ export const Action = {
   LOGOUT_USER: 'user/logout',
   SET_SORTING: 'sorting/set',
   FETCH_USER_STATUS: 'user/fetch-status',
-  FETCH_OFFERS: 'offers/set',
+  FETCH_CARDS: 'cards/set',
 };
 
 export const loginUser = createAsyncThunk<UserAuth['email'], UserAuth, { extra: ThunkExtraArg }>(
@@ -42,7 +42,7 @@ export const logoutUser = createAsyncThunk<void, undefined, { extra: ThunkExtraA
     try {
       await api.delete(APIRoute.Logout);
     } catch (error) {
-      // Игнорируем ошибки при logout, так как токен все равно нужно удалить
+      // Ignore errors when logging out, because the token needs to be deleted anyway
     }
 
     dropToken();
@@ -53,11 +53,11 @@ export const logoutUser = createAsyncThunk<void, undefined, { extra: ThunkExtraA
 
 export const setSorting = createAction<SortName>(Action.SET_SORTING);
 
-export const fetchOffers = createAsyncThunk<OfferProps[], undefined, { extra: ThunkExtraArg }>(
-  Action.FETCH_OFFERS,
+export const fetchCards = createAsyncThunk<CardProps[], undefined, { extra: ThunkExtraArg }>(
+  Action.FETCH_CARDS,
   async (_, { extra }) => {
     const { api } = extra;
-    const { data } = await api.get<OfferProps[]>(APIRoute.Offers);
+    const { data } = await api.get<CardProps[]>(APIRoute.Offers);
 
     return data;
   }

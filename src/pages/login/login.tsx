@@ -18,9 +18,9 @@ function Login(): JSX.Element {
   };
 
   return (
-    <div className="page page--gray page--login">
+    <div className="wrapper">
       <HelmetProvider>
-        <title>Страница авторизации</title>
+        <title>Authorization page</title>
       </HelmetProvider>
       <Header />
       <main className="page__main page__main--login">
