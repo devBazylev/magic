@@ -1292,7 +1292,7 @@ button,
   justify-content: center;
   width: fit-content;
   height: fit-content;
-  margin: 0 0 0 1vw;
+  margin: 1vw;
   padding: 20px;
   align-self: center;
   cursor: pointer;
@@ -1374,16 +1374,13 @@ button,
 .header__logo {
   width: 5vw;
 }
-@media (max-width: 1279px) {
-  .header__logo {
-    width: 4vw;
-  }
-}
 @media (max-width: 1023px) {
   .header__logo {
     position: absolute;
     top: 1vw;
     left: 50%;
+    width: 4vw;
+    min-width: 40px;
     transform: translate(-50%, 0);
   }
 }
@@ -1426,14 +1423,17 @@ button,
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  letter-spacing: 0.72px;
   text-transform: uppercase;
   flex-shrink: 0;
 }
 @media (max-width: 1023px) {
   .header__cart {
-    top: 8px;
-    right: 12px;
+    top: 50%;
+    right: 1vw;
+    min-width: 30px;
+    min-height: 30px;
+    padding: 0;
+    transform: translate(-50%, -50%);
   }
 }
 .header__cart::before {
@@ -1445,6 +1445,8 @@ button,
   justify-content: center;
   width: 2vw;
   height: 2vw;
+  min-width: 30px;
+  min-height: 30px;
   border-radius: 50%;
   background: linear-gradient(90deg, #ffe610, #fd7004, #fc2621);
   box-shadow: 0 2px 8px rgba(252, 38, 33, 0.3);
@@ -1702,7 +1704,7 @@ button,
 .info__list {
   grid-column: 2/3;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2vw;
   margin: 0;
   padding: 0;

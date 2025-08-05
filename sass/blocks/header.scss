@@ -54,7 +54,7 @@
     justify-content: center;
     width: fit-content;
     height: fit-content;
-    margin: 0 0 0 1vw;
+    margin: 1vw;
     padding: 20px;
     align-self: center;
     cursor: pointer;
@@ -143,14 +143,12 @@
   &__logo {
     width: 5vw;
 
-    @include vp-1279 {
-      width: 4vw;
-    }
-
     @include vp-1023 {
       position: absolute;
       top: 1vw;
       left: 50%;
+      width: 4vw;
+      min-width: 40px;
       transform: translate(-50%, 0);
     }
   }
@@ -197,13 +195,16 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    letter-spacing: 0.72px;
     text-transform: uppercase;
     flex-shrink: 0;
 
     @include vp-1023 {
-      top: 8px;
-      right: 12px;
+      top: 50%;
+      right: 1vw;
+      min-width: 30px;
+      min-height: 30px;
+      padding: 0;
+      transform: translate(-50%, -50%);
     }
 
     &::before {
@@ -214,6 +215,8 @@
         justify-content: center;
         width: 2vw;
         height: 2vw;
+        min-width: 30px;
+        min-height: 30px;
         border-radius: 50%;
         background: $linear-yellow-red;
         box-shadow: 0 2px 8px rgba(252, 38, 33, 0.3);
