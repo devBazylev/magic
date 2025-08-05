@@ -4,17 +4,9 @@ import { getToken } from './token';
 const BACKEND_URL = 'https://5c5bc9a6fa9d36c2.mokky.dev';
 const REQUEST_TIMEOUT = 5000;
 
-const ServerRoute = {
-  GET_DATA: '/magic',
-  SEND_DATA: '/users',
-  AUTH: '/auth',
-  AUTH_ME: '/auth_me',
-  REGISTER: '/register',
-};
-
 export const createAPI = (): AxiosInstance => {
   const api = axios.create({
-    baseURL: BACKEND_URL + ServerRoute.GET_DATA,
+    baseURL: BACKEND_URL,
     timeout: REQUEST_TIMEOUT,
   });
 

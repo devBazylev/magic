@@ -23,7 +23,7 @@ export const loginUser = createAsyncThunk<UserAuth['email'], UserAuth, { extra: 
   Action.LOGIN_USER,
   async ({ email, password }, { extra }) => {
     const { api, history } = extra;
-    const { data } = await api.post<User>(APIRoute.Login, { email, password });
+    const { data } = await api.post<User>(APIRoute.LOGIN, { email, password });
     const { token } = data;
 
     saveToken(token);
@@ -40,7 +40,7 @@ export const logoutUser = createAsyncThunk<void, undefined, { extra: ThunkExtraA
     const { api, history } = extra;
 
     try {
-      await api.delete(APIRoute.Logout);
+      await api.delete(APIRoute.LOGOUT);
     } catch (error) {
       // Ignore errors when logging out, because the token needs to be deleted anyway
     }
@@ -57,7 +57,7 @@ export const fetchCards = createAsyncThunk<CardProps[], undefined, { extra: Thun
   Action.FETCH_CARDS,
   async (_, { extra }) => {
     const { api } = extra;
-    const { data } = await api.get<CardProps[]>(APIRoute.Offers);
+    const { data } = await api.get<CardProps[]>(APIRoute.GET_DATA);
 
     return data;
   }
@@ -66,7 +66,7 @@ export const fetchUserStatus = createAsyncThunk<User, undefined, { extra: ThunkE
   Action.FETCH_USER_STATUS,
   async (_, { extra }) => {
     const { api } = extra;
-    const { data } = await api.get<User>(APIRoute.Login);
+    const { data } = await api.get<User>(APIRoute.LOGIN);
 
     return data;
   }

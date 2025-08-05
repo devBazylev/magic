@@ -23,17 +23,18 @@ export enum AppRoute {
 }
 
 export enum APIRoute {
-  Offers = '/hotels',
-  Comments = '/comments',
-  Favorite = '/favorite',
-  Login = '/login',
-  Logout = '/logout',
-  NotFound = '/404'
+  GET_DATA = '/magic',
+  REGISTER = '/register',
+  LOGIN = '/auth',
+  LOGOUT = '/logout',
+  USERS = '/users',
+  NOT_FOUND = '/404',
 }
 
 export const Comprator = {
   'Popular': () => 0,
-  'Price: low to high': (a: { price: number }, b: { price: number }) => a.price - b.price,
-  'Price: high to low': (a: { price: number }, b: { price: number }) => b.price - a.price,
-  'Top rated first': (a: { rating: number }, b: { rating: number }) => b.rating - a.rating,
+  'Expensive': (a: { price: number }, b: { price: number }) => a.price - b.price,
+  'Cheap': (a: { price: number }, b: { price: number }) => b.price - a.price,
+  'Rare': (a: { rating: number }, b: { rating: number }) => b.rating - a.rating,
+  'Common': (a: { rating: number }, b: { rating: number }) => b.rating - a.rating,
 } as const;
