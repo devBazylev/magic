@@ -20,7 +20,7 @@ const H1 = styled.h1<ErrorProps>`
 
 const A = styled(Link)<ErrorProps>`
   font-size: ${(props) => props.size ? `${props.size}px` : 'inherit'};
-  color: #3e92ec;
+  color: inherit;
 `;
 
 export {

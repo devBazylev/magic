@@ -24,7 +24,7 @@ html {
   font-weight: 400;
   font-size: $fz-default;
   line-height: 24px;
-  color: $color-white-smoke;
+  color: $color-default-white;
   overflow-x: hidden;
 
   -webkit-font-smoothing: antialiased;
@@ -39,7 +39,7 @@ body {
 }
 
 a {
-  color: $color-white-smoke;
+  color: inherit;
   text-decoration: none;
 }
 
