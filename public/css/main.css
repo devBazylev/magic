@@ -1130,6 +1130,7 @@ a {
   min-height: 100vh;
   margin: 0 auto;
   min-width: 375px;
+  overflow: hidden;
 }
 .wrapper .header,
 .wrapper .footer {
