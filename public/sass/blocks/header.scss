@@ -4,10 +4,10 @@
 .header {
   position: relative;
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 5vw 1fr 5vw;
   align-items: center;
   min-height: 5vw;
-  padding: 0.5vw 5vw 0.5vw 3vw;
+  padding: 0.5vw 3vw;
   backdrop-filter: blur(1vw);
   -webkit-backdrop-filter: blur(1vw);
   z-index: 1;

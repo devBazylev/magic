@@ -17,7 +17,7 @@ function Header(): JSX.Element {
         <div className="header__tools">
           <UserStatus />
           <Link className="btn header__tool" to={AppRoute.Favorites}>
-            <img src={`${import.meta.env.BASE_URL}img/favorite.svg`} width={22} height={22} alt="Favorite." />
+            <img src={`${import.meta.env.BASE_URL}img/heart.svg`} width={22} height={22} alt="Favorite." />
           </Link>
         </div>
       </div>
