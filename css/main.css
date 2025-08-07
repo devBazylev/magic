@@ -1157,6 +1157,7 @@ img,
 video {
   display: block;
   max-width: 100%;
+  width: 100%;
   height: auto;
 }
 
@@ -1241,14 +1242,17 @@ button,
 .btn:hover {
   opacity: 0.7;
 }
+.btn:active {
+  opacity: 0.4;
+}
 
 .header {
   position: relative;
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 5vw 1fr 5vw;
   align-items: center;
   min-height: 5vw;
-  padding: 0.5vw 5vw 0.5vw 3vw;
+  padding: 0.5vw 3vw;
   backdrop-filter: blur(1vw);
   -webkit-backdrop-filter: blur(1vw);
   z-index: 1;
@@ -1328,7 +1332,7 @@ button,
 }
 .header__cont {
   display: grid;
-  grid-template-columns: 7vw 1fr 7vw;
+  grid-template-columns: 10vw 1fr 10vw;
   gap: 2.5vw;
   align-items: center;
   z-index: 2;
@@ -1401,7 +1405,7 @@ button,
 }
 .header__link {
   padding: 1vw 2vw;
-  font-size: clamp(20px, 2vw, 100px);
+  font-size: clamp(20px, 2vw, 2vw);
   font-style: normal;
   font-weight: 400;
   line-height: 100%;
@@ -1417,9 +1421,22 @@ button,
 }
 .header__tool {
   padding: 12px;
+  flex-shrink: 0;
+}
+.header__heart {
+  width: 2vw;
+  height: 2vw;
+  min-width: 22px;
+  min-height: 22px;
+  flex-shrink: 0;
+  object-fit: contain;
+  transition: fill 0.3s ease;
+}
+.header__link--active .header__heart {
+  fill: #fc2621;
 }
 .header__signout {
-  font-size: clamp(14px, 1.5vw, 60px);
+  font-size: clamp(14px, 1.5vw, 1.5vw);
   font-style: normal;
   font-weight: 400;
   line-height: 100%;
@@ -1433,7 +1450,7 @@ button,
   right: 2.6vw;
   padding: 0.6vw;
   text-align: center;
-  font-size: clamp(14px, 0.7vw, 60px);
+  font-size: clamp(14px, 0.7vw, 0.7vw);
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -1498,7 +1515,7 @@ button,
 @media (max-width: 1023px) {
   .info__title {
     margin: 0 0 1.2vw;
-    font-size: clamp(24px, 1.8vw, 36px);
+    font-size: clamp(24px, 1.8vw, 1.8vw);
     font-style: normal;
     font-weight: 400;
     line-height: 88%;
@@ -1525,7 +1542,7 @@ button,
     left: -0.5vw;
     display: block;
     padding: 0.5vw;
-    font-size: clamp(14px, 0.6vw, 60px);
+    font-size: clamp(14px, 0.6vw, 0.6vw);
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -1616,7 +1633,7 @@ button,
   left: 70%;
 }
 .info__checktext {
-  font-size: clamp(14px, 1.3vw, 60px);
+  font-size: clamp(14px, 1.3vw, 1.3vw);
   font-style: normal;
   font-weight: 400;
   line-height: 100%;
@@ -1636,7 +1653,7 @@ button,
   }
 }
 .info__num {
-  font-size: clamp(14px, 1.5vw, 60px);
+  font-size: clamp(14px, 1.5vw, 1.5vw);
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -1666,7 +1683,7 @@ button,
   padding: 0.5vw;
   color: inherit;
   text-align: right;
-  font-size: clamp(14px, 1.5vw, 60px);
+  font-size: clamp(14px, 1.5vw, 1.5vw);
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -1713,7 +1730,7 @@ button,
   min-width: 280px;
   padding: 1vw 1.5vw;
   color: #051320;
-  font-size: clamp(14px, 1.5vw, 60px);
+  font-size: clamp(14px, 1.5vw, 1.5vw);
   font-style: normal;
   line-height: 120%;
   text-transform: uppercase;
@@ -1727,7 +1744,7 @@ button,
 .info__list {
   grid-column: 2/3;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(12.5vw, 1fr));
   gap: 2vw;
   margin: 0;
   padding: 0;
@@ -1769,7 +1786,7 @@ button,
   width: 100%;
 }
 .info__text {
-  font-size: clamp(20px, 2vw, 80px);
+  font-size: clamp(20px, 2vw, 2vw);
   text-align: center;
   font-style: normal;
   line-height: 100%;
@@ -1781,7 +1798,7 @@ button,
   align-items: center;
 }
 .info__price {
-  font-size: clamp(14px, 1.3vw, 60px);
+  font-size: clamp(14px, 1.3vw, 1.3vw);
   font-style: normal;
   font-weight: 600;
   line-height: 100%;
@@ -1791,7 +1808,7 @@ button,
   position: relative;
   top: 1px;
   left: 3px;
-  font-size: clamp(14px, 0.9vw, 60px);
+  font-size: clamp(14px, 0.9vw, 0.9vw);
   letter-spacing: 0.1vw;
 }
 .info__btn {
@@ -1805,19 +1822,46 @@ button,
 }
 @media (max-width: 1023px) {
   .info__btn {
-    width: 2vw;
-    height: 1.2vw;
-    padding: 0.2vw 0.6vw;
-    border-radius: 0.3vw;
+    min-width: 40px;
+    min-height: 20px;
+    border-radius: 5px;
   }
 }
 .info__item:hover .info__btn {
   opacity: 1;
   background: linear-gradient(90deg, #ffe610, #fd7004, #fc2621);
 }
-.info__item .info__btn:hover {
+.info__item .info__btn:hover, .info__item .info__btn:focus {
   opacity: 0.7;
-  background-color: #7bb899;
+  background: linear-gradient(90deg, #ffe610, #fd7004, #fc2621);
+}
+.info__item:hover .info__btn:active {
+  opacity: 0.4;
+}
+.info__plus {
+  width: 1vw;
+  height: 1vw;
+  min-height: 15px;
+  min-width: 15px;
+}
+.info__fav {
+  position: absolute;
+  top: 0.5vw;
+  right: 0.5vw;
+  width: 2vw;
+  height: 2vw;
+  min-width: 35px;
+  min-height: 35px;
+  flex-shrink: 0;
+}
+.info__heart {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: fill 0.3s ease;
+}
+.info__fav--active .info__heart {
+  fill: #fc2621;
 }
 
 .overlay {
@@ -2114,6 +2158,27 @@ body .modal--opened {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3vw;
+  padding: 4vw;
+}
+.error__title {
+  margin: 0;
+  font-size: clamp(30px, 3vw, 3vw);
+  line-height: 100%;
+  letter-spacing: 0.1vw;
+  color: #fc2621;
+}
+.error__link {
+  font-size: clamp(20px, 2vw, 2vw);
+  line-height: 100%;
+  letter-spacing: 0.1vw;
+  color: #ffe610;
 }
 
 /*# sourceMappingURL=main.css.map */
