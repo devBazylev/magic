@@ -168,7 +168,7 @@
 
   &__link {
     padding: 1vw 2vw;
-    font-size: clamp(20px, 2vw, 100px);
+    font-size: clamp(20px, 2vw, 2vw);
     font-style: normal;
     font-weight: 400;
     line-height: 100%;
@@ -190,7 +190,7 @@
   }
 
   &__signout {
-    font-size: clamp(14px, 1.5vw, 60px);
+    font-size: clamp(14px, 1.5vw, 1.5vw);
     font-style: normal;
     font-weight: 400;
     line-height: 100%;
@@ -205,7 +205,7 @@
     right: 2.6vw;
     padding: 0.6vw;
     text-align: center;
-    font-size: clamp(14px, 0.7vw, 60px);
+    font-size: clamp(14px, 0.7vw, 0.7vw);
     font-style: normal;
     font-weight: 500;
     line-height: normal;
