@@ -353,10 +353,9 @@
     transition: opacity $trans-default;
 
     @include vp-1023 {
-      width: 2vw;
-      height: 1.2vw;
-      padding: 0.2vw 0.6vw;
-      border-radius: 0.3vw;
+      min-width: 40px;
+      min-height: 20px;
+      border-radius: 5px;
     }
   }
 
@@ -365,8 +364,42 @@
     background: $linear-yellow-red;
   }
 
-  &__item &__btn:hover {
+  &__item &__btn:hover,
+  &__item &__btn:focus {
     opacity: 0.7;
-    background-color: $color-padua;
+    background: $linear-yellow-red;
+  }
+
+  &__item:hover &__btn:active {
+    opacity: 0.4;
+  }
+
+  &__plus {
+    width: 1vw;
+    height: 1vw;
+    min-height: 15px;
+    min-width: 15px;
+  }
+
+  &__fav {
+    position: absolute;
+    top: 0.5vw;
+    right: 0.5vw;
+    width: 2vw;
+    height: 2vw;
+    min-width: 35px;
+    min-height: 35px;
+    flex-shrink: 0;
+  }
+
+  &__heart {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: fill $trans-default;
+  }
+
+  &__fav--active &__heart {
+    fill: $color-red-orange;
   }
 }

@@ -8,19 +8,20 @@ export type AppDispatch = typeof store.dispatch;
 export type CardProps = {
   id: number;
   name: string;
-  text: string;
+  alt: string;
   price: number;
   tag: string;
   image: string;
+  fav?: boolean;
 };
 
 export type User = {
-    id: number;
-    name: string;
-    avatarUrl: string;
-    isPro: boolean;
-    email: string;
-    token: string;
+  id: number;
+  name: string;
+  avatarUrl: string;
+  isPro: boolean;
+  email: string;
+  token: string;
 };
 
 export type UserAuth = Pick<User, 'email'> & { password: string };
@@ -28,15 +29,15 @@ export type UserAuth = Pick<User, 'email'> & { password: string };
 export type SortName = typeof sortingValues[number];
 
 export type SiteData = {
-    cards: CardProps[];
-    isCardsLoading: boolean;
+  cards: CardProps[];
+  isCardsLoading: boolean;
 };
 
 export type SiteProcess = {
-    sorting: SortName;
+  sorting: SortName;
 };
 
 export type UserProcess = {
-    authorizationStatus: AuthorizationStatus;
-    user: User['email'];
+  authorizationStatus: AuthorizationStatus;
+  user: User['email'];
 }

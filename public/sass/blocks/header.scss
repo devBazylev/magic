@@ -94,7 +94,7 @@
 
   &__cont {
     display: grid;
-    grid-template-columns: 7vw 1fr 7vw;
+    grid-template-columns: 10vw 1fr 10vw;
     gap: 2.5vw;
     align-items: center;
     z-index: 2;
@@ -187,6 +187,21 @@
 
   &__tool {
     padding: 12px;
+    flex-shrink: 0;
+  }
+
+  &__heart {
+    width: 2vw;
+    height: 2vw;
+    min-width: 22px;
+    min-height: 22px;
+    flex-shrink: 0;
+    object-fit: contain;
+    transition: fill $trans-default;
+  }
+
+  &__link--active &__heart {
+    fill: $color-red-orange;
   }
 
   &__signout {

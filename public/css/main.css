@@ -1242,6 +1242,9 @@ button,
 .btn:hover {
   opacity: 0.7;
 }
+.btn:active {
+  opacity: 0.4;
+}
 
 .header {
   position: relative;
@@ -1329,7 +1332,7 @@ button,
 }
 .header__cont {
   display: grid;
-  grid-template-columns: 7vw 1fr 7vw;
+  grid-template-columns: 10vw 1fr 10vw;
   gap: 2.5vw;
   align-items: center;
   z-index: 2;
@@ -1418,6 +1421,19 @@ button,
 }
 .header__tool {
   padding: 12px;
+  flex-shrink: 0;
+}
+.header__heart {
+  width: 2vw;
+  height: 2vw;
+  min-width: 22px;
+  min-height: 22px;
+  flex-shrink: 0;
+  object-fit: contain;
+  transition: fill 0.3s ease;
+}
+.header__link--active .header__heart {
+  fill: #fc2621;
 }
 .header__signout {
   font-size: clamp(14px, 1.5vw, 1.5vw);
@@ -1806,19 +1822,46 @@ button,
 }
 @media (max-width: 1023px) {
   .info__btn {
-    width: 2vw;
-    height: 1.2vw;
-    padding: 0.2vw 0.6vw;
-    border-radius: 0.3vw;
+    min-width: 40px;
+    min-height: 20px;
+    border-radius: 5px;
   }
 }
 .info__item:hover .info__btn {
   opacity: 1;
   background: linear-gradient(90deg, #ffe610, #fd7004, #fc2621);
 }
-.info__item .info__btn:hover {
+.info__item .info__btn:hover, .info__item .info__btn:focus {
   opacity: 0.7;
-  background-color: #7bb899;
+  background: linear-gradient(90deg, #ffe610, #fd7004, #fc2621);
+}
+.info__item:hover .info__btn:active {
+  opacity: 0.4;
+}
+.info__plus {
+  width: 1vw;
+  height: 1vw;
+  min-height: 15px;
+  min-width: 15px;
+}
+.info__fav {
+  position: absolute;
+  top: 0.5vw;
+  right: 0.5vw;
+  width: 2vw;
+  height: 2vw;
+  min-width: 35px;
+  min-height: 35px;
+  flex-shrink: 0;
+}
+.info__heart {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: fill 0.3s ease;
+}
+.info__fav--active .info__heart {
+  fill: #fc2621;
 }
 
 .overlay {
