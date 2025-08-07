@@ -351,6 +351,7 @@
     border-radius: 0.4vw;
     opacity: 0;
     transition: opacity $trans-default;
+    background: $linear-yellow-red;
 
     @include vp-1023 {
       min-width: 40px;
@@ -361,13 +362,14 @@
 
   &__item:hover &__btn {
     opacity: 1;
-    background: $linear-yellow-red;
   }
 
-  &__item &__btn:hover,
-  &__item &__btn:focus {
+  &__item &__btn:hover {
     opacity: 0.7;
-    background: $linear-yellow-red;
+  }
+
+  &__item:hover &__btn:focus {
+    opacity: 0.7;
   }
 
   &__item:hover &__btn:active {
@@ -390,6 +392,8 @@
     min-width: 35px;
     min-height: 35px;
     flex-shrink: 0;
+    opacity: 0;
+    transition: opacity $trans-default;
   }
 
   &__heart {
@@ -401,5 +405,25 @@
 
   &__fav--active &__heart {
     fill: $color-red-orange;
+  }
+
+  &__item:hover &__fav {
+    opacity: 1;
+  }
+
+  &__item &__fav:hover {
+    opacity: 0.7;
+  }
+
+  &__item:hover &__fav:focus {
+    opacity: 0.7;
+  }
+
+  &__item:hover &__fav:active {
+    opacity: 0.4;
+  }
+
+  & &__fav--active {
+    opacity: 1;
   }
 }

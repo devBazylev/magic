@@ -1418,6 +1418,8 @@ button,
 .header__tools {
   display: flex;
   align-items: center;
+  justify-content: center;
+  gap: 1vw;
 }
 .header__tool {
   padding: 12px;
@@ -1819,6 +1821,7 @@ button,
   border-radius: 0.4vw;
   opacity: 0;
   transition: opacity 0.3s ease;
+  background: linear-gradient(90deg, #ffe610, #fd7004, #fc2621);
 }
 @media (max-width: 1023px) {
   .info__btn {
@@ -1829,11 +1832,12 @@ button,
 }
 .info__item:hover .info__btn {
   opacity: 1;
-  background: linear-gradient(90deg, #ffe610, #fd7004, #fc2621);
 }
-.info__item .info__btn:hover, .info__item .info__btn:focus {
+.info__item .info__btn:hover {
   opacity: 0.7;
-  background: linear-gradient(90deg, #ffe610, #fd7004, #fc2621);
+}
+.info__item:hover .info__btn:focus {
+  opacity: 0.7;
 }
 .info__item:hover .info__btn:active {
   opacity: 0.4;
@@ -1853,6 +1857,8 @@ button,
   min-width: 35px;
   min-height: 35px;
   flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 .info__heart {
   width: 100%;
@@ -1862,6 +1868,21 @@ button,
 }
 .info__fav--active .info__heart {
   fill: #fc2621;
+}
+.info__item:hover .info__fav {
+  opacity: 1;
+}
+.info__item .info__fav:hover {
+  opacity: 0.7;
+}
+.info__item:hover .info__fav:focus {
+  opacity: 0.7;
+}
+.info__item:hover .info__fav:active {
+  opacity: 0.4;
+}
+.info .info__fav--active {
+  opacity: 1;
 }
 
 .overlay {
