@@ -1833,10 +1833,7 @@ button,
 .info__item:hover .info__btn {
   opacity: 1;
 }
-.info__item .info__btn:hover {
-  opacity: 0.7;
-}
-.info__item:hover .info__btn:focus {
+.info__item:hover .info__btn:hover, .info__item:hover .info__btn:focus {
   opacity: 0.7;
 }
 .info__item:hover .info__btn:active {
@@ -2172,6 +2169,8 @@ body .modal--opened {
   left: 0;
   width: 100vw;
   height: 100vh;
+  min-width: 100%;
+  min-height: 100%;
   z-index: -1;
   object-fit: cover;
 }
