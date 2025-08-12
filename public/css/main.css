@@ -1428,6 +1428,7 @@ button,
 @media (max-width: 1023px) {
   .header__link {
     width: 100%;
+    font-size: clamp(20px, 5vw, 30px);
   }
 }
 .header__link--active {
@@ -1470,6 +1471,12 @@ button,
   letter-spacing: 0.1vw;
   white-space: nowrap;
   text-transform: uppercase;
+}
+@media (max-width: 1023px) {
+  .header__signout {
+    width: 100%;
+    font-size: clamp(14px, 3vw, 21px);
+  }
 }
 .header__cart {
   position: absolute;
