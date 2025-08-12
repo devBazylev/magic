@@ -22,5 +22,6 @@ export const useMedia = () => {
     return () => {
       mob.removeEventListener('change', onMOb);
     };
-  }, [dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 };

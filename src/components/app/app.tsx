@@ -9,6 +9,7 @@ import history from '../../browser-history';
 import HistoryRouter from '../history-route/history-route';
 import { useMedia } from '../../hooks';
 // eslint-disable-next-line no-console
+// eslint-disable-next-line react-hooks/exhaustive-deps
 /* eslint-disable */
 // @ts-ignore
 
