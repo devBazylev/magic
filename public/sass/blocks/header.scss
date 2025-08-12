@@ -19,7 +19,6 @@
   }
 
   &--opened {
-    background-color: $color-default-white;
     z-index: 1;
   }
 
@@ -110,10 +109,11 @@
       max-height: 0;
       opacity: 0;
       padding: 0.5vw;
-      background-color: $color-default-white;
       border-radius: 0 0 1.2vw 1.2vw;
       transition: opacity $trans-default, max-height $trans-default;
       overflow: hidden;
+      backdrop-filter: blur(1vw);
+      -webkit-backdrop-filter: blur(1vw);
     }
 
     &::after {

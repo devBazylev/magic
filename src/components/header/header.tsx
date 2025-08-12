@@ -3,12 +3,27 @@ import Nav from '../../components/nav/nav';
 import UserStatus from '../../components/user-status/user-status';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
+import { useAppSelector } from '../../hooks';
+import { getMedia } from '../../store/site-process/selectors';
+import { useState } from 'react';
 
 function Header(): JSX.Element {
+  const isMobile = useAppSelector(getMedia);
+  const [isActive, setActive] = useState(false);
+
+  const handleToggleMenu = () => {
+    setActive(!isActive);
+  };
+
+  if (isMobile) {
+    // eslint-disable-next-line no-console
+    console.log(123);
+  }
+
   return (
-    <header className="header">
+    <header className={`header ${isActive ? 'header--opened' : ''}`}>
       <div className="header__wrap">
-        <button className="btn header__toggler" type="button" aria-label="Toggle menu."></button>
+        <button className="btn header__toggler" type="button" aria-label="Toggle menu." onClick={handleToggleMenu}></button>
         <Logo />
         <button className="btn header__cart" type="button" aria-label="Items in the cart."><span>0</span></button>
       </div>

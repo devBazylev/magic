@@ -1265,7 +1265,6 @@ button,
   }
 }
 .header--opened {
-  background-color: #ffffff;
   z-index: 1;
 }
 .header__wrap {
@@ -1349,10 +1348,11 @@ button,
     max-height: 0;
     opacity: 0;
     padding: 0.5vw;
-    background-color: #ffffff;
     border-radius: 0 0 1.2vw 1.2vw;
     transition: opacity 0.3s ease, max-height 0.3s ease;
     overflow: hidden;
+    backdrop-filter: blur(1vw);
+    -webkit-backdrop-filter: blur(1vw);
   }
 }
 .header__cont::after {
@@ -1765,8 +1765,6 @@ button,
   gap: 0.8vw;
   padding: 1vw;
   border-radius: 0.7vw;
-  backdrop-filter: blur(0.5vw);
-  -webkit-backdrop-filter: blur(0.5vw);
   backdrop-filter: blur(3vw);
   -webkit-backdrop-filter: blur(3vw);
   cursor: pointer;
