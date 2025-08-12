@@ -191,6 +191,7 @@
 
     @include vp-1023 {
       width: 100%;
+      font-size: clamp(20px, 5vw, 30px);
     }
   }
 
@@ -238,6 +239,11 @@
     letter-spacing: 0.1vw;
     white-space: nowrap;
     text-transform: uppercase;
+
+    @include vp-1023 {
+      width: 100%;
+      font-size: clamp(14px, 3vw, 21px);
+    }
   }
 
   &__cart {
