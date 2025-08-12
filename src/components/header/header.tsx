@@ -1,17 +1,22 @@
 import Logo from '../../components/logo/logo';
 import Nav from '../../components/nav/nav';
 import UserStatus from '../../components/user-status/user-status';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { getMedia } from '../../store/site-process/selectors';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { setOverlay } from '../../store/site-process/site-process';
 
 function Header(): JSX.Element {
   const isMobile = useAppSelector(getMedia);
   const dispatch = useAppDispatch();
   const [isActiveHeader, setActiveHeader] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    dispatch(setOverlay(false));
+  }, [location.pathname, dispatch]);
 
   const handleToggleMenu = () => {
     setActiveHeader(!isActiveHeader);

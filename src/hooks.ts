@@ -32,5 +32,9 @@ export const useOverlay = (flag: boolean) => {
   useEffect(() => {
     dispatch(setOverlay(flag));
 
+    return () => {
+      dispatch(setOverlay(false));
+    };
+
   }, [flag, dispatch]);
 };
