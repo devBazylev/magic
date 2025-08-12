@@ -5,6 +5,7 @@ import { StoreSlice } from '../../const';
 
 const initialState: SiteProcess = {
   sorting: 'Popular',
+  mobile: true,
 };
 
 export const siteProcess = createSlice({
@@ -13,8 +14,11 @@ export const siteProcess = createSlice({
   reducers: {
     setSorting: (state, action: PayloadAction<SortName>) => {
       state.sorting = action.payload;
-    }
+    },
+    setMedia: (state, action: PayloadAction<boolean>) => {
+      state.mobile = action;
+    },
   },
 });
 
-export const { setSorting } = siteProcess.actions;
+export const { setSorting, setMedia } = siteProcess.actions;

@@ -6,7 +6,7 @@ import { AuthorizationStatus, StoreSlice } from '../../const';
 
 const initialState: UserProcess = {
   authorizationStatus: AuthorizationStatus.NoAuth,
-  user: ''
+  user: '',
 };
 
 export const userProcess = createSlice({

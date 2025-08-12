@@ -14,10 +14,14 @@ interface ThunkExtraArg {
 export const Action = {
   LOGIN_USER: 'user/login',
   LOGOUT_USER: 'user/logout',
-  SET_SORTING: 'sorting/set',
   FETCH_USER_STATUS: 'user/fetch-status',
   FETCH_CARDS: 'cards/set',
+  SET_SORTING: 'sorting/set',
+  SET_MEDIA: 'resolution/set',
 };
+
+export const setMedia = createAction<boolean>(Action.SET_MEDIA);
+export const setSorting = createAction<SortName>(Action.SET_SORTING);
 
 export const loginUser = createAsyncThunk<UserAuth['email'], UserAuth, { extra: ThunkExtraArg }>(
   Action.LOGIN_USER,
@@ -51,8 +55,6 @@ export const logoutUser = createAsyncThunk<void, undefined, { extra: ThunkExtraA
   }
 );
 
-export const setSorting = createAction<SortName>(Action.SET_SORTING);
-
 export const fetchCards = createAsyncThunk<CardProps[], undefined, { extra: ThunkExtraArg }>(
   Action.FETCH_CARDS,
   async (_, { extra }) => {
@@ -62,6 +64,7 @@ export const fetchCards = createAsyncThunk<CardProps[], undefined, { extra: Thun
     return data;
   }
 );
+
 export const fetchUserStatus = createAsyncThunk<User, undefined, { extra: ThunkExtraArg }>(
   Action.FETCH_USER_STATUS,
   async (_, { extra }) => {
