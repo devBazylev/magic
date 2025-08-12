@@ -6,6 +6,7 @@ import { StoreSlice } from '../../const';
 const initialState: SiteProcess = {
   sorting: 'Popular',
   mobile: null,
+  overlay: false,
 };
 
 export const siteProcess = createSlice({
@@ -18,7 +19,10 @@ export const siteProcess = createSlice({
     setMedia: (state, action: PayloadAction<boolean>) => {
       state.mobile = action.payload;
     },
+    setOverlay: (state, action: PayloadAction<boolean>) => {
+      state.mobile = action.payload;
+    },
   },
 });
 
-export const { setSorting, setMedia } = siteProcess.actions;
+export const { setSorting, setMedia, setOverlay } = siteProcess.actions;

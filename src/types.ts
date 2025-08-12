@@ -36,6 +36,7 @@ export type SiteData = {
 export type SiteProcess = {
   sorting: SortName;
   mobile: boolean | null;
+  overlay: boolean;
 };
 
 export type UserProcess = {

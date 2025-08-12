@@ -18,9 +18,11 @@ export const Action = {
   FETCH_CARDS: 'cards/set',
   SET_SORTING: 'sorting/set',
   SET_MEDIA: 'device/set',
+  SET_OVERLAY: 'overlay/set',
 };
 
 export const setMedia = createAction<boolean>(Action.SET_MEDIA);
+export const setOverlay = createAction<boolean>(Action.SET_OVERLAY);
 export const setSorting = createAction<SortName>(Action.SET_SORTING);
 
 export const loginUser = createAsyncThunk<UserAuth['email'], UserAuth, { extra: ThunkExtraArg }>(

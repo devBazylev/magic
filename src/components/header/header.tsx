@@ -3,20 +3,23 @@ import Nav from '../../components/nav/nav';
 import UserStatus from '../../components/user-status/user-status';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import { useAppSelector } from '../../hooks';
+import { useAppSelector, useOverlay } from '../../hooks';
 import { getMedia } from '../../store/site-process/selectors';
 import { useState } from 'react';
 
 function Header(): JSX.Element {
   const isMobile = useAppSelector(getMedia);
-  const [isActive, setActive] = useState(false);
+  const [isActiveHeader, setActiveHeader] = useState(false);
+  const [isActiveOverlay, setActiveOverlay] = useState(false);
+  useOverlay(isActiveOverlay);
 
   const handleToggleMenu = () => {
-    setActive(!isActive);
+    setActiveHeader(!isActiveHeader);
+    setActiveOverlay(!isActiveOverlay);
   };
 
   return (
-    <header className={`header ${isActive ? 'header--opened' : ''}`}>
+    <header className={`header ${isActiveHeader ? 'header--opened' : ''}`}>
       <div className="header__wrap">
         {isMobile && <button className="btn header__toggler" type="button" aria-label="Toggle menu." onClick={handleToggleMenu}></button>}
         <Logo />
