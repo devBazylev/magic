@@ -15,15 +15,10 @@ function Header(): JSX.Element {
     setActive(!isActive);
   };
 
-  if (isMobile) {
-    // eslint-disable-next-line no-console
-    console.log(123);
-  }
-
   return (
     <header className={`header ${isActive ? 'header--opened' : ''}`}>
       <div className="header__wrap">
-        <button className="btn header__toggler" type="button" aria-label="Toggle menu." onClick={handleToggleMenu}></button>
+        {isMobile && <button className="btn header__toggler" type="button" aria-label="Toggle menu." onClick={handleToggleMenu}></button>}
         <Logo />
         <button className="btn header__cart" type="button" aria-label="Items in the cart."><span>0</span></button>
       </div>
