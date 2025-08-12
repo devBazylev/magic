@@ -7,11 +7,13 @@ import { Routes, Route } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import history from '../../browser-history';
 import HistoryRouter from '../history-route/history-route';
+import { useMedia } from '../../hooks';
 // eslint-disable-next-line no-console
 /* eslint-disable */
 // @ts-ignore
 
 function App(): JSX.Element {
+  useMedia();
   return (
     <HistoryRouter history={history} basename={import.meta.env.BASE_URL} >
       <ScrollToTop />
