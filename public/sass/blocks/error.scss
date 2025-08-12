@@ -1,4 +1,5 @@
 @use "../variables" as *;
+@use "../global/mixins" as *;
 
 .error {
   display: flex;
@@ -6,6 +7,10 @@
   align-items: center;
   gap: 3vw;
   padding: 4vw;
+
+  @include vp-1023 {
+    padding: 10vw 4vw 4vw;
+  }
 
   &__title {
     margin: 0;
