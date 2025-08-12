@@ -3,19 +3,19 @@ import Nav from '../../components/nav/nav';
 import UserStatus from '../../components/user-status/user-status';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import { useAppSelector, useOverlay } from '../../hooks';
+import { useAppSelector, useAppDispatch } from '../../hooks';
 import { getMedia } from '../../store/site-process/selectors';
 import { useState } from 'react';
+import { setOverlay } from '../../store/site-process/site-process';
 
 function Header(): JSX.Element {
   const isMobile = useAppSelector(getMedia);
+  const dispatch = useAppDispatch();
   const [isActiveHeader, setActiveHeader] = useState(false);
-  const [isActiveOverlay, setActiveOverlay] = useState(false);
-  useOverlay(isActiveOverlay);
 
   const handleToggleMenu = () => {
     setActiveHeader(!isActiveHeader);
-    setActiveOverlay(!isActiveOverlay);
+    dispatch(setOverlay(!isActiveHeader));
   };
 
   return (

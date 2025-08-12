@@ -20,7 +20,7 @@ export const siteProcess = createSlice({
       state.mobile = action.payload;
     },
     setOverlay: (state, action: PayloadAction<boolean>) => {
-      state.mobile = action.payload;
+      state.overlay = action.payload;
     },
   },
 });
