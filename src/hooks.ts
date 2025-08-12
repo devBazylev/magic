@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import type { State, AppDispatch } from './types';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { setMedia } from './store/action';
+import { setMedia } from './store/site-process/site-process';
 
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<State> = useSelector;

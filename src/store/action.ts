@@ -17,7 +17,7 @@ export const Action = {
   FETCH_USER_STATUS: 'user/fetch-status',
   FETCH_CARDS: 'cards/set',
   SET_SORTING: 'sorting/set',
-  SET_MEDIA: 'resolution/set',
+  SET_MEDIA: 'device/set',
 };
 
 export const setMedia = createAction<boolean>(Action.SET_MEDIA);
