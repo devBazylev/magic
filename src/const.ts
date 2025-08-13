@@ -38,3 +38,11 @@ export const Comprator = {
   'Rare': (a: { rating: number }, b: { rating: number }) => b.rating - a.rating,
   'Common': (a: { rating: number }, b: { rating: number }) => b.rating - a.rating,
 } as const;
+
+export const labels = [
+  {name: 'items', id: 'items', text: 'Magic&nbsp;items', checked: true},
+  {name: 'weapons', id: 'weapons', text: 'Weapons', checked: true},
+  {name: 'elexirs', id: 'elexirs', text: 'Elexirs', checked: true},
+  {name: 'artefacts', id: 'artefacts', text: 'Artefacts', checked: true},
+  {name: 'armors', id: 'armors', text: 'Armors', checked: true},
+];
