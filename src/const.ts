@@ -40,7 +40,7 @@ export const Comprator = {
 } as const;
 
 export const labels = [
-  {name: 'items', id: 'items', text: 'Magic&nbsp;items', checked: true},
+  {name: 'items', id: 'items', text: 'Magic items', checked: true},
   {name: 'weapons', id: 'weapons', text: 'Weapons', checked: true},
   {name: 'elexirs', id: 'elexirs', text: 'Elexirs', checked: true},
   {name: 'artefacts', id: 'artefacts', text: 'Artefacts', checked: true},
