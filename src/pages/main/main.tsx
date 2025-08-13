@@ -6,8 +6,19 @@ import Modal from '../../components/modal/modal';
 import Overlay from '../../components/overlay/overlay';
 import { HelmetProvider } from 'react-helmet-async';
 import Back from '../../components/back/back';
+import { useState } from 'react';
+import { labels } from '../../const';
 
 function Main(): JSX.Element {
+  const [activeCheckboxes, setActiveCheckboxes] = useState<string[]>(
+    labels.filter((label) => label.checked).map((label) => label.id)
+  );
+  const handleCheckboxChange = (checkboxes: string[]) => {
+    setActiveCheckboxes(checkboxes);
+  };
+
+  const handleActiveCheckboxes = () => activeCheckboxes;
+
   return (
     <div className="wrapper">
       <HelmetProvider >
@@ -17,9 +28,9 @@ function Main(): JSX.Element {
       <main>
         <section className="info">
           <h2 className="info__title">Shop</h2>
-          <CheckboxList />
+          <CheckboxList handleCheckboxChange={handleCheckboxChange} activeCheckboxes={activeCheckboxes} />
           <Filter />
-          <CardList />
+          <CardList handleActiveCheckboxes={handleActiveCheckboxes} />
         </section>
         <Modal />
       </main>

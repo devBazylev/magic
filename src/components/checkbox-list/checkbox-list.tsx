@@ -1,29 +1,22 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { labels } from '../../const';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { getMedia } from '../../store/site-process/selectors';
 import { setOverlay } from '../../store/site-process/site-process';
 
-function CheckboxList(): JSX.Element {
+function CheckboxList({handleCheckboxChange, activeCheckboxes}: {handleCheckboxChange: (checkboxes: string[]) => void; activeCheckboxes: string[]}): JSX.Element {
   const dispatch = useAppDispatch();
   const isMobile = useAppSelector(getMedia);
   const [isActiveToggler, setActiveToggler] = useState(false);
-  const [checkedItems, setCheckedItems] = useState<string[]>(
-    labels.filter((label) => label.checked).map((label) => label.id),
-  );
 
   const choiceRef = useRef<HTMLDivElement>(null);
 
   const handleCheckbox = (id: string, checked: boolean) => {
-    setCheckedItems((prev) => {
-      if (checked) {
-        return [...prev, id];
-      } else {
-        return prev.filter((item) => item !== id);
-      }
-    });
+    const newCheckboxes = checked
+      ? [...activeCheckboxes, id]
+      : activeCheckboxes.filter((item) => item !== id);
+    handleCheckboxChange(newCheckboxes);
   };
-  // console.log(checkedItems);
 
   const handleToggler = () => {
     setActiveToggler(!isActiveToggler);
@@ -78,7 +71,7 @@ function CheckboxList(): JSX.Element {
               name={label.name}
               id={label.id}
               tabIndex={-1}
-              checked={checkedItems.includes(label.id)}
+              checked={activeCheckboxes.includes(label.id)}
               onChange={(evt) => handleCheckbox(label.id, evt.target.checked)}
             />
             <span className="info__backup" tabIndex={0} />
