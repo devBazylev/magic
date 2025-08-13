@@ -67,13 +67,14 @@
     @include vp-1023 {
       position: absolute;
       width: 100vw;
-      top: -4.7vw;
-      left: -1.2vw;
+      min-width: 100%;
+      top: 10vh;
+      left: -5vw;
       max-height: 0;
       opacity: 0;
-      padding: 2.7vw 1.2vw;
-      border-radius: 1.2vw 1.2vw 0 0;
-      background-color: $color-default-white;
+      padding: 30px 15px;
+      border-radius: 20px 20px 0 0;
+      background-color: $color-modal;
       transition: max-height $tf-default, opacity $tf-default;
       overflow: hidden;
       pointer-events: none;
@@ -85,16 +86,16 @@
 
         @include vp-1023 {
           position: absolute;
-          top: 0.6vw;
+          top: 15px;
           left: 50%;
           transform: translate(-50%, 0);
           display: block;
-          width: 1.4vw;
-          height: 0.2vw;
+          width: 40px;
+          height: 2px;
           flex-shrink: 0;
-          border-radius: 2vw;
+          border-radius: 1px;
           opacity: 0.6;
-          background: $color-swamp;
+          background: $color-default-white;
         }
       }
     }
@@ -104,7 +105,7 @@
     max-height: 1000vh;
     opacity: 1;
     pointer-events: all;
-    height: 100vh;
+    height: 150vh;
     overflow: hidden;
     z-index: 1;
   }
@@ -124,6 +125,12 @@
     border-radius: 0.55vw;
     background-color: $color-white-smoke;
 
+    @include vp-1023 {
+      width: 20px;
+      height: 12px;
+      border-radius: 6px;
+    }
+
     &::after {
       @include pse {
         position: absolute;
@@ -135,6 +142,11 @@
         background-color: $color-swamp;
         border-radius: 50%;
         transition: left $trans-default;
+      }
+
+      @include vp-1023 {
+        width: 4px;
+        height: 4px;
       }
     }
   }

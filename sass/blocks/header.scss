@@ -21,15 +21,17 @@
     width: 100%;
     min-height: unset;
     padding: 0;
+    background-color: unset;
+    transition: background-color $trans-default;
   }
 
   &--opened {
     z-index: 1;
 
     @include vp-1023 {
-      border-radius: 0 0 1.2vw 1.2vw;
+      border-radius: 0 0 20px 20px;
+      background-color: $color-modal;
     }
-
   }
 
   &__wrap {
@@ -123,8 +125,8 @@
       width: 100%;
       max-height: 0;
       opacity: 0;
-      padding: 0.5vw;
-      transition: opacity $trans-default, max-height $trans-default;
+      padding: 0 15px;
+      transition: opacity $trans-default, max-height $trans-default, padding $trans-default;
       overflow: hidden;
     }
 
@@ -134,12 +136,12 @@
 
         @include vp-1023 {
           display: block;
-          width: 1.4vw;
-          height: 0.2vw;
+          width: 40px;
+          height: 2px;
           flex-shrink: 0;
-          border-radius: 2vw;
+          border-radius: 1px;
           opacity: 0.6;
-          background: $color-swamp;
+          background: $color-default-white;
         }
       }
     }
@@ -149,6 +151,7 @@
     @include vp-1023 {
       max-height: 10000px;
       opacity: 1;
+      padding: 15px;
     }
   }
 

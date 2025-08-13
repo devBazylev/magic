@@ -1267,6 +1267,8 @@ button,
     width: 100%;
     min-height: unset;
     padding: 0;
+    background-color: unset;
+    transition: background-color 0.3s ease;
   }
 }
 .header--opened {
@@ -1274,7 +1276,8 @@ button,
 }
 @media (max-width: 1023px) {
   .header--opened {
-    border-radius: 0 0 1.2vw 1.2vw;
+    border-radius: 0 0 20px 20px;
+    background-color: #1a2234;
   }
 }
 .header__wrap {
@@ -1361,8 +1364,8 @@ button,
     width: 100%;
     max-height: 0;
     opacity: 0;
-    padding: 0.5vw;
-    transition: opacity 0.3s ease, max-height 0.3s ease;
+    padding: 0 15px;
+    transition: opacity 0.3s ease, max-height 0.3s ease, padding 0.3s ease;
     overflow: hidden;
   }
 }
@@ -1374,18 +1377,19 @@ button,
 @media (max-width: 1023px) {
   .header__cont::after {
     display: block;
-    width: 1.4vw;
-    height: 0.2vw;
+    width: 40px;
+    height: 2px;
     flex-shrink: 0;
-    border-radius: 2vw;
+    border-radius: 1px;
     opacity: 0.6;
-    background: #1f2020;
+    background: #ffffff;
   }
 }
 @media (max-width: 1023px) {
   .header--opened .header__cont {
     max-height: 10000px;
     opacity: 1;
+    padding: 15px;
   }
 }
 .header__logo {
@@ -1594,13 +1598,14 @@ button,
   .info__choice {
     position: absolute;
     width: 100vw;
-    top: -4.7vw;
-    left: -1.2vw;
+    min-width: 100%;
+    top: 10vh;
+    left: -5vw;
     max-height: 0;
     opacity: 0;
-    padding: 2.7vw 1.2vw;
-    border-radius: 1.2vw 1.2vw 0 0;
-    background-color: #ffffff;
+    padding: 30px 15px;
+    border-radius: 20px 20px 0 0;
+    background-color: #1a2234;
     transition: max-height ease, opacity ease;
     overflow: hidden;
     pointer-events: none;
@@ -1614,23 +1619,23 @@ button,
 @media (max-width: 1023px) {
   .info__choice::after {
     position: absolute;
-    top: 0.6vw;
+    top: 15px;
     left: 50%;
     transform: translate(-50%, 0);
     display: block;
-    width: 1.4vw;
-    height: 0.2vw;
+    width: 40px;
+    height: 2px;
     flex-shrink: 0;
-    border-radius: 2vw;
+    border-radius: 1px;
     opacity: 0.6;
-    background: #1f2020;
+    background: #ffffff;
   }
 }
 .info .info__choice--opened {
   max-height: 1000vh;
   opacity: 1;
   pointer-events: all;
-  height: 100vh;
+  height: 150vh;
   overflow: hidden;
   z-index: 1;
 }
@@ -1648,6 +1653,13 @@ button,
   border-radius: 0.55vw;
   background-color: #f2f2f2;
 }
+@media (max-width: 1023px) {
+  .info__backup {
+    width: 20px;
+    height: 12px;
+    border-radius: 6px;
+  }
+}
 .info__backup::after {
   content: "";
   display: block;
@@ -1660,6 +1672,12 @@ button,
   background-color: #1f2020;
   border-radius: 50%;
   transition: left 0.3s ease;
+}
+@media (max-width: 1023px) {
+  .info__backup::after {
+    width: 4px;
+    height: 4px;
+  }
 }
 .info__check:checked + .info__backup {
   background: linear-gradient(90deg, #ffe610, #fd7004, #fc2621);
@@ -1955,10 +1973,12 @@ button,
   width: 100%;
   height: 0;
   background: #000000;
-  opacity: 0.5;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 .overlay--active {
   height: 100vh;
+  opacity: 0.5;
 }
 
 .modal {
