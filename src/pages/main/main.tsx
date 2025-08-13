@@ -17,8 +17,6 @@ function Main(): JSX.Element {
     setActiveCheckboxes(checkboxes);
   };
 
-  const handleActiveCheckboxes = () => activeCheckboxes;
-
   return (
     <div className="wrapper">
       <HelmetProvider >
@@ -30,7 +28,7 @@ function Main(): JSX.Element {
           <h2 className="info__title">Shop</h2>
           <CheckboxList handleCheckboxChange={handleCheckboxChange} activeCheckboxes={activeCheckboxes} />
           <Filter />
-          <CardList handleActiveCheckboxes={handleActiveCheckboxes} />
+          <CardList activeCheckboxes={activeCheckboxes} />
         </section>
         <Modal />
       </main>

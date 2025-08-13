@@ -12,9 +12,7 @@ function CheckboxList({handleCheckboxChange, activeCheckboxes}: {handleCheckboxC
   const choiceRef = useRef<HTMLDivElement>(null);
 
   const handleCheckbox = (id: string, checked: boolean) => {
-    const newCheckboxes = checked
-      ? [...activeCheckboxes, id]
-      : activeCheckboxes.filter((item) => item !== id);
+    const newCheckboxes = checked ? [...activeCheckboxes, id] : activeCheckboxes.filter((item) => item !== id);
     handleCheckboxChange(newCheckboxes);
   };
 

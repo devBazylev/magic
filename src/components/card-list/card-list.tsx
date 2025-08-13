@@ -3,10 +3,9 @@ import Spinner from '../spinner/spinner';
 import { useAppSelector } from '../../hooks';
 import { getCards, getIsCardsLoading } from '../../store/site-data/selectors';
 
-function CardList({handleActiveCheckboxes}: {handleActiveCheckboxes: () => string[]}): JSX.Element {
+function CardList({activeCheckboxes}: {activeCheckboxes: string[]}): JSX.Element {
   const cards = useAppSelector(getCards);
   const isLoading = useAppSelector(getIsCardsLoading);
-  const activeCheckboxes = handleActiveCheckboxes();
 
   const checkedCards = cards.filter((card) => activeCheckboxes.includes(card.tag));
 
@@ -16,10 +15,7 @@ function CardList({handleActiveCheckboxes}: {handleActiveCheckboxes: () => strin
 
   if (!checkedCards || checkedCards.length === 0) {
     return (
-      <div style={{ padding: '20px', textAlign: 'center', color: '#fff' }}>
-        <p>No cards match selected filters</p>
-        <p>Active filters: {activeCheckboxes.join(', ')}</p>
-      </div>
+      <div className="info__nomatch">No cards match selected filters</div>
     );
   }
 
