@@ -26,6 +26,8 @@ html {
   line-height: 24px;
   color: $color-default-white;
   overflow-x: hidden;
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -152,4 +154,11 @@ button,
 [type="reset"],
 [type="submit"] {
   appearance: none;
+}
+
+@supports (scrollbar-width: thin) {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  }
 }

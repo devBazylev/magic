@@ -1107,6 +1107,8 @@ html {
   line-height: 24px;
   color: #ffffff;
   overflow-x: hidden;
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -1227,6 +1229,12 @@ button,
   appearance: none;
 }
 
+@supports (scrollbar-width: thin) {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  }
+}
 .btn {
   display: inline-flex;
   align-items: center;
@@ -1256,7 +1264,7 @@ button,
   backdrop-filter: blur(1vw);
   -webkit-backdrop-filter: blur(1vw);
   overflow: hidden;
-  z-index: 1;
+  z-index: 0;
 }
 @media (max-width: 1023px) {
   .header {
@@ -1999,14 +2007,15 @@ button,
   position: fixed;
   top: 0;
   width: 100%;
-  height: 0;
+  height: 100vh;
   background: #000000;
   opacity: 0;
   transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 .overlay--active {
-  height: 100vh;
   opacity: 0.5;
+  pointer-events: all;
 }
 
 .modal {
