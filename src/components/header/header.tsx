@@ -7,7 +7,7 @@ import { useAppSelector, useAppDispatch } from '../../hooks';
 import { getMedia } from '../../store/site-process/selectors';
 import { useState, useEffect } from 'react';
 import { setOverlay } from '../../store/site-process/site-process';
-import { scrollLock } from '../../utils';
+import { lockScroll } from '../../utils';
 
 function Header(): JSX.Element {
   const isMobile = useAppSelector(getMedia);
@@ -17,13 +17,13 @@ function Header(): JSX.Element {
 
   useEffect(() => {
     dispatch(setOverlay(false));
-    scrollLock(false);
+    lockScroll(false);
   }, [location.pathname, dispatch]);
 
   const handleToggleMenu = () => {
     setActiveHeader(!isActiveHeader);
     dispatch(setOverlay(!isActiveHeader));
-    scrollLock(!isActiveHeader);
+    lockScroll(!isActiveHeader);
   };
 
   return (

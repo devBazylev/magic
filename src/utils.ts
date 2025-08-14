@@ -11,7 +11,7 @@ function ScrollToTop() {
   return null;
 }
 
-const scrollLock = (flag: boolean) => {
+const lockScroll = (flag: boolean) => {
   if (flag) {
     document.body.classList.add('locked');
   } else {
@@ -57,7 +57,7 @@ const getReviewId = generateReviewId();
 
 export {
   ScrollToTop,
-  scrollLock,
+  lockScroll,
   joinPaths,
   getCardId,
   getCityId,
