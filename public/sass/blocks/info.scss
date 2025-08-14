@@ -66,6 +66,7 @@
 
     @include vp-1023 {
       position: absolute;
+      gap: 10px;
       width: 100vw;
       min-width: 100%;
       top: 10vh;
@@ -240,6 +241,12 @@
         border-top: 0.5vw solid $color-default-white;
         transition: transform $trans-default;
       }
+
+      @include vp-1023 {
+        border-left-width: 4px;
+        border-right-width: 4px;
+        border-top: 5px solid $color-default-white;
+      }
     }
   }
 
@@ -249,7 +256,7 @@
 
   &__drop {
     position: absolute;
-    top: 0.3vw;
+    top: 4vw;
     left: 0;
     opacity: 0;
     max-height: 0;
@@ -258,9 +265,12 @@
     pointer-events: none;
     z-index: 1;
     background-color: $color-modal;
+    border-radius: 20px;
 
     @include vp-1023 {
-      left: -5.5vw;
+      top: 45px;
+      left: unset;
+      right: 0;
     }
   }
 
@@ -271,7 +281,7 @@
   }
 
   &__option {
-    min-width: 280px;
+    min-width: 14vw;
     padding: 1vw 1.5vw;
     color: inherit;
     font-size: clamp(14px, 1.5vw, 1.5vw);
@@ -283,6 +293,8 @@
     cursor: pointer;
 
     @include vp-1023 {
+      min-width: 200px;
+      padding: 10px 20px;
       font-size: clamp(14px, 4vw, 21px);
     }
 

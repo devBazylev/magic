@@ -1,4 +1,4 @@
-import { sortingValues, AuthorizationStatus } from './const';
+import { filters, AuthorizationStatus } from './const';
 import { store } from './store/store';
 
 export type State = ReturnType<typeof store.getState>;
@@ -26,7 +26,7 @@ export type User = {
 
 export type UserAuth = Pick<User, 'email'> & { password: string };
 
-export type SortName = typeof sortingValues[number];
+export type SortName = typeof filters[number];
 
 export type SiteData = {
   cards: CardProps[];

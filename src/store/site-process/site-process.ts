@@ -4,7 +4,7 @@ import type { SiteProcess, SortName } from '../../types';
 import { StoreSlice } from '../../const';
 
 const initialState: SiteProcess = {
-  sorting: 'Popular',
+  sorting: 'popular',
   mobile: null,
   overlay: false,
 };

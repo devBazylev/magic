@@ -71,8 +71,8 @@ export const fetchUserStatus = createAsyncThunk<User, undefined, { extra: ThunkE
   Action.FETCH_USER_STATUS,
   async (_, { extra }) => {
     const { api } = extra;
-    const { data } = await api.get<User>(APIRoute.LOGIN);
+    const { data } = await api.get<{ data: User }>(APIRoute.LOGIN);
 
-    return data;
+    return data.data;
   }
 );
