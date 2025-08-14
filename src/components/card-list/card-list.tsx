@@ -2,8 +2,9 @@ import Card from '../card/card';
 import Spinner from '../spinner/spinner';
 import { useAppSelector } from '../../hooks';
 import { getCards, getIsCardsLoading } from '../../store/site-data/selectors';
+import { comprator } from '../../const';
 
-function CardList({activeCheckboxes}: {activeCheckboxes: string[]}): JSX.Element {
+function CardList({activeCheckboxes, activeFilter}: {activeCheckboxes: string[]; activeFilter: string}): JSX.Element {
   const cards = useAppSelector(getCards);
   const isLoading = useAppSelector(getIsCardsLoading);
 
@@ -19,9 +20,11 @@ function CardList({activeCheckboxes}: {activeCheckboxes: string[]}): JSX.Element
     );
   }
 
+  const sortedCards = checkedCards.sort(comprator[activeFilter as keyof typeof comprator]);
+
   return (
     <ul className="info__list">
-      {checkedCards?.map((card) => (
+      {sortedCards?.map((card) => (
         <Card key={card.id} {...card} />
       ))}
     </ul>

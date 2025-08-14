@@ -29,7 +29,7 @@ function Main(): JSX.Element {
           <h2 className="info__title">Shop</h2>
           <CheckboxList handleCheckboxChange={handleCheckboxChange} activeCheckboxes={activeCheckboxes} />
           <Filter activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
-          <CardList activeCheckboxes={activeCheckboxes} />
+          <CardList activeCheckboxes={activeCheckboxes} activeFilter={activeFilter}/>
         </section>
         <Modal />
       </main>

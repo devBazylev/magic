@@ -30,11 +30,15 @@ export enum APIRoute {
   NOT_FOUND = '/404',
 }
 
-export const Comprator = {
-  'Popular': () => 0,
-  'Expensive': (a: { price: number }, b: { price: number }) => a.price - b.price,
-  'Cheap': (a: { price: number }, b: { price: number }) => b.price - a.price,
-  'Rare': (a: { rating: number }, b: { rating: number }) => b.rating - a.rating,
+export const comprator = {
+  'popular': () => 0,
+  'cheap': (a: { price: number }, b: { price: number }) => a.price - b.price,
+  'expensive': (a: { price: number }, b: { price: number }) => b.price - a.price,
+  'rare': (a: { tag: string }, b: { tag: string }) => {
+    const aHasRare = a.tag.includes('artefact') ? 0 : 1;
+    const bHasRare = b.tag.includes('artefact') ? 0 : 1;
+    return aHasRare - bHasRare;
+  },
 } as const;
 
 export const labels = [
