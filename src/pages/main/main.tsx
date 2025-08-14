@@ -7,9 +7,10 @@ import Overlay from '../../components/overlay/overlay';
 import { HelmetProvider } from 'react-helmet-async';
 import Back from '../../components/back/back';
 import { useState } from 'react';
-import { labels } from '../../const';
+import { filters, labels } from '../../const';
 
 function Main(): JSX.Element {
+  const [activeFilter, setActiveFilter] = useState<string>(filters[0]);
   const [activeCheckboxes, setActiveCheckboxes] = useState<string[]>(
     labels.filter((label) => label.checked).map((label) => label.id)
   );
@@ -27,7 +28,7 @@ function Main(): JSX.Element {
         <section className="info">
           <h2 className="info__title">Shop</h2>
           <CheckboxList handleCheckboxChange={handleCheckboxChange} activeCheckboxes={activeCheckboxes} />
-          <Filter />
+          <Filter activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
           <CardList activeCheckboxes={activeCheckboxes} />
         </section>
         <Modal />

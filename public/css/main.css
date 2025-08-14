@@ -1738,7 +1738,9 @@ button,
 .info__board {
   position: relative;
   display: flex;
-  gap: 0.25vw;
+  gap: 0.7vw;
+  width: 10vw;
+  justify-content: flex-end;
   padding: 0.5vw;
   color: inherit;
   text-align: right;
@@ -1751,6 +1753,7 @@ button,
 }
 @media (max-width: 1023px) {
   .info__board {
+    width: 150px;
     font-size: clamp(14px, 4vw, 21px);
   }
 }
@@ -1760,9 +1763,9 @@ button,
   width: 0;
   height: 0;
   border: 0 solid transparent;
-  border-left-width: 0.15vw;
-  border-right-width: 0.15vw;
-  border-top: 0.25vw solid #202020;
+  border-left-width: 0.4vw;
+  border-right-width: 0.4vw;
+  border-top: 0.5vw solid #ffffff;
   transition: transform 0.3s ease;
 }
 .info__select--opened .info__board::after {
@@ -1778,7 +1781,7 @@ button,
   transition: opacity 0.3s ease, max-height 0.3s ease;
   pointer-events: none;
   z-index: 1;
-  background-color: #ffffff;
+  background-color: #1a2234;
 }
 @media (max-width: 1023px) {
   .info__drop {
@@ -1793,7 +1796,7 @@ button,
 .info__option {
   min-width: 280px;
   padding: 1vw 1.5vw;
-  color: #051320;
+  color: inherit;
   font-size: clamp(14px, 1.5vw, 1.5vw);
   font-style: normal;
   line-height: 120%;

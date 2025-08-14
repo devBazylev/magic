@@ -1,18 +1,32 @@
+import { useState } from 'react';
 import { filters } from '../../const';
+import { useAppDispatch } from '../../hooks';
+import { setOverlay } from '../../store/site-process/site-process';
 
-function Filter(): JSX.Element {
+function Filter({ activeFilter, setActiveFilter }: { activeFilter: string; setActiveFilter: (filter: string) => void }): JSX.Element {
+  const [isOpened, setIsOpened] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
+
+  const handleBoardClick = () => {
+    setIsOpened(!isOpened);
+    dispatch(setOverlay(!isOpened));
+  };
+
+  const handleOptionClick = (filter: string) => {
+    setActiveFilter(filter);
+    setIsOpened(!isOpened);
+    dispatch(setOverlay(!isOpened));
+  };
+
   return (
     <div className="info__wrap">
       <div className="info__num">0 items</div>
-      <div className="info__select">
-        <button className="btn info__board" type="button">{filters[0]}&nbsp;first</button>
+      <div className={`info__select ${isOpened ? 'info__select--opened' : ''}`}>
+        <button className="btn info__board" type="button" onClick={handleBoardClick}>{activeFilter}</button>
         <div className="info__drop">
-          {/* {filters.map((filter) => {
-            <div className=`info__option info__option--{filter.toLowerCase()}`>{filter}&nbsp;first</div>
-          })} */}
-          {/* <div className="info__option info__option--cheap">Cheap&nbsp;first</div>
-          <div className="info__option info__option--rare">Rare&nbsp;first</div>
-          <div className="info__option info__option--common">Common&nbsp;first</div> */}
+          {filters.map((filter) => (
+            <div className="info__option" key={filter} onClick={() => handleOptionClick(filter)}>{filter}</div>
+          ))}
         </div>
       </div>
     </div>

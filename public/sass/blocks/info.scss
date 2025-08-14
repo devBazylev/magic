@@ -212,7 +212,9 @@
   &__board {
     position: relative;
     display: flex;
-    gap: 0.25vw;
+    gap: 0.7vw;
+    width: 10vw;
+    justify-content: flex-end;
     padding: 0.5vw;
     color: inherit;
     text-align: right;
@@ -224,6 +226,7 @@
     letter-spacing: 0.1vw;
 
     @include vp-1023 {
+      width: 150px;
       font-size: clamp(14px, 4vw, 21px);
     }
 
@@ -232,9 +235,9 @@
         width: 0;
         height: 0;
         border: 0 solid transparent;
-        border-left-width: 0.15vw;
-        border-right-width: 0.15vw;
-        border-top: 0.25vw solid $color-nero;
+        border-left-width: 0.4vw;
+        border-right-width: 0.4vw;
+        border-top: 0.5vw solid $color-default-white;
         transition: transform $trans-default;
       }
     }
@@ -254,7 +257,7 @@
     transition: opacity $trans-default, max-height $trans-default;
     pointer-events: none;
     z-index: 1;
-    background-color: $color-default-white;
+    background-color: $color-modal;
 
     @include vp-1023 {
       left: -5.5vw;
@@ -270,7 +273,7 @@
   &__option {
     min-width: 280px;
     padding: 1vw 1.5vw;
-    color: $color-black-pearl;
+    color: inherit;
     font-size: clamp(14px, 1.5vw, 1.5vw);
     font-style: normal;
     line-height: 120%;

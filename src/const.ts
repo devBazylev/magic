@@ -1,5 +1,4 @@
-export const filters = ['Expensive', 'Cheap', 'Rare', 'Common'] as const;
-export const sortingValues = ['Popular', 'Price: low to high', 'Price: high to low', 'Top rated first'];
+export const filters = ['popular','expensive', 'cheap', 'rare'] as const;
 
 export enum StoreSlice {
   SiteData = 'SITE_DATA',
@@ -36,7 +35,6 @@ export const Comprator = {
   'Expensive': (a: { price: number }, b: { price: number }) => a.price - b.price,
   'Cheap': (a: { price: number }, b: { price: number }) => b.price - a.price,
   'Rare': (a: { rating: number }, b: { rating: number }) => b.rating - a.rating,
-  'Common': (a: { rating: number }, b: { rating: number }) => b.rating - a.rating,
 } as const;
 
 export const labels = [
@@ -45,4 +43,4 @@ export const labels = [
   {name: 'elixirs', id: 'elixir', text: 'Elixirs', checked: true},
   {name: 'artefacts', id: 'artefact', text: 'Artefacts', checked: true},
   {name: 'armors', id: 'armor', text: 'Armors', checked: true},
-];
+] as const;
