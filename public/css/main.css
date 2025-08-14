@@ -1107,6 +1107,8 @@ html {
   line-height: 24px;
   color: #ffffff;
   overflow-x: hidden;
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -1227,6 +1229,12 @@ button,
   appearance: none;
 }
 
+@supports (scrollbar-width: thin) {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  }
+}
 .btn {
   display: inline-flex;
   align-items: center;
