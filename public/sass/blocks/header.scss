@@ -11,7 +11,7 @@
   backdrop-filter: blur(1vw);
   -webkit-backdrop-filter: blur(1vw);
   overflow: hidden;
-  z-index: 1;
+  z-index: 0;
 
   @include vp-1023 {
     position: fixed;
