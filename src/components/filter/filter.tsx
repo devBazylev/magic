@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { filters } from '../../const';
 import { useAppDispatch } from '../../hooks';
 import { setOverlay } from '../../store/site-process/site-process';
+import { scrollLock } from '../../utils';
 
 function Filter({ activeFilter, setActiveFilter }: { activeFilter: string; setActiveFilter: (filter: string) => void }): JSX.Element {
   const [isOpened, setIsOpened] = useState<boolean>(false);
@@ -10,12 +11,14 @@ function Filter({ activeFilter, setActiveFilter }: { activeFilter: string; setAc
   const handleBoardClick = () => {
     setIsOpened(!isOpened);
     dispatch(setOverlay(!isOpened));
+    scrollLock(!isOpened);
   };
 
   const handleOptionClick = (filter: string) => {
     setActiveFilter(filter);
     setIsOpened(!isOpened);
     dispatch(setOverlay(!isOpened));
+    scrollLock(!isOpened);
   };
 
   return (

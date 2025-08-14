@@ -3,6 +3,7 @@ import { labels } from '../../const';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { getMedia } from '../../store/site-process/selectors';
 import { setOverlay } from '../../store/site-process/site-process';
+import { scrollLock } from '../../utils';
 
 function CheckboxList({handleCheckboxChange, activeCheckboxes}: {handleCheckboxChange: (checkboxes: string[]) => void; activeCheckboxes: string[]}): JSX.Element {
   const dispatch = useAppDispatch();
@@ -19,6 +20,7 @@ function CheckboxList({handleCheckboxChange, activeCheckboxes}: {handleCheckboxC
   const handleToggler = () => {
     setActiveToggler(!isActiveToggler);
     dispatch(setOverlay(!isActiveToggler));
+    scrollLock(!isActiveToggler);
   };
 
   useEffect(() => {
@@ -43,6 +45,7 @@ function CheckboxList({handleCheckboxChange, activeCheckboxes}: {handleCheckboxC
       if (endY - startY > 30) {
         setActiveToggler(!isActiveToggler);
         dispatch(setOverlay(!isActiveToggler));
+        scrollLock(!isActiveToggler);
       }
     };
 

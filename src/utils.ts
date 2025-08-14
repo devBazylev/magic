@@ -11,6 +11,14 @@ function ScrollToTop() {
   return null;
 }
 
+const scrollLock = (flag: boolean) => {
+  if (flag) {
+    document.body.classList.add('locked');
+  } else {
+    document.body.classList.remove('locked');
+  }
+};
+
 const joinPaths = (...parts: string[]) => parts.map((part, index) => {
   if (index === 0) {
     return part.replace(/\/+$/, '');
@@ -49,6 +57,7 @@ const getReviewId = generateReviewId();
 
 export {
   ScrollToTop,
+  scrollLock,
   joinPaths,
   getCardId,
   getCityId,
