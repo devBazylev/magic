@@ -13,6 +13,7 @@ export type CardProps = {
   tag: string;
   image: string;
   fav?: boolean;
+  amount?: number;
 };
 
 export type User = {
@@ -38,6 +39,7 @@ export type SiteProcess = {
   mobile: boolean | null;
   overlay: boolean;
   modal: boolean;
+  cart: CardProps[];
 };
 
 export type UserProcess = {

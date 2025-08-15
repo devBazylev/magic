@@ -1,3 +1,4 @@
+import ModalList from '../modal-list/modal-list';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
 import { getModal } from '../../store/site-process/selectors';
@@ -33,7 +34,7 @@ function Modal(): JSX.Element {
           <div className="modal__count">0<span>&nbsp;items</span></div>
           <button className="btn modal__clean" type="button">Clear the list</button>
         </div>
-        <ul className="modal__list" />
+        <ModalList />
         <div className="modal__foot">
           <div className="modal__bag">
             <div className="modal__sign">Total</div>

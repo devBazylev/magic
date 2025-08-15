@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import type { SiteProcess, SortName } from '../../types';
+import type { CardProps, SiteProcess, SortName } from '../../types';
 import { StoreSlice } from '../../const';
 
 const initialState: SiteProcess = {
@@ -8,6 +8,7 @@ const initialState: SiteProcess = {
   mobile: null,
   overlay: false,
   modal: false,
+  cart: [],
 };
 
 export const siteProcess = createSlice({
@@ -26,7 +27,10 @@ export const siteProcess = createSlice({
     setModal: (state, action: PayloadAction<boolean>) => {
       state.modal = action.payload;
     },
+    setCart: (state, action: PayloadAction<CardProps[]>) => {
+      state.cart = action.payload;
+    },
   },
 });
 
-export const { setSorting, setMedia, setOverlay, setModal } = siteProcess.actions;
+export const { setSorting, setMedia, setOverlay, setModal, setCart } = siteProcess.actions;
