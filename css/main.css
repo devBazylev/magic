@@ -2149,17 +2149,25 @@ button,
   border-top: 0.05vw solid #ffffff;
 }
 .modal__card {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1vw;
+}
+@media (max-width: 1023px) {
+  .modal__card {
+    gap: 20px;
+  }
 }
 .modal__pic {
   overflow: hidden;
   position: relative;
   top: -0.35vw;
+  width: 6vw;
 }
-.modal__pic img {
-  transform: scale(1.4);
+@media (max-width: 1023px) {
+  .modal__pic {
+    width: 50px;
+  }
 }
 .modal__box {
   display: flex;

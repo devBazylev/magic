@@ -138,19 +138,24 @@
   }
 
   &__card {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1vw;
+
+    @include vp-1023 {
+      gap: 20px;
+    }
   }
 
   &__pic {
     overflow: hidden;
     position: relative;
     top: -0.35vw;
-  }
+    width: 6vw;
 
-  &__pic img {
-    transform: scale(1.4);
+    @include vp-1023 {
+      width: 50px;
+    }
   }
 
   &__box {
