@@ -1,10 +1,17 @@
-import { useState } from 'react';
+import { RefObject, useState } from 'react';
 import { filters } from '../../const';
 import { useAppDispatch } from '../../hooks';
 import { setOverlay } from '../../store/site-process/site-process';
 import { lockScroll } from '../../utils';
 
-function Filter({ totalCards, activeFilter, setActiveFilter }: { totalCards: number; activeFilter: string; setActiveFilter: (filter: string) => void }): JSX.Element {
+interface FilterProps {
+  totalCards: number;
+  activeFilter: string;
+  setActiveFilter: (filter: string) => void;
+  headerRef: RefObject<HTMLHeadingElement>;
+}
+
+function Filter({ totalCards, activeFilter, setActiveFilter, headerRef }: FilterProps): JSX.Element {
   const [isOpened, setIsOpened] = useState<boolean>(false);
   const dispatch = useAppDispatch();
 
@@ -12,6 +19,7 @@ function Filter({ totalCards, activeFilter, setActiveFilter }: { totalCards: num
     setIsOpened(!isOpened);
     dispatch(setOverlay(!isOpened));
     lockScroll(!isOpened);
+    headerRef.current?.classList.add('header--zindex');
   };
 
   const handleOptionClick = (filter: string) => {
@@ -19,6 +27,7 @@ function Filter({ totalCards, activeFilter, setActiveFilter }: { totalCards: num
     setIsOpened(!isOpened);
     dispatch(setOverlay(!isOpened));
     lockScroll(!isOpened);
+    headerRef.current?.classList.remove('header--zindex');
   };
 
   return (

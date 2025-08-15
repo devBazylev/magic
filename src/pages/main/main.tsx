@@ -6,7 +6,7 @@ import Modal from '../../components/modal/modal';
 import Overlay from '../../components/overlay/overlay';
 import { HelmetProvider } from 'react-helmet-async';
 import Back from '../../components/back/back';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { filters, labels } from '../../const';
 import { getCards } from '../../store/site-data/selectors';
 import { useAppSelector } from '../../hooks';
@@ -19,6 +19,7 @@ function Main(): JSX.Element {
   const cards = useAppSelector(getCards);
   const checkedCards = cards.filter((card) => activeCheckboxes.includes(card.tag));
   const totalCards = checkedCards.length;
+  const headerRef = useRef<HTMLHeadingElement>(null);
 
   const handleCheckboxChange = (checkboxes: string[]) => {
     setActiveCheckboxes(checkboxes);
@@ -29,15 +30,15 @@ function Main(): JSX.Element {
       <HelmetProvider >
         <title>You can buy something</title>
       </HelmetProvider>
-      <Header />
+      <Header headerRef={headerRef} />
       <main>
         <section className="info">
           <h2 className="info__title">Shop</h2>
-          <CheckboxList handleCheckboxChange={handleCheckboxChange} activeCheckboxes={activeCheckboxes} />
-          <Filter totalCards={totalCards} activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
+          <CheckboxList handleCheckboxChange={handleCheckboxChange} activeCheckboxes={activeCheckboxes} headerRef={headerRef} />
+          <Filter totalCards={totalCards} activeFilter={activeFilter} setActiveFilter={setActiveFilter} headerRef={headerRef} />
           <CardList checkedCards={checkedCards} activeFilter={activeFilter}/>
         </section>
-        <Modal />
+        <Modal headerRef={headerRef} />
       </main>
       <Back />
       <Overlay />

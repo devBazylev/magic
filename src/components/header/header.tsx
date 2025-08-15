@@ -5,11 +5,15 @@ import { Link, useLocation } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { getCart, getMedia } from '../../store/site-process/selectors';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, RefObject } from 'react';
 import { setModal, setOverlay } from '../../store/site-process/site-process';
 import { calcElems, lockScroll } from '../../utils';
 
-function Header(): JSX.Element {
+interface HeaderProps {
+  headerRef: RefObject<HTMLHeadingElement>;
+}
+
+function Header({ headerRef }: HeaderProps): JSX.Element {
   const isMobile = useAppSelector(getMedia);
   const dispatch = useAppDispatch();
   const [isActiveHeader, setActiveHeader] = useState(false);
@@ -33,7 +37,7 @@ function Header(): JSX.Element {
   };
 
   return (
-    <header className={`header ${isActiveHeader ? 'header--opened' : ''}`}>
+    <header ref={headerRef} className={`header ${isActiveHeader ? 'header--opened' : ''}`}>
       <div className="header__wrap">
         {isMobile && <button className="btn header__toggler" type="button" aria-label="Toggle menu." onClick={handleToggleMenu}></button>}
         <Logo />

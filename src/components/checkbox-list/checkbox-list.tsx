@@ -1,11 +1,17 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, RefObject } from 'react';
 import { labels } from '../../const';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { getMedia } from '../../store/site-process/selectors';
 import { setOverlay } from '../../store/site-process/site-process';
 import { lockScroll } from '../../utils';
 
-function CheckboxList({handleCheckboxChange, activeCheckboxes}: {handleCheckboxChange: (checkboxes: string[]) => void; activeCheckboxes: string[]}): JSX.Element {
+interface CheckboxListProps {
+  handleCheckboxChange: (checkboxes: string[]) => void;
+  activeCheckboxes: string[];
+  headerRef: RefObject<HTMLHeadingElement>;
+}
+
+function CheckboxList({handleCheckboxChange, activeCheckboxes, headerRef}: CheckboxListProps): JSX.Element {
   const dispatch = useAppDispatch();
   const isMobile = useAppSelector(getMedia);
   const [isActiveToggler, setActiveToggler] = useState(false);
@@ -49,6 +55,12 @@ function CheckboxList({handleCheckboxChange, activeCheckboxes}: {handleCheckboxC
       }
     };
 
+    if (isActiveToggler) {
+      headerRef.current?.classList.add('header--zindex');
+    } else {
+      headerRef.current?.classList.remove('header--zindex');
+    }
+
     choice.addEventListener('touchstart', onTouchStart, { passive: true });
     choice.addEventListener('touchmove', onTouchMove);
     choice.addEventListener('touchend', onTouchEnd);
@@ -58,7 +70,7 @@ function CheckboxList({handleCheckboxChange, activeCheckboxes}: {handleCheckboxC
       choice.removeEventListener('touchmove', onTouchMove);
       choice.removeEventListener('touchend', onTouchEnd);
     };
-  }, [isActiveToggler, dispatch, isMobile]);
+  }, [isActiveToggler, dispatch, isMobile, headerRef]);
 
   return (
     <div className="info__case">

@@ -1,11 +1,15 @@
 import ModalList from '../modal-list/modal-list';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { useEffect } from 'react';
+import { useEffect, RefObject } from 'react';
 import { getCart, getModal } from '../../store/site-process/selectors';
 import { setCart, setModal, setOverlay } from '../../store/site-process/site-process';
 import { calcElems, lockScroll } from '../../utils';
 
-function Modal(): JSX.Element {
+interface ModalProps {
+  headerRef: RefObject<HTMLHeadingElement>;
+}
+
+function Modal({ headerRef }: ModalProps): JSX.Element {
   const isModal = useAppSelector(getModal);
   const dispatch = useAppDispatch();
   const cart = useAppSelector(getCart);
@@ -15,7 +19,13 @@ function Modal(): JSX.Element {
   useEffect(() => {
     lockScroll(isModal ?? false);
     dispatch(setOverlay(isModal ?? false));
-  }, [isModal, dispatch]);
+
+    if (isModal) {
+      headerRef.current?.classList.add('header--zindex');
+    } else {
+      headerRef.current?.classList.remove('header--zindex');
+    }
+  }, [isModal, dispatch, headerRef]);
 
   const handleCloseModal = () => {
     dispatch(setModal(false));
