@@ -32,7 +32,9 @@ function CardList({activeCheckboxes, activeFilter}: {activeCheckboxes: string[];
     const existingCardIndex = newCart.findIndex((item) => item.id === selectedCard.id);
 
     if (existingCardIndex >= 0) {
-      newCart[existingCardIndex] = { ...newCart[existingCardIndex], amount: (newCart[existingCardIndex].amount || 0) + 1 };
+      //rewrite object in array
+      const newAmount = (newCart[existingCardIndex].amount ?? 0) + 1;
+      newCart[existingCardIndex] = { ...newCart[existingCardIndex], amount: newAmount };
       dispatch(setCart(newCart));
     } else {
       dispatch(setCart([...newCart, { ...selectedCard, amount: 1 }]));
