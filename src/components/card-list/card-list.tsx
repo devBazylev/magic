@@ -6,17 +6,25 @@ import { comprator } from '../../const';
 import { setCart } from '../../store/site-process/site-process';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getCart } from '../../store/site-process/selectors';
+import { CardProps } from '../../types';
 
-function CardList({activeCheckboxes, activeFilter}: {activeCheckboxes: string[]; activeFilter: string}): JSX.Element {
-  const cards = useAppSelector(getCards);
+function CardList({checkedCards, activeFilter}: {checkedCards: CardProps[]; activeFilter: string}): JSX.Element {
   const isLoading = useAppSelector(getIsCardsLoading);
   const dispatch = useAppDispatch();
   const cart = useAppSelector(getCart);
-  const checkedCards = cards.filter((card) => activeCheckboxes.includes(card.tag));
+  const cards = useAppSelector(getCards);
 
   if (isLoading) {
     return <Spinner />;
   }
+
+  if (!checkedCards || checkedCards.length === 0) {
+    return (
+      <div className="info__nomatch">No cards match selected filters</div>
+    );
+  }
+
+  const sortedCards = checkedCards.sort(comprator[activeFilter as keyof typeof comprator]);
 
   const handleAddToCart = (evt: React.MouseEvent<HTMLButtonElement>) => {
     const btnId = evt.currentTarget.dataset.btnId;
@@ -40,14 +48,6 @@ function CardList({activeCheckboxes, activeFilter}: {activeCheckboxes: string[];
       dispatch(setCart([...newCart, { ...selectedCard, amount: 1 }]));
     }
   };
-
-  if (!checkedCards || checkedCards.length === 0) {
-    return (
-      <div className="info__nomatch">No cards match selected filters</div>
-    );
-  }
-
-  const sortedCards = checkedCards.sort(comprator[activeFilter as keyof typeof comprator]);
 
   return (
     <ul className="info__list">
