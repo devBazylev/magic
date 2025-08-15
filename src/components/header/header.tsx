@@ -10,7 +10,7 @@ import { setModal, setOverlay } from '../../store/site-process/site-process';
 import { calcElems, lockScroll } from '../../utils';
 
 interface HeaderProps {
-  headerRef: RefObject<HTMLHeadingElement>;
+  headerRef?: RefObject<HTMLHeadingElement>;
 }
 
 function Header({ headerRef }: HeaderProps): JSX.Element {
@@ -37,7 +37,7 @@ function Header({ headerRef }: HeaderProps): JSX.Element {
   };
 
   return (
-    <header ref={headerRef} className={`header ${isActiveHeader ? 'header--opened' : ''}`}>
+    <header ref={headerRef || undefined} className={`header ${isActiveHeader ? 'header--opened' : ''}`}>
       <div className="header__wrap">
         {isMobile && <button className="btn header__toggler" type="button" aria-label="Toggle menu." onClick={handleToggleMenu}></button>}
         <Logo />
