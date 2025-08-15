@@ -1,13 +1,16 @@
 import ModalList from '../modal-list/modal-list';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
-import { getModal } from '../../store/site-process/selectors';
-import { setModal, setOverlay } from '../../store/site-process/site-process';
-import { lockScroll } from '../../utils';
+import { getCart, getModal } from '../../store/site-process/selectors';
+import { setCart, setModal, setOverlay } from '../../store/site-process/site-process';
+import { calcElems, lockScroll } from '../../utils';
 
 function Modal(): JSX.Element {
   const isModal = useAppSelector(getModal);
   const dispatch = useAppDispatch();
+  const cart = useAppSelector(getCart);
+  const totalItems = calcElems(cart?.map((item) => item.amount ?? 0) ?? []);
+  const totalPrice = calcElems(cart?.map((item) => (item.amount ?? 0) * (item.price ?? 0)) ?? []);
 
   useEffect(() => {
     lockScroll(isModal ?? false);
@@ -16,6 +19,10 @@ function Modal(): JSX.Element {
 
   const handleCloseModal = () => {
     dispatch(setModal(false));
+  };
+
+  const handleClearCart = () => {
+    dispatch(setCart([]));
   };
 
   return (
@@ -31,14 +38,14 @@ function Modal(): JSX.Element {
       </div>
       <div className="modal__form">
         <div className="modal__head">
-          <div className="modal__count">0<span>&nbsp;items</span></div>
-          <button className="btn modal__clean" type="button">Clear the list</button>
+          <div className="modal__count">{totalItems}<span>&nbsp;items</span></div>
+          <button className="btn modal__clean" type="button" onClick={handleClearCart}>Clear the list</button>
         </div>
         <ModalList />
         <div className="modal__foot">
           <div className="modal__bag">
             <div className="modal__sign">Total</div>
-            <div className="modal__total">0<span>&nbsp;gp</span></div>
+            <div className="modal__total">{totalPrice}<span>&nbsp;gp</span></div>
           </div>
           <button className="btn modal__submit" type="submit">Confirm</button>
         </div>

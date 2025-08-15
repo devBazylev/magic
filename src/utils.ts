@@ -55,6 +55,14 @@ const getCardId = generateCardId();
 const getCityId = generateCityId();
 const getReviewId = generateReviewId();
 
+const calcElems = (arr: number[]) => {
+  let sum = 0;
+  arr.forEach((item) => {
+    sum += item;
+  });
+  return sum;
+};
+
 export {
   ScrollToTop,
   lockScroll,
@@ -62,4 +70,5 @@ export {
   getCardId,
   getCityId,
   getReviewId,
+  calcElems,
 };

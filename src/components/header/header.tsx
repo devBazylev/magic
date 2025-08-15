@@ -4,16 +4,18 @@ import UserStatus from '../../components/user-status/user-status';
 import { Link, useLocation } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { getMedia } from '../../store/site-process/selectors';
+import { getCart, getMedia } from '../../store/site-process/selectors';
 import { useState, useEffect } from 'react';
 import { setModal, setOverlay } from '../../store/site-process/site-process';
-import { lockScroll } from '../../utils';
+import { calcElems, lockScroll } from '../../utils';
 
 function Header(): JSX.Element {
   const isMobile = useAppSelector(getMedia);
   const dispatch = useAppDispatch();
   const [isActiveHeader, setActiveHeader] = useState(false);
   const location = useLocation();
+  const cart = useAppSelector(getCart);
+  const totalItems = calcElems(cart?.map((item) => item.amount ?? 0) ?? []);
 
   useEffect(() => {
     dispatch(setOverlay(false));
@@ -35,7 +37,7 @@ function Header(): JSX.Element {
       <div className="header__wrap">
         {isMobile && <button className="btn header__toggler" type="button" aria-label="Toggle menu." onClick={handleToggleMenu}></button>}
         <Logo />
-        <button className="btn header__cart" type="button" aria-label="Items in the cart." onClick={handleOpenModal}><span>0</span></button>
+        <button className="btn header__cart" type="button" aria-label="Items in the cart." onClick={handleOpenModal}><span>{totalItems}</span></button>
       </div>
       <div className="header__cont">
         <Nav />
