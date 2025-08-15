@@ -7,6 +7,7 @@ const initialState: SiteProcess = {
   sorting: 'popular',
   mobile: null,
   overlay: false,
+  modal: false,
 };
 
 export const siteProcess = createSlice({
@@ -22,7 +23,10 @@ export const siteProcess = createSlice({
     setOverlay: (state, action: PayloadAction<boolean>) => {
       state.overlay = action.payload;
     },
+    setModal: (state, action: PayloadAction<boolean>) => {
+      state.modal = action.payload;
+    },
   },
 });
 
-export const { setSorting, setMedia, setOverlay } = siteProcess.actions;
+export const { setSorting, setMedia, setOverlay, setModal } = siteProcess.actions;

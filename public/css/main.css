@@ -1798,7 +1798,6 @@ button,
   pointer-events: none;
   z-index: 1;
   background-color: #1a2234;
-  border-radius: 20px;
 }
 @media (max-width: 1023px) {
   .info__drop {
@@ -2042,10 +2041,11 @@ button,
 @media (max-width: 1023px) {
   .modal {
     gap: 0.5vw;
-    padding: 1vw 1vw 3vw;
+    max-width: 500px;
+    padding: 0 15px 30px;
   }
 }
-body .modal--opened {
+.modal.modal--opened {
   max-height: 100vh;
   opacity: 1;
   pointer-events: all;
@@ -2059,13 +2059,27 @@ body .modal--opened {
   font-size: clamp(16px, 2vw, 60px);
   font-style: normal;
 }
+@media (max-width: 1023px) {
+  .modal__title {
+    font-size: clamp(36px, 9vw, 54px);
+  }
+}
 .modal__cross {
+  position: relative;
+  left: -1vw;
   width: 2.4vw;
   height: 2.4vw;
   padding: 0;
   flex-shrink: 0;
   border-radius: 50%;
   border: 0.05vw solid #ffffff;
+}
+@media (max-width: 1023px) {
+  .modal__cross {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ffffff;
+  }
 }
 .modal__form {
   display: flex;
@@ -2086,6 +2100,11 @@ body .modal--opened {
   font-weight: 400;
   line-height: 112%;
 }
+@media (max-width: 1023px) {
+  .modal__count {
+    font-size: clamp(24px, 6vw, 36px);
+  }
+}
 .modal__clean {
   position: relative;
   left: 0.55vw;
@@ -2096,6 +2115,11 @@ body .modal--opened {
   font-style: normal;
   font-weight: 300;
   line-height: 112%;
+}
+@media (max-width: 1023px) {
+  .modal__clean {
+    font-size: clamp(24px, 6vw, 36px);
+  }
 }
 .modal__list {
   display: flex;
@@ -2151,11 +2175,21 @@ body .modal--opened {
   line-height: 112%;
   letter-spacing: 0.32px;
 }
+@media (max-width: 1023px) {
+  .modal__name {
+    font-size: clamp(24px, 6vw, 36px);
+  }
+}
 .modal__price {
   font-size: clamp(14px, 1.3vw, 60px);
   font-style: normal;
   font-weight: 600;
   line-height: 100%;
+}
+@media (max-width: 1023px) {
+  .modal__price {
+    font-size: clamp(24px, 6vw, 36px);
+  }
 }
 .modal__price span {
   margin: 0 0 0 0.25vw;
@@ -2192,6 +2226,11 @@ body .modal--opened {
   font-style: normal;
   font-weight: 400;
   line-height: 100%;
+}
+@media (max-width: 1023px) {
+  .modal__board {
+    font-size: clamp(24px, 6vw, 36px);
+  }
 }
 .modal__plus {
   width: 2vw;
@@ -2259,12 +2298,22 @@ body .modal--opened {
   font-weight: 400;
   line-height: 100%;
 }
+@media (max-width: 1023px) {
+  .modal__sign {
+    font-size: clamp(24px, 6vw, 36px);
+  }
+}
 .modal__total {
   font-size: clamp(30px, 1.5vw, 100px);
   font-style: normal;
   font-weight: 500;
   line-height: 100%;
   letter-spacing: -0.6px;
+}
+@media (max-width: 1023px) {
+  .modal__total {
+    font-size: clamp(30px, 8vw, 45px);
+  }
 }
 .modal__submit {
   width: 12vw;
@@ -2283,7 +2332,13 @@ body .modal--opened {
 }
 @media (max-width: 1023px) {
   .modal__submit {
-    width: 8.5vw;
+    width: unset;
+    height: unset;
+    min-width: 100px;
+    min-height: 30px;
+    padding: 10px 20px;
+    font-size: clamp(24px, 6vw, 36px);
+    letter-spacing: 0.16px;
   }
 }
 

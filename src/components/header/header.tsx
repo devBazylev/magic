@@ -6,7 +6,7 @@ import { AppRoute } from '../../const';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { getMedia } from '../../store/site-process/selectors';
 import { useState, useEffect } from 'react';
-import { setOverlay } from '../../store/site-process/site-process';
+import { setModal, setOverlay } from '../../store/site-process/site-process';
 import { lockScroll } from '../../utils';
 
 function Header(): JSX.Element {
@@ -26,12 +26,16 @@ function Header(): JSX.Element {
     lockScroll(!isActiveHeader);
   };
 
+  const handleOpenModal = () => {
+    dispatch(setModal(true));
+  };
+
   return (
     <header className={`header ${isActiveHeader ? 'header--opened' : ''}`}>
       <div className="header__wrap">
         {isMobile && <button className="btn header__toggler" type="button" aria-label="Toggle menu." onClick={handleToggleMenu}></button>}
         <Logo />
-        <button className="btn header__cart" type="button" aria-label="Items in the cart."><span>0</span></button>
+        <button className="btn header__cart" type="button" aria-label="Items in the cart." onClick={handleOpenModal}><span>0</span></button>
       </div>
       <div className="header__cont">
         <Nav />
