@@ -265,7 +265,6 @@
     pointer-events: none;
     z-index: 1;
     background-color: $color-modal;
-    border-radius: 20px;
 
     @include vp-1023 {
       top: 45px;
