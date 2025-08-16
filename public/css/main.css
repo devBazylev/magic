@@ -1466,6 +1466,9 @@ button,
   padding: 12px;
   flex-shrink: 0;
 }
+.header__tool--active {
+  color: #fd7004;
+}
 .header__heart {
   width: 2vw;
   height: 2vw;
@@ -1475,7 +1478,7 @@ button,
   object-fit: contain;
   transition: fill 0.3s ease;
 }
-.header__link--active .header__heart {
+.header__tool--fav .header__heart {
   fill: #fc2621;
 }
 .header__signout {
@@ -1650,6 +1653,7 @@ button,
   height: 150vh;
   overflow: hidden;
   z-index: 1;
+  touch-action: none;
 }
 .info__label {
   display: flex;

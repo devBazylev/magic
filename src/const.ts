@@ -14,11 +14,11 @@ export enum AuthorizationStatus {
 
 export enum AppRoute {
   Root = '/',
-  Login = '/login',
-  Favorites = '/favorites',
   Tavern = '/tavern',
   Quests = '/quests',
   Inventory = '/inventory',
+  Login = '/login',
+  Favorites = '/favorites',
 }
 
 export enum APIRoute {

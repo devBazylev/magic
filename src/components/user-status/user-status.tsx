@@ -4,7 +4,7 @@ import { useAppSelector, useAppDispatch } from '../../hooks';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import { logoutUser } from '../../store/action';
 
-function UserStatus(): JSX.Element {
+function UserStatus({ activePage }: { activePage: AppRoute }): JSX.Element {
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
@@ -16,11 +16,11 @@ function UserStatus(): JSX.Element {
 
   return (
     authorizationStatus === AuthorizationStatus.Auth ? (
-      <Link className="btn header__tool" onClick={handleSignOutClick} to={AppRoute.Root}>
+      <button className={`btn header__tool ${activePage === AppRoute.Login ? 'header__tool--active' : ''}`} onClick={handleSignOutClick} type="button">
         <span className="header__signout">Sign out</span>
-      </Link>
+      </button>
     ) : (
-      <Link className="btn header__tool" to={AppRoute.Login}>
+      <Link className={`btn header__tool ${activePage === AppRoute.Login ? 'header__tool--active' : ''}`} to={AppRoute.Login}>
         <span className="header__signout">Sign in</span>
       </Link>
     )
