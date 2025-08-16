@@ -109,6 +109,7 @@
     height: 150vh;
     overflow: hidden;
     z-index: 1;
+    touch-action: none;
   }
 
   &__label {

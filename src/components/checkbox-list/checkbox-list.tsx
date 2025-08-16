@@ -37,16 +37,12 @@ function CheckboxList({handleCheckboxChange, activeCheckboxes, headerRef}: Check
 
     let startY = 0;
 
-    const onTouchStart = (evt: TouchEvent) => {
-      startY = evt.touches[0].clientY;
+    const onTouchStart = (touch: TouchEvent) => {
+      startY = touch.touches[0].clientY;
     };
 
-    const onTouchMove = (evt: TouchEvent) => {
-      evt.preventDefault();
-    };
-
-    const onTouchEnd = (evt: TouchEvent) => {
-      const endY = evt.changedTouches[0].clientY;
+    const onTouchEnd = (touch: TouchEvent) => {
+      const endY = touch.changedTouches[0].clientY;
 
       if (endY - startY > 30) {
         setActiveToggler(!isActiveToggler);
@@ -62,12 +58,10 @@ function CheckboxList({handleCheckboxChange, activeCheckboxes, headerRef}: Check
     }
 
     choice.addEventListener('touchstart', onTouchStart, { passive: true });
-    choice.addEventListener('touchmove', onTouchMove);
     choice.addEventListener('touchend', onTouchEnd);
 
     return () => {
       choice.removeEventListener('touchstart', onTouchStart);
-      choice.removeEventListener('touchmove', onTouchMove);
       choice.removeEventListener('touchend', onTouchEnd);
     };
   }, [isActiveToggler, dispatch, isMobile, headerRef]);
