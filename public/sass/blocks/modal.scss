@@ -13,7 +13,7 @@
   height: 100vh;
   max-height: 0;
   opacity: 0;
-  padding: 1vw 2vw 2vw;
+  padding: 2vw 2vw 3vw;
   background-color: $color-black-pearl-trans-20;
   backdrop-filter: blur(3vw);
   -webkit-backdrop-filter: blur(3vw);
@@ -23,9 +23,9 @@
   z-index: 3;
 
   @include vp-1023 {
-    gap: 0.5vw;
+    gap: 20px;
     max-width: 500px;
-    padding: 0 15px 30px;
+    padding: 15px 15px 40px;
   }
 
   &.modal--opened {
@@ -41,11 +41,12 @@
   }
 
   &__title {
+    margin: 0;
     font-size: clamp(16px, 2vw, 60px);
     font-style: normal;
 
     @include vp-1023 {
-      font-size: clamp(36px, 9vw, 54px);
+      font-size: 36px;
     }
   }
 
@@ -88,7 +89,7 @@
     line-height: 112%;
 
     @include vp-1023 {
-      font-size: clamp(24px, 6vw, 36px);
+      font-size: 24px;
     }
   }
 
@@ -104,7 +105,7 @@
     line-height: 112%;
 
     @include vp-1023 {
-      font-size: clamp(24px, 6vw, 36px);
+      font-size: 24px;
     }
   }
 
@@ -127,9 +128,11 @@
     gap: 1vw;
     padding: 0.6vw 0;
 
-    @include vp-499 {
-      display: flex;
+    @include vp-1023 {
+      grid-template-columns: 55% 1fr;
+      gap: 10px;
       justify-content: center;
+      padding: 12px 0;
     }
   }
 
@@ -143,7 +146,7 @@
     gap: 1vw;
 
     @include vp-1023 {
-      gap: 20px;
+      gap: 10px;
     }
   }
 
@@ -154,7 +157,7 @@
     width: 6vw;
 
     @include vp-1023 {
-      width: 50px;
+      width: 100px;
     }
   }
 
@@ -174,7 +177,8 @@
     letter-spacing: 0.32px;
 
     @include vp-1023 {
-      font-size: clamp(24px, 6vw, 36px);
+      width: 100%;
+      font-size: 24px;
     }
   }
 
@@ -185,12 +189,16 @@
     line-height: 100%;
 
     @include vp-1023 {
-      font-size: clamp(24px, 6vw, 36px);
+      font-size: 22px;
     }
   }
 
   &__price span {
     margin: 0 0 0 0.25vw;
+
+    @include vp-1023 {
+      margin: 0 0 0 4px;
+    }
   }
 
   &__wrap {
@@ -198,6 +206,11 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 0.35vw 0 0;
+
+    @include vp-1023 {
+      gap: 5px;
+      padding: 0 5px 0 0;
+    }
   }
 
   &__minus {
@@ -208,11 +221,22 @@
     background-color: $color-white-smoke;
     flex-shrink: 0;
 
+    @include vp-1023 {
+      width: 40px;
+      height: 24px;
+      border-radius: 4px;
+    }
+
     &::after {
       @include pse {
         width: 0.5vw;
         height: 0.05vw;
         background-color: $color-default-black;
+      }
+
+      @include vp-1023 {
+        width: 10px;
+        height: 1px;
       }
     }
   }
@@ -230,7 +254,8 @@
     line-height: 100%;
 
     @include vp-1023 {
-      font-size: clamp(24px, 6vw, 36px);
+      width: 20px;
+      font-size: 24px;
     }
   }
 
@@ -242,6 +267,12 @@
     background-color: $color-white-smoke;
     flex-shrink: 0;
 
+    @include vp-1023 {
+      width: 40px;
+      height: 24px;
+      border-radius: 4px;
+    }
+
     &::before,
     &::after {
       @include pse {
@@ -250,46 +281,82 @@
         height: 0.05vw;
         background-color: $color-default-black;
       }
+
+      @include vp-1023 {
+        width: 10px;
+        height: 1px;
+      }
     }
 
     &::before {
       left: 0.2vw;
       transform: rotate(90deg);
+
+      @include vp-1023 {
+        left: 4px;
+      }
     }
 
     &::after {
       left: -0.3vw;
+
+      @include vp-1023 {
+        left: -6px;
+      }
     }
   }
 
   &__delete {
     position: relative;
-    left: 1.1vw;
+    // left: 1.1vw;
     width: 2vw;
     height: 2vw;
     padding: 0;
     flex-shrink: 0;
 
+    @include vp-1023 {
+      left: 0;
+      width: 40px;
+      height: 40px;
+    }
+
     &::before,
     &::after {
       @include pse {
-        position: relative;
+        position: absolute;
         width: 0.9vw;
         height: 0.07vw;
         background-color: $color-default-white;
       }
+
+      @include vp-1023 {
+        width: 18px;
+        height: 2px;
+      }
     }
 
     &::before {
-      top: 0;
-      left: 0.15vw;
-      transform: rotate(45deg);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+
+      @include vp-1023 {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
     }
 
     &::after {
-      top: 0;
-      left: -0.75vw;
-      transform: rotate(135deg);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(135deg);
+
+      @include vp-1023 {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(135deg);
+      }
     }
   }
 
@@ -313,7 +380,7 @@
     line-height: 100%;
 
     @include vp-1023 {
-      font-size: clamp(24px, 6vw, 36px);
+      font-size: 24px;
     }
   }
 
@@ -325,7 +392,7 @@
     letter-spacing: -0.6px;
 
     @include vp-1023 {
-      font-size: clamp(30px, 8vw, 45px);
+      font-size: 30px;
     }
   }
 
@@ -350,7 +417,7 @@
       min-width: 100px;
       min-height: 30px;
       padding: 10px 20px;
-      font-size: clamp(24px, 6vw, 36px);
+      font-size: 24px;
       letter-spacing: 0.16px;
     }
   }

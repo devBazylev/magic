@@ -14,7 +14,7 @@ function Card({id, name, alt, price, tag, image, fav, handleAddToCart}: CardProp
       </div>
       <div className="info__text">{name}</div>
       <div className="info__bag">
-        <div className="info__price">{price}<span>GP</span></div>
+        <div className="info__price">{price}<span>gp</span></div>
         <button className="info__btn btn" type="button" data-btn-id={id} onClick={handleAddToCart}>
           <svg className="info__plus" width={20} height={20} viewBox="0 0 20 20" fill="none">
             <path d="M10 4.16663V15.8333" stroke="#ffffff" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />

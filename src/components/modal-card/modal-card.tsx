@@ -32,7 +32,7 @@ function ModalCard({id, name, alt, price, image, amount }: CardProps): JSX.Eleme
         </div>
         <div className="modal__box">
           <div className="modal__name">{name}</div>
-          <div className="modal__price">{price}<span>GP</span></div>
+          <div className="modal__price">{price}<span>gp</span></div>
         </div>
       </div>
       <div className="modal__wrap">

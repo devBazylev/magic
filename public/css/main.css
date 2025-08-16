@@ -1884,9 +1884,6 @@ button,
   transform: translateY(-0.2vw);
   box-shadow: 0 0.5vw 2vw rgba(255, 230, 16, 0.3), 0 1vw 4vw rgba(253, 112, 4, 0.2), 0 2vw 8vw rgba(252, 38, 33, 0.1);
 }
-.info__item--none {
-  display: none;
-}
 .info img {
   width: 100%;
 }
@@ -1951,6 +1948,7 @@ button,
     min-width: 40px;
     min-height: 20px;
     border-radius: 5px;
+    opacity: 1;
   }
 }
 .info__item:hover .info__btn {
@@ -1979,6 +1977,11 @@ button,
   flex-shrink: 0;
   opacity: 0;
   transition: opacity 0.3s ease;
+}
+@media (max-width: 1023px) {
+  .info__fav {
+    opacity: 1;
+  }
 }
 .info__heart {
   width: 100%;
@@ -2032,7 +2035,7 @@ button,
   height: 100vh;
   max-height: 0;
   opacity: 0;
-  padding: 1vw 2vw 2vw;
+  padding: 2vw 2vw 3vw;
   background-color: rgba(5, 19, 32, 0.2);
   backdrop-filter: blur(3vw);
   -webkit-backdrop-filter: blur(3vw);
@@ -2043,9 +2046,9 @@ button,
 }
 @media (max-width: 1023px) {
   .modal {
-    gap: 0.5vw;
+    gap: 20px;
     max-width: 500px;
-    padding: 0 15px 30px;
+    padding: 15px 15px 40px;
   }
 }
 .modal.modal--opened {
@@ -2059,12 +2062,13 @@ button,
   align-items: center;
 }
 .modal__title {
+  margin: 0;
   font-size: clamp(16px, 2vw, 60px);
   font-style: normal;
 }
 @media (max-width: 1023px) {
   .modal__title {
-    font-size: clamp(36px, 9vw, 54px);
+    font-size: 36px;
   }
 }
 .modal__cross {
@@ -2105,7 +2109,7 @@ button,
 }
 @media (max-width: 1023px) {
   .modal__count {
-    font-size: clamp(24px, 6vw, 36px);
+    font-size: 24px;
   }
 }
 .modal__clean {
@@ -2121,7 +2125,7 @@ button,
 }
 @media (max-width: 1023px) {
   .modal__clean {
-    font-size: clamp(24px, 6vw, 36px);
+    font-size: 24px;
   }
 }
 .modal__list {
@@ -2142,10 +2146,12 @@ button,
   gap: 1vw;
   padding: 0.6vw 0;
 }
-@media (max-width: 499px) {
+@media (max-width: 1023px) {
   .modal__item {
-    display: flex;
+    grid-template-columns: 55% 1fr;
+    gap: 10px;
     justify-content: center;
+    padding: 12px 0;
   }
 }
 .modal__item:not(:first-child) {
@@ -2158,7 +2164,7 @@ button,
 }
 @media (max-width: 1023px) {
   .modal__card {
-    gap: 20px;
+    gap: 10px;
   }
 }
 .modal__pic {
@@ -2169,7 +2175,7 @@ button,
 }
 @media (max-width: 1023px) {
   .modal__pic {
-    width: 50px;
+    width: 100px;
   }
 }
 .modal__box {
@@ -2188,7 +2194,8 @@ button,
 }
 @media (max-width: 1023px) {
   .modal__name {
-    font-size: clamp(24px, 6vw, 36px);
+    width: 100%;
+    font-size: 24px;
   }
 }
 .modal__price {
@@ -2199,17 +2206,28 @@ button,
 }
 @media (max-width: 1023px) {
   .modal__price {
-    font-size: clamp(24px, 6vw, 36px);
+    font-size: 22px;
   }
 }
 .modal__price span {
   margin: 0 0 0 0.25vw;
+}
+@media (max-width: 1023px) {
+  .modal__price span {
+    margin: 0 0 0 4px;
+  }
 }
 .modal__wrap {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 0.35vw 0 0;
+}
+@media (max-width: 1023px) {
+  .modal__wrap {
+    gap: 5px;
+    padding: 0 5px 0 0;
+  }
 }
 .modal__minus {
   width: 2vw;
@@ -2219,12 +2237,25 @@ button,
   background-color: #f2f2f2;
   flex-shrink: 0;
 }
+@media (max-width: 1023px) {
+  .modal__minus {
+    width: 40px;
+    height: 24px;
+    border-radius: 4px;
+  }
+}
 .modal__minus::after {
   content: "";
   display: block;
   width: 0.5vw;
   height: 0.05vw;
   background-color: #000000;
+}
+@media (max-width: 1023px) {
+  .modal__minus::after {
+    width: 10px;
+    height: 1px;
+  }
 }
 .modal__board {
   position: relative;
@@ -2240,7 +2271,8 @@ button,
 }
 @media (max-width: 1023px) {
   .modal__board {
-    font-size: clamp(24px, 6vw, 36px);
+    width: 20px;
+    font-size: 24px;
   }
 }
 .modal__plus {
@@ -2251,6 +2283,13 @@ button,
   background-color: #f2f2f2;
   flex-shrink: 0;
 }
+@media (max-width: 1023px) {
+  .modal__plus {
+    width: 40px;
+    height: 24px;
+    border-radius: 4px;
+  }
+}
 .modal__plus::before, .modal__plus::after {
   content: "";
   display: block;
@@ -2259,38 +2298,80 @@ button,
   height: 0.05vw;
   background-color: #000000;
 }
+@media (max-width: 1023px) {
+  .modal__plus::before, .modal__plus::after {
+    width: 10px;
+    height: 1px;
+  }
+}
 .modal__plus::before {
   left: 0.2vw;
   transform: rotate(90deg);
 }
+@media (max-width: 1023px) {
+  .modal__plus::before {
+    left: 4px;
+  }
+}
 .modal__plus::after {
   left: -0.3vw;
 }
+@media (max-width: 1023px) {
+  .modal__plus::after {
+    left: -6px;
+  }
+}
 .modal__delete {
   position: relative;
-  left: 1.1vw;
   width: 2vw;
   height: 2vw;
   padding: 0;
   flex-shrink: 0;
 }
+@media (max-width: 1023px) {
+  .modal__delete {
+    left: 0;
+    width: 40px;
+    height: 40px;
+  }
+}
 .modal__delete::before, .modal__delete::after {
   content: "";
   display: block;
-  position: relative;
+  position: absolute;
   width: 0.9vw;
   height: 0.07vw;
   background-color: #ffffff;
 }
+@media (max-width: 1023px) {
+  .modal__delete::before, .modal__delete::after {
+    width: 18px;
+    height: 2px;
+  }
+}
 .modal__delete::before {
-  top: 0;
-  left: 0.15vw;
-  transform: rotate(45deg);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+@media (max-width: 1023px) {
+  .modal__delete::before {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
 }
 .modal__delete::after {
-  top: 0;
-  left: -0.75vw;
-  transform: rotate(135deg);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(135deg);
+}
+@media (max-width: 1023px) {
+  .modal__delete::after {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(135deg);
+  }
 }
 .modal__foot {
   display: flex;
@@ -2311,7 +2392,7 @@ button,
 }
 @media (max-width: 1023px) {
   .modal__sign {
-    font-size: clamp(24px, 6vw, 36px);
+    font-size: 24px;
   }
 }
 .modal__total {
@@ -2323,7 +2404,7 @@ button,
 }
 @media (max-width: 1023px) {
   .modal__total {
-    font-size: clamp(30px, 8vw, 45px);
+    font-size: 30px;
   }
 }
 .modal__submit {
@@ -2348,7 +2429,7 @@ button,
     min-width: 100px;
     min-height: 30px;
     padding: 10px 20px;
-    font-size: clamp(24px, 6vw, 36px);
+    font-size: 24px;
     letter-spacing: 0.16px;
   }
 }
