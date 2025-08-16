@@ -224,6 +224,10 @@
     flex-shrink: 0;
   }
 
+  &__tool--active {
+    color: $color-safety-orange;
+  }
+
   &__heart {
     width: 2vw;
     height: 2vw;
@@ -234,7 +238,7 @@
     transition: fill $trans-default;
   }
 
-  &__link--active &__heart {
+  &__tool--fav &__heart {
     fill: $color-red-orange;
   }
 
