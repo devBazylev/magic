@@ -3,14 +3,14 @@ import { BackPath } from '../../const';
 function Back({path}: {path: BackPath}): JSX.Element {
   const selectPath = (): string => {
     switch (path) {
-      case BackPath.Main:
+      case BackPath.Root:
         return 'main';
       case BackPath.Login:
         return 'gate';
       case BackPath.Error:
-        return 'error';
+        return 'volcano';
       default:
-        return 'error';
+        return 'volcano';
     }
   };
   return (

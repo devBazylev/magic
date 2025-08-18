@@ -1,0 +1,40 @@
+@use "../variables" as *;
+@use "../global/mixins" as *;
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5vw;
+
+  @include vp-1023 {
+    padding: 14vw 5vw 5vw;
+  }
+
+
+  &__title {
+    margin: 0;
+    font-size: 0;
+    line-height: 0;
+
+    @include vp-1023 {
+      font-size: clamp(24px, 6vw, 36px);
+      font-style: normal;
+      font-weight: 400;
+      line-height: 88%;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    @include vp-1023 {
+      gap: 20px;
+    }
+  }
+}

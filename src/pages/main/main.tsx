@@ -40,7 +40,7 @@ function Main(): JSX.Element {
         </section>
         <Modal headerRef={headerRef} />
       </main>
-      <Back path={BackPath.Main}/>
+      <Back path={BackPath.Root}/>
       <Overlay />
     </div>
   );
