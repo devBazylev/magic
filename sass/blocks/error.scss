@@ -5,25 +5,32 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3vw;
-  padding: 4vw;
+  justify-content: center;
+  gap: 1vw;
+  height: 100vh;
+  padding: 5vw 5vw 20vw;
 
   @include vp-1023 {
-    padding: 20vw 5vw 5vw;
+    padding: 5vw 5vw 15vw;
   }
 
   &__title {
     margin: 0;
-    font-size: clamp(30px, 3vw, 3vw);
+    font-size: clamp(40px, 4vw, 4vw);
     line-height: 100%;
     letter-spacing: 0.1vw;
     color: $color-red-orange;
   }
 
   &__link {
-    font-size: clamp(20px, 2vw, 2vw);
+    font-size: clamp(30px, 3vw, 3vw);
     line-height: 100%;
     letter-spacing: 0.1vw;
     color: $color-lemon;
+    transition: opacity $trans-default;
+  }
+
+  &__link:hover {
+    opacity: 0.7;
   }
 }
