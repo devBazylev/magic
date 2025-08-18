@@ -4,10 +4,10 @@ import CheckboxList from '../../components/checkbox-list/checkbox-list';
 import CardList from '../../components/card-list/card-list';
 import Modal from '../../components/modal/modal';
 import Overlay from '../../components/overlay/overlay';
-import { HelmetProvider } from 'react-helmet-async';
 import Back from '../../components/back/back';
+import { HelmetProvider } from 'react-helmet-async';
 import { useState, useRef } from 'react';
-import { filters, labels } from '../../const';
+import { filters, labels, BackPath } from '../../const';
 import { getCards } from '../../store/site-data/selectors';
 import { useAppSelector } from '../../hooks';
 
@@ -40,7 +40,7 @@ function Main(): JSX.Element {
         </section>
         <Modal headerRef={headerRef} />
       </main>
-      <Back />
+      <Back path={BackPath.Main}/>
       <Overlay />
     </div>
   );

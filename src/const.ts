@@ -1,5 +1,11 @@
 export const filters = ['popular','expensive', 'cheap', 'rare'] as const;
 
+export enum BackPath {
+  Main = 'main',
+  Login = 'gate',
+  Error = 'error',
+}
+
 export enum StoreSlice {
   SiteData = 'SITE_DATA',
   SiteProcess = 'SITE_PROCESS',
