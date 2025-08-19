@@ -1556,7 +1556,7 @@ button,
   .info {
     grid-template-columns: 1fr 1fr;
     gap: 1vw;
-    padding: 14vw 5vw 5vw;
+    padding: 15vw 5vw 5vw;
   }
 }
 .info__title {
@@ -1568,10 +1568,10 @@ button,
 @media (max-width: 1023px) {
   .info__title {
     margin: 0 0 1.2vw;
-    font-size: clamp(24px, 6vw, 36px);
+    font-size: clamp(32px, 8vw, 48px);
     font-style: normal;
     font-weight: 400;
-    line-height: 88%;
+    line-height: normal;
   }
 }
 .info__case {
@@ -2076,7 +2076,7 @@ button,
   .modal {
     gap: 20px;
     max-width: 500px;
-    padding: 15px 15px 40px;
+    padding: 15px 15px 50px;
   }
 }
 .modal.modal--opened {
@@ -2454,9 +2454,10 @@ button,
   .modal__submit {
     width: unset;
     height: unset;
-    min-width: 100px;
+    min-width: 200px;
     min-height: 30px;
     padding: 10px 20px;
+    border-radius: 4px;
     font-size: 24px;
     letter-spacing: 0.16px;
   }
@@ -2516,11 +2517,13 @@ button,
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 1vw;
   padding: 5vw;
 }
 @media (max-width: 1023px) {
   .login {
-    padding: 14vw 5vw 5vw;
+    gap: 20px;
+    padding: 15vw 5vw 5vw;
   }
 }
 .login__title {
@@ -2530,22 +2533,97 @@ button,
 }
 @media (max-width: 1023px) {
   .login__title {
-    font-size: clamp(24px, 6vw, 36px);
+    width: 100%;
+    max-width: 500px;
+    margin: 0 0 30px;
+    font-size: clamp(32px, 8vw, 48px);
     font-style: normal;
     font-weight: 400;
-    line-height: 88%;
+    line-height: normal;
+    text-align: left;
   }
 }
 .login__form {
+  width: 25vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 1vw;
+  margin: 0 auto;
 }
 @media (max-width: 1023px) {
   .login__form {
-    gap: 20px;
+    width: 100%;
+    max-width: 500px;
+    gap: 12px;
+  }
+}
+.login__label {
+  width: 100%;
+  font-size: clamp(30px, 1.5vw, 1.5vw);
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+  letter-spacing: 0.1vw;
+}
+@media (max-width: 1023px) {
+  .login__label {
+    font-size: clamp(24px, 6vw, 36px);
+  }
+}
+.login__input {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 3vw;
+  padding: 0.5vw 1vw;
+  border-radius: 0.2vw;
+  border: 0.1vw solid #ffffff;
+  font-family: Arial, sans-serif;
+  font-size: clamp(20px, 1vw, 1vw);
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+@media (max-width: 1023px) {
+  .login__input {
+    height: 40px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: 2px solid #ffffff;
+    font-size: clamp(24px, 6vw, 36px);
+  }
+}
+.login__submit {
+  width: 12vw;
+  height: 2.8vw;
+  min-width: 200px;
+  min-height: 50px;
+  margin: 2vw 0 0;
+  padding: 0.5vw;
+  flex-shrink: 0;
+  border-radius: 0.2vw;
+  background: linear-gradient(90deg, #ffe610, #fd7004, #fc2621);
+  text-align: center;
+  font-size: clamp(30px, 1.5vw, 1.5vw);
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.72px;
+  text-transform: uppercase;
+}
+@media (max-width: 1023px) {
+  .login__submit {
+    width: unset;
+    height: unset;
+    min-height: 30px;
+    margin: 40px 0 0;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: clamp(24px, 6vw, 36px);
+    letter-spacing: 0.16px;
   }
 }
 
