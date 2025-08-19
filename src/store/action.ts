@@ -3,7 +3,7 @@ import type { CardProps, SortName, User, UserAuth } from '../types';
 import type { AxiosInstance } from 'axios';
 import { APIRoute, AppRoute } from '../const';
 import { joinPaths } from '../utils';
-import { saveToken, dropToken } from '../services/token';
+import { saveToken, dropToken, getToken } from '../services/token';
 import { History } from 'history';
 
 interface ThunkExtraArg {
@@ -32,7 +32,7 @@ export const loginUser = createAsyncThunk<UserAuth['email'], UserAuth, { extra: 
     const userResponse = await api.get(`${APIRoute.LOGIN}?email=${email}&password=${password}`);
 
     if (!userResponse.data) {
-      throw new Error('Пользователь не найден');
+      throw new Error('User not found');
     }
 
     const authResponse = await api.post(APIRoute.AUTH, { email, password });
@@ -40,8 +40,6 @@ export const loginUser = createAsyncThunk<UserAuth['email'], UserAuth, { extra: 
 
     if (token) {
       saveToken(token);
-      // eslint-disable-next-line no-console
-      console.log('💾 Токен сохранен через saveToken');
     }
 
     const path = joinPaths(import.meta.env.BASE_URL || '', AppRoute.Root);
@@ -82,8 +80,12 @@ export const fetchUserStatus = createAsyncThunk<User, undefined, { extra: ThunkE
   Action.FETCH_USER_STATUS,
   async (_, { extra }) => {
     const { api } = extra;
-    const { data } = await api.get<{ data: User }>(APIRoute.LOGIN);
+    const token = getToken();
+    if (!token) {
+      throw new Error('Token not found');
+    }
 
+    const { data } = await api.get<{ data: User }>(APIRoute.AUTH_ME);
     return data.data;
   }
 );
