@@ -51,14 +51,8 @@ export const loginUser = createAsyncThunk<UserAuth['email'], UserAuth, { extra: 
 
 export const logoutUser = createAsyncThunk<void, undefined, { extra: ThunkExtraArg }>(
   Action.LOGOUT_USER,
-  async (_, { extra }) => {
-    const { api, history } = extra;
-
-    try {
-      await api.delete(APIRoute.LOGOUT);
-    } catch (error) {
-      // Ignore errors when logging out, because the token needs to be deleted anyway
-    }
+  (_, { extra }) => {
+    const { history } = extra;
 
     dropToken();
     const path = joinPaths(import.meta.env.BASE_URL || '', AppRoute.Root);
