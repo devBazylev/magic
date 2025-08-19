@@ -30,34 +30,13 @@ function Login(): JSX.Element {
       <Header headerRef={headerRef} />
       <main>
         <section className="login">
-          <h1 className="login__title">Sign in</h1>
+          <h1 className="login__title">Login</h1>
           <form className="login__form" action="#" method="post" onSubmit={handleFormSubmit}>
-            <label className="login__label btn" key="email" htmlFor="email">
-              <span className="visually-hidden">email</span>
-              <input
-                className="login__input"
-                type="email"
-                name="email"
-                placeholder="Email"
-                required
-              />
-            </label>
-            <label className="login__label btn" key="password" htmlFor="password">
-              <span className="visually-hidden">password</span>
-              <input
-                className="login__input"
-                type="password"
-                name="password"
-                placeholder="Password"
-                required
-              />
-            </label>
-            <button
-              className="login__submit btn"
-              type="submit"
-            >
-              Sign in
-            </button>
+            <input className="login__input" type="text" name="email" id="email" minLength={5} maxLength={40} title="Lenght 5 - 40 symbols" autoComplete="email" required />
+            <label className="login__label" key="email" htmlFor="email">Email</label>
+            <input className="login__input" type="password" name="password" id="password" minLength={3} maxLength={40} title="Lenght 3 - 40 symbols" autoComplete="password" required />
+            <label className="login__label" key="password" htmlFor="password">Password</label>
+            <button className="login__submit btn" type="submit">Sign in</button>
           </form>
         </section>
         <Modal headerRef={headerRef} />
