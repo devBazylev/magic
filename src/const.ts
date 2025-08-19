@@ -30,9 +30,10 @@ export enum AppRoute {
 export enum APIRoute {
   GET_DATA = '/magic',
   REGISTER = '/register',
-  LOGIN = '/auth',
+  LOGIN = '/users',
   LOGOUT = '/logout',
-  USERS = '/users',
+  AUTH = '/auth',
+  AUTH_ME = '/auth_me',
   NOT_FOUND = '/404',
 }
 

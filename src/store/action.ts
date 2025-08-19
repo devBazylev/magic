@@ -29,10 +29,21 @@ export const loginUser = createAsyncThunk<UserAuth['email'], UserAuth, { extra: 
   Action.LOGIN_USER,
   async ({ email, password }, { extra }) => {
     const { api, history } = extra;
-    const { data } = await api.post<User>(APIRoute.LOGIN, { email, password });
-    const { token } = data;
+    const userResponse = await api.get(`${APIRoute.LOGIN}?email=${email}&password=${password}`);
 
-    saveToken(token);
+    if (!userResponse.data) {
+      throw new Error('Пользователь не найден');
+    }
+
+    const authResponse = await api.post(APIRoute.AUTH, { email, password });
+    const { token } = authResponse.data as { token: string };
+
+    if (token) {
+      saveToken(token);
+      // eslint-disable-next-line no-console
+      console.log('💾 Токен сохранен через saveToken');
+    }
+
     const path = joinPaths(import.meta.env.BASE_URL || '', AppRoute.Root);
     history.push(path);
 
