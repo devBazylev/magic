@@ -5,7 +5,7 @@ import { fetchUserStatus, loginUser, logoutUser } from '../action';
 import { AuthorizationStatus, StoreSlice } from '../../const';
 
 const initialState: UserProcess = {
-  authorizationStatus: AuthorizationStatus.NoAuth,
+  authorizationStatus: AuthorizationStatus.Unknown,
   user: '',
 };
 
@@ -16,15 +16,11 @@ export const userProcess = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchUserStatus.fulfilled, (state, action) => {
-        if (action.payload && action.payload.email) {
-          state.user = action.payload.email;
-          state.authorizationStatus = AuthorizationStatus.Auth;
-        } else {
-          state.user = '';
-          state.authorizationStatus = AuthorizationStatus.NoAuth;
-        }
+        state.user = action.payload?.email || '';
+        state.authorizationStatus = AuthorizationStatus.Auth;
       })
       .addCase(fetchUserStatus.rejected, (state) => {
+        state.user = '';
         state.authorizationStatus = AuthorizationStatus.NoAuth;
       })
       .addCase(loginUser.fulfilled, (state, action) => {

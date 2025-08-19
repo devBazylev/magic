@@ -70,16 +70,21 @@ export const fetchCards = createAsyncThunk<CardProps[], undefined, { extra: Thun
   }
 );
 
-export const fetchUserStatus = createAsyncThunk<User, undefined, { extra: ThunkExtraArg }>(
+export const fetchUserStatus = createAsyncThunk<User | null, undefined, { extra: ThunkExtraArg }>(
   Action.FETCH_USER_STATUS,
   async (_, { extra }) => {
     const { api } = extra;
     const token = getToken();
+
     if (!token) {
-      throw new Error('Token not found');
+      return null;
     }
 
-    const { data } = await api.get<{ data: User }>(APIRoute.AUTH_ME);
-    return data.data;
+    try {
+      const { data } = await api.get<User>(APIRoute.AUTH_ME);
+      return data;
+    } catch (error) {
+      return null;
+    }
   }
 );
