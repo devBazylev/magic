@@ -54,9 +54,9 @@ function Login(): JSX.Element {
         <section className="login">
           <h1 className="login__title">Login</h1>
           <form className="login__form" action="#" method="post" onSubmit={handleFormSubmit} ref={formRef}>
-            <input className="login__input" type="email" name="email" id="email" minLength={5} maxLength={40} title="Lenght 5 - 40 symbols" autoComplete="email" required />
+            <input className="login__input" type="email" name="email" id="email" minLength={5} maxLength={40} autoComplete="email" required />
             <label className="login__label" key="email" htmlFor="email">Email</label>
-            <input className="login__input" type="password" name="password" id="password" minLength={3} maxLength={40} title="Lenght 3 - 40 symbols" autoComplete="password" required />
+            <input className="login__input" type="password" name="password" id="password" minLength={3} maxLength={40} autoComplete="current-password" required />
             <label className="login__label" key="password" htmlFor="password">Password</label>
             <button className="login__submit login__submit--signin btn" type="submit" onClick={handleButtonClick}>Sign in</button>
             <button className="login__submit login__submit--signup btn" type="submit" onClick={handleButtonClick}>Sign up</button>
