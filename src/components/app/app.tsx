@@ -22,11 +22,6 @@ function App(): JSX.Element {
         <Route path="/">
           <Route index element={<Main />}/>
           <Route path={AppRoute.Login} element={<Login />} />
-          {/* <Route path={`${AppRoute.Offer}/:id`} element={
-            <PrivateRoute>
-              <Offer />
-            </PrivateRoute>
-          } /> */}
           {/* <Route path={AppRoute.Favorites} element={
             <PrivateRoute>
               <Favorites />

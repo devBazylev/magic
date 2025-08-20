@@ -89,6 +89,7 @@ export const fetchUserStatus = createAsyncThunk<User | null, undefined, { extra:
       const { data } = await api.get<User>(APIRoute.AUTH_ME);
       return data;
     } catch (error) {
+      dropToken();
       return null;
     }
   }

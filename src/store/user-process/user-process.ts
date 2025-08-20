@@ -21,8 +21,13 @@ export const userProcess = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchUserStatus.fulfilled, (state, action) => {
-        state.user = action.payload?.email || '';
-        state.authorizationStatus = AuthorizationStatus.Auth;
+        if (action.payload) {
+          state.user = action.payload.email || '';
+          state.authorizationStatus = AuthorizationStatus.Auth;
+        } else {
+          state.user = '';
+          state.authorizationStatus = AuthorizationStatus.NoAuth;
+        }
       })
       .addCase(fetchUserStatus.rejected, (state) => {
         state.user = '';
@@ -49,6 +54,10 @@ export const userProcess = createSlice({
         state.error = action.payload as string || 'Error registering.';
       })
       .addCase(logoutUser.fulfilled, (state) => {
+        state.user = '';
+        state.authorizationStatus = AuthorizationStatus.NoAuth;
+      })
+      .addCase(logoutUser.rejected, (state) => {
         state.user = '';
         state.authorizationStatus = AuthorizationStatus.NoAuth;
       });

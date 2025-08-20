@@ -1469,6 +1469,20 @@ button,
 .header__tool--active {
   color: #fd7004;
 }
+.header__tool--loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+.header__tool--loading span {
+  font-size: clamp(12px, 1.2vw, 1.2vw);
+  color: #ffffff;
+  opacity: 0.8;
+}
+@media (max-width: 1023px) {
+  .header__tool--loading span {
+    font-size: clamp(12px, 2.5vw, 18px);
+  }
+}
 .header__heart {
   width: 2vw;
   height: 2vw;
