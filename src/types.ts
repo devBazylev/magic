@@ -41,4 +41,5 @@ export type SiteProcess = {
 export type UserProcess = {
   authorizationStatus: AuthorizationStatus;
   user: User['email'];
+  error: string | null;
 }

@@ -7,12 +7,17 @@ import { AuthorizationStatus, StoreSlice } from '../../const';
 const initialState: UserProcess = {
   authorizationStatus: AuthorizationStatus.Unknown,
   user: '',
+  error: null,
 };
 
 export const userProcess = createSlice({
   name: StoreSlice.UserProcess,
   initialState,
-  reducers: {},
+  reducers: {
+    clearError: (state) => {
+      state.error = null;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchUserStatus.fulfilled, (state, action) => {
@@ -26,14 +31,22 @@ export const userProcess = createSlice({
       .addCase(loginUser.fulfilled, (state, action) => {
         state.user = action.payload;
         state.authorizationStatus = AuthorizationStatus.Auth;
+        state.error = null;
+      })
+      .addCase(loginUser.rejected, (state, action) => {
+        state.user = '';
+        state.authorizationStatus = AuthorizationStatus.NoAuth;
+        state.error = action.payload as string || 'Error logging in.';
       })
       .addCase(registerUser.fulfilled, (state, action) => {
         state.user = action.payload;
         state.authorizationStatus = AuthorizationStatus.Auth;
+        state.error = null;
       })
-      .addCase(registerUser.rejected, (state) => {
+      .addCase(registerUser.rejected, (state, action) => {
         state.user = '';
         state.authorizationStatus = AuthorizationStatus.NoAuth;
+        state.error = action.payload as string || 'Error registering.';
       })
       .addCase(logoutUser.fulfilled, (state) => {
         state.user = '';
@@ -41,3 +54,5 @@ export const userProcess = createSlice({
       });
   }
 });
+
+export const { clearError } = userProcess.actions;

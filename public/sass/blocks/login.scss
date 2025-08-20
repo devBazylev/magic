@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: center;
   gap: 1vw;
-  padding: 2vw 5vw 5vw;
+  padding: 0 5vw 5vw;
 
   @include vp-1023 {
     gap: 20px;
@@ -22,7 +22,6 @@
     @include vp-1023 {
       width: 100%;
       max-width: 400px;
-      margin: 0 0 30px;
       font-size: clamp(32px, 8vw, 48px);
       font-style: normal;
       font-weight: 400;
@@ -47,6 +46,39 @@
     }
   }
 
+  &__error {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 3vw;
+    padding: 0.5vw;
+    background-color: rgba(255, 0, 0, 0.1);
+    border: 0.1vw solid $color-red-orange;
+    border-radius: 0.2vw;
+    color: $color-red-orange;
+    font-family: Arial, sans-serif;
+    font-size: clamp(16px, 1vw, 1vw);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    visibility: hidden;
+    transition: visibility 0.3s ease;
+
+    @include vp-1023 {
+      min-height: 50px;
+      padding: 10px;
+      border: 2px solid $color-red-orange;
+      border-radius: 4px;
+      font-size: 20px;
+    }
+
+    &--visible {
+      visibility: visible;
+    }
+  }
+
   &__label {
     width: 100%;
     font-size: clamp(30px, 1.5vw, 1.5vw);
@@ -57,7 +89,7 @@
     letter-spacing: 0.1vw;
 
     @include vp-1023 {
-      font-size: clamp(24px, 6vw, 36px);
+      font-size: 20px;
     }
   }
 
@@ -65,22 +97,22 @@
     display: flex;
     align-items: center;
     width: 100%;
-    height: 3vw;
+    min-height: 3vw;
     padding: 0.5vw 1vw;
     border-radius: 0.2vw;
     border: 0.1vw solid $color-default-white;
     font-family: Arial, sans-serif;
-    font-size: clamp(20px, 1vw, 1vw);
+    font-size: clamp(16px, 1vw, 1vw);
     font-style: normal;
     font-weight: 400;
     line-height: normal;
 
     @include vp-1023 {
-      height: 50px;
+      min-height: 50px;
       padding: 10px;
       border-radius: 4px;
       border: 2px solid $color-default-white;
-      font-size: clamp(24px, 6vw, 36px);
+      font-size: 20px;
     }
   }
 
@@ -99,7 +131,6 @@
     height: 2.8vw;
     min-width: 200px;
     min-height: 50px;
-    margin: 1.5vw 0 0;
     padding: 0.5vw;
     flex-shrink: 0;
     border-radius: 0.2vw;
@@ -116,7 +147,6 @@
       width: unset;
       height: unset;
       min-height: 30px;
-      margin: 30px 0 0;
       padding: 10px 20px;
       border-radius: 4px;
       font-size: clamp(24px, 6vw, 36px);

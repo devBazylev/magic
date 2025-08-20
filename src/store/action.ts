@@ -38,25 +38,29 @@ export const fetchCards = createAsyncThunk<CardProps[], undefined, { extra: Thun
 
 export const loginUser = createAsyncThunk<UserAuth['email'], UserAuth, { extra: ThunkExtraArg }>(
   Action.LOGIN_USER,
-  async ({ email, password }, { extra }) => {
-    const { api, history } = extra;
-    const userResponse = await api.get(`${APIRoute.LOGIN}?email=${email}&password=${password}`);
+  async ({ email, password }, { extra, rejectWithValue }) => {
+    try {
+      const { api, history } = extra;
+      const userResponse = await api.get(`${APIRoute.LOGIN}?email=${email}&password=${password}`);
 
-    if (!userResponse.data) {
-      throw new Error('User not found');
+      if (!userResponse.data) {
+        return rejectWithValue('Check your email and password.');
+      }
+
+      const authResponse = await api.post(APIRoute.AUTH, { email, password });
+      const { token } = authResponse.data as { token: string };
+
+      if (token) {
+        saveToken(token);
+      }
+
+      const path = joinPaths(import.meta.env.BASE_URL || '', AppRoute.Root);
+      history.push(path);
+
+      return email;
+    } catch (error: unknown) {
+      return rejectWithValue('Check your email and password.');
     }
-
-    const authResponse = await api.post(APIRoute.AUTH, { email, password });
-    const { token } = authResponse.data as { token: string };
-
-    if (token) {
-      saveToken(token);
-    }
-
-    const path = joinPaths(import.meta.env.BASE_URL || '', AppRoute.Root);
-    history.push(path);
-
-    return email;
   }
 );
 
@@ -98,7 +102,7 @@ export const registerUser = createAsyncThunk<UserAuth['email'], UserAuth, { extr
       const userResponse = await api.get(`${APIRoute.LOGIN}?email=${email}&password=${password}`);
 
       if (userResponse.data && Array.isArray(userResponse.data) && userResponse.data.length > 0) {
-        return rejectWithValue('Пользователь с таким email уже существует. Придумайте другой email.');
+        return rejectWithValue('User with this email already exists.');
       }
 
       await api.post(APIRoute.REGISTER, { email, password });
@@ -117,9 +121,9 @@ export const registerUser = createAsyncThunk<UserAuth['email'], UserAuth, { extr
       return email;
     } catch (error: unknown) {
       if (error && typeof error === 'object' && 'response' in error && error.response && typeof error.response === 'object' && 'status' in error.response && error.response.status === 401) {
-        return rejectWithValue('Ошибка при регистрации. Возможно, пользователь уже существует.');
+        return rejectWithValue('Error. Maybe the user already exists.');
       }
-      return rejectWithValue('Ошибка при регистрации пользователя');
+      return rejectWithValue('Error registering user.');
     }
   }
 );
