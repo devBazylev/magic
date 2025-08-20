@@ -27,34 +27,6 @@ const joinPaths = (...parts: string[]) => parts.map((part, index) => {
   }
 }).join('/');
 
-const generateCardId = () => {
-  let key = 0;
-  return () => {
-    key += 1;
-    return key;
-  };
-};
-
-const generateCityId = () => {
-  let key = 0;
-  return () => {
-    key += 1;
-    return key;
-  };
-};
-
-const generateReviewId = () => {
-  let key = 0;
-  return () => {
-    key += 1;
-    return key;
-  };
-};
-
-const getCardId = generateCardId();
-const getCityId = generateCityId();
-const getReviewId = generateReviewId();
-
 const calcElems = (arr: number[]) => {
   let sum = 0;
   arr.forEach((item) => {
@@ -67,8 +39,5 @@ export {
   ScrollToTop,
   lockScroll,
   joinPaths,
-  getCardId,
-  getCityId,
-  getReviewId,
   calcElems,
 };

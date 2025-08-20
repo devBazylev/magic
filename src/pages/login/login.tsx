@@ -7,7 +7,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { BackPath } from '../../const';
 import { FormEvent, useRef, useState } from 'react';
 import { useAppDispatch } from '../../hooks';
-import { loginUser } from '../../store/action';
+import { loginUser, registerUser } from '../../store/action';
 
 function Login(): JSX.Element {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -15,15 +15,18 @@ function Login(): JSX.Element {
   const formRef = useRef<HTMLFormElement>(null);
   const dispatch = useAppDispatch();
 
-  const handleButtonClick = (evt: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSignInButton = () => {
     if (formRef.current) {
       formRef.current.classList.add('login__form--check');
     }
-    if (evt.currentTarget.classList.contains('login__submit--signin')) {
-      setIsSignIn(true);
-    } else if (evt.currentTarget.classList.contains('login__submit--signup')) {
-      setIsSignIn(false);
+    setIsSignIn(true);
+  };
+
+  const handleSignUpButton = () => {
+    if (formRef.current) {
+      formRef.current.classList.add('login__form--check');
     }
+    setIsSignIn(false);
   };
 
   const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
@@ -35,7 +38,7 @@ function Login(): JSX.Element {
       if (isSignIn) {
         dispatch(loginUser(data));
       } else {
-        // dispatch(registerUser(data));
+        dispatch(registerUser(data));
       }
 
       // eslint-disable-next-line no-console
@@ -54,12 +57,12 @@ function Login(): JSX.Element {
         <section className="login">
           <h1 className="login__title">Login</h1>
           <form className="login__form" action="#" method="post" onSubmit={handleFormSubmit} ref={formRef}>
-            <input className="login__input" type="email" name="email" id="email" minLength={5} maxLength={40} autoComplete="email" placeholder="Type test@test.com or sign up yourself" required />
+            <input className="login__input" type="email" name="email" id="email" minLength={5} maxLength={40} autoComplete="email" placeholder="Type test@test.com or sign up" required />
             <label className="login__label" key="email" htmlFor="email">Email</label>
-            <input className="login__input" type="password" name="password" id="password" minLength={3} maxLength={40} autoComplete="current-password" placeholder="Type 123 or sign up yourself" required />
+            <input className="login__input" type="password" name="password" id="password" minLength={3} maxLength={40} autoComplete="current-password" placeholder="Type 123 or sign up" required />
             <label className="login__label" key="password" htmlFor="password">Password</label>
-            <button className="login__submit login__submit--signin btn" type="submit" onClick={handleButtonClick}>Sign in</button>
-            <button className="login__submit login__submit--signup btn" type="submit" onClick={handleButtonClick}>Sign up</button>
+            <button className="login__submit login__submit--signin btn" type="submit" onClick={handleSignInButton}>Sign in</button>
+            <button className="login__submit login__submit--signup btn" type="submit" onClick={handleSignUpButton}>Sign up</button>
           </form>
         </section>
         <Modal headerRef={headerRef} />
