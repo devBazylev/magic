@@ -1653,11 +1653,6 @@ button,
     pointer-events: none;
   }
 }
-@media (max-width: 374px) {
-  .info__choice {
-    width: unset;
-  }
-}
 .info__choice::after {
   content: "";
   display: block;
