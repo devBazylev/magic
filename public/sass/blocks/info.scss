@@ -106,10 +106,6 @@
       pointer-events: none;
     }
 
-    @include vp-374 {
-      width: unset;
-    }
-
     &::after {
       @include pse {
         display: none;
