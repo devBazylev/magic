@@ -74,6 +74,11 @@
       font-size: 20px;
     }
 
+    @include vp-374 {
+      min-height: 45px;
+      font-size: 16px;
+    }
+
     &--visible {
       visibility: visible;
     }
@@ -90,6 +95,10 @@
 
     @include vp-1023 {
       font-size: 20px;
+    }
+
+    @include vp-374 {
+      font-size: 16px;
     }
   }
 
@@ -113,6 +122,11 @@
       border-radius: 4px;
       border: 2px solid $color-default-white;
       font-size: 20px;
+    }
+
+    @include vp-374 {
+      min-height: 45px;
+      font-size: 16px;
     }
   }
 
@@ -144,12 +158,13 @@
     text-transform: uppercase;
 
     @include vp-1023 {
-      width: unset;
+      width: 100%;
       height: unset;
+      max-width: 200px;
       min-height: 30px;
       padding: 10px 20px;
       border-radius: 4px;
-      font-size: clamp(24px, 6vw, 36px);
+      font-size: clamp(16px, 6vw, 24px);
       letter-spacing: 0.16px;
     }
 

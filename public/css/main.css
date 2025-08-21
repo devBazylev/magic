@@ -1131,7 +1131,7 @@ a {
   flex-direction: column;
   min-height: 100vh;
   margin: 0 auto;
-  min-width: 375px;
+  width: 100vw;
   overflow: hidden;
 }
 .wrapper .header,
@@ -2587,6 +2587,12 @@ button,
     font-size: 20px;
   }
 }
+@media (max-width: 374px) {
+  .login__error {
+    min-height: 45px;
+    font-size: 16px;
+  }
+}
 .login__error--visible {
   visibility: visible;
 }
@@ -2602,6 +2608,11 @@ button,
 @media (max-width: 1023px) {
   .login__label {
     font-size: 20px;
+  }
+}
+@media (max-width: 374px) {
+  .login__label {
+    font-size: 16px;
   }
 }
 .login__input {
@@ -2625,6 +2636,12 @@ button,
     border-radius: 4px;
     border: 2px solid #ffffff;
     font-size: 20px;
+  }
+}
+@media (max-width: 374px) {
+  .login__input {
+    min-height: 45px;
+    font-size: 16px;
   }
 }
 .login__form--check .login__input:invalid {
@@ -2656,12 +2673,13 @@ button,
 }
 @media (max-width: 1023px) {
   .login__submit {
-    width: unset;
+    width: 100%;
     height: unset;
+    max-width: 200px;
     min-height: 30px;
     padding: 10px 20px;
     border-radius: 4px;
-    font-size: clamp(24px, 6vw, 36px);
+    font-size: clamp(16px, 6vw, 24px);
     letter-spacing: 0.16px;
   }
 }
