@@ -60,6 +60,10 @@
       letter-spacing: unset;
     }
 
+    @include vp-374 {
+      min-width: 120px;
+    }
+
     &::after {
       @include pse {
         @include vp-1023 {
@@ -100,6 +104,10 @@
       transition: max-height $tf-default, opacity $tf-default;
       overflow: hidden;
       pointer-events: none;
+    }
+
+    @include vp-374 {
+      width: unset;
     }
 
     &::after {
@@ -256,6 +264,10 @@
       letter-spacing: unset;
     }
 
+    @include vp-374 {
+      width: 100%;
+    }
+
     &::after {
       @include pse {
         width: 0;
@@ -352,6 +364,10 @@
       grid-column: 1/3;
       grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
       gap: 20px;
+    }
+
+    @include vp-374 {
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     }
   }
 
