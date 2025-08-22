@@ -1,5 +1,9 @@
 ## https://devbazylev.github.io/magic/
 
-https://mokky.dev/  is used for mock backend
+Technologies: React, typescript, redux, react-router, axios, sass
 
-React, typescript, redux, react-router, axios
+Description: A web application for users interested in fantasy. https://mokky.dev/ is used for mock backend. All data except images come from this server
+
+Status: In progress
+
+Repository: https://github.com/devBazylev/magic
