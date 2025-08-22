@@ -41,25 +41,25 @@ export const loginUser = createAsyncThunk<UserAuth['email'], UserAuth, { extra: 
   async ({ email, password }, { extra, rejectWithValue }) => {
     try {
       const { api, history } = extra;
-      const userResponse = await api.get(`${APIRoute.LOGIN}?email=${email}&password=${password}`);
 
-      if (!userResponse.data) {
-        return rejectWithValue('Check your email and password.');
-      }
+      const authResponse = await api.post(APIRoute.AUTH, {
+        email,
+        password
+      });
 
-      const authResponse = await api.post(APIRoute.AUTH, { email, password });
       const { token } = authResponse.data as { token: string };
 
       if (token) {
         saveToken(token);
+        const path = joinPaths(import.meta.env.BASE_URL || '', AppRoute.Root);
+        history.push(path);
+        return email;
       }
 
-      const path = joinPaths(import.meta.env.BASE_URL || '', AppRoute.Root);
-      history.push(path);
+      return rejectWithValue('Invalid email or password');
 
-      return email;
     } catch (error: unknown) {
-      return rejectWithValue('Check your email and password.');
+      return rejectWithValue('Invalid email or password');
     }
   }
 );
@@ -100,11 +100,6 @@ export const registerUser = createAsyncThunk<UserAuth['email'], UserAuth, { extr
   async ({ email, password }, { extra, rejectWithValue }) => {
     try {
       const { api, history } = extra;
-      const userResponse = await api.get(`${APIRoute.LOGIN}?email=${email}&password=${password}`);
-
-      if (userResponse.data && Array.isArray(userResponse.data) && userResponse.data.length > 0) {
-        return rejectWithValue('User with this email already exists.');
-      }
 
       await api.post(APIRoute.REGISTER, { email, password });
 
@@ -114,17 +109,15 @@ export const registerUser = createAsyncThunk<UserAuth['email'], UserAuth, { extr
 
       if (token) {
         saveToken(token);
+        const path = joinPaths(import.meta.env.BASE_URL || '', AppRoute.Root);
+        history.push(path);
+        return email;
       }
 
-      const path = joinPaths(import.meta.env.BASE_URL || '', AppRoute.Root);
-      history.push(path);
+      return rejectWithValue('Registration successful but login failed.');
 
-      return email;
     } catch (error: unknown) {
-      if (error && typeof error === 'object' && 'response' in error && error.response && typeof error.response === 'object' && 'status' in error.response && error.response.status === 401) {
-        return rejectWithValue('Error. Maybe the user already exists.');
-      }
-      return rejectWithValue('Error registering user.');
+      return rejectWithValue('Registration failed. Try again later.');
     }
   }
 );
