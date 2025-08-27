@@ -1,7 +1,6 @@
 import Main from '../../pages/main/main';
 import Login from '../../pages/login/login';
 import Error from '../../pages/error/error';
-import PrivateRoute from '../private-route/private-route';
 import { ScrollToTop } from '../../utils';
 import { Routes, Route } from 'react-router-dom';
 import { AppRoute } from '../../const';
@@ -19,7 +18,7 @@ function App(): JSX.Element {
         <Route path="/">
           <Route index element={<Main />}/>
           <Route path={AppRoute.Login} element={<Login />} />
-          <Route path={AppRoute.Favorites} element={<PrivateRoute><Favorites /></PrivateRoute>}/>
+          <Route path={AppRoute.Favorites} element={<Favorites />}/>
           <Route path="*" element={<Error />}/>
         </Route>
       </Routes>

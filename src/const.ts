@@ -4,6 +4,7 @@ export enum BackPath {
   Root = 'main',
   Login = 'gate',
   Error = 'volcano',
+  Favorites = 'tree',
 }
 
 export enum StoreSlice {

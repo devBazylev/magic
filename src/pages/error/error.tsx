@@ -15,7 +15,7 @@ function Error(): JSX.Element {
         <title>Страница отсутствует</title>
       </HelmetProvider>
       <Header headerRef={headerRef} />
-      <section className='error'>
+      <section className="error">
         <h1 className="error__title">404 not found</h1>
         <Link className="error__link" to="/">Go to main page</Link>
         <Modal headerRef={headerRef} />

@@ -21,7 +21,7 @@ function Favorites(): JSX.Element {
         </section>
         <Modal headerRef={headerRef} />
       </main>
-      <Back path={BackPath.Root}/>
+      <Back path={BackPath.Favorites}/>
       <Overlay />
     </div>
   );
