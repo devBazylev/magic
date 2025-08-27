@@ -2711,4 +2711,35 @@ button,
   }
 }
 
+.favorites {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1vw;
+  padding: 0 5vw 5vw;
+}
+@media (max-width: 1023px) {
+  .favorites {
+    gap: 20px;
+    padding: 60px 20px 20px;
+  }
+}
+.favorites__title {
+  margin: 0;
+  font-size: 0;
+  line-height: 0;
+}
+@media (max-width: 1023px) {
+  .favorites__title {
+    width: 100%;
+    max-width: 400px;
+    font-size: clamp(32px, 8vw, 48px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: left;
+  }
+}
+
 /*# sourceMappingURL=main.css.map */

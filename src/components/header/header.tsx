@@ -3,7 +3,7 @@ import Nav from '../../components/nav/nav';
 import UserStatus from '../../components/user-status/user-status';
 import { Link, useLocation } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import { useAppSelector, useAppDispatch } from '../../hooks';
+import { useAppSelector, useAppDispatch, useClickOutsideAndEscape } from '../../hooks';
 import { getCart, getMedia } from '../../store/site-process/selectors';
 import { useState, useEffect, RefObject } from 'react';
 import { setModal, setOverlay } from '../../store/site-process/site-process';
@@ -26,7 +26,8 @@ function Header({ headerRef }: HeaderProps): JSX.Element {
     dispatch(setOverlay(false));
     lockScroll(false);
     setActivePage(location.pathname as AppRoute);
-  }, [location.pathname, dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.pathname]);
 
   const handleToggleMenu = () => {
     setActiveHeader(!isActiveHeader);
@@ -37,6 +38,8 @@ function Header({ headerRef }: HeaderProps): JSX.Element {
   const handleOpenModal = () => {
     dispatch(setModal(true));
   };
+
+  useClickOutsideAndEscape(headerRef as RefObject<HTMLElement>, handleToggleMenu, isActiveHeader);
 
   return (
     <header ref={headerRef || undefined} className={`header ${isActiveHeader ? 'header--opened' : ''}`}>

@@ -1,6 +1,6 @@
-import { RefObject, useState } from 'react';
+import { RefObject, useRef, useState } from 'react';
 import { filters } from '../../const';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useClickOutsideAndEscape } from '../../hooks';
 import { setOverlay } from '../../store/site-process/site-process';
 import { lockScroll } from '../../utils';
 
@@ -14,6 +14,7 @@ interface FilterProps {
 function Filter({ totalCards, activeFilter, setActiveFilter, headerRef }: FilterProps): JSX.Element {
   const [isOpened, setIsOpened] = useState<boolean>(false);
   const dispatch = useAppDispatch();
+  const filterRef = useRef<HTMLDivElement>(null);
 
   const handleBoardClick = () => {
     setIsOpened(!isOpened);
@@ -30,10 +31,12 @@ function Filter({ totalCards, activeFilter, setActiveFilter, headerRef }: Filter
     headerRef.current?.classList.remove('header--zindex');
   };
 
+  useClickOutsideAndEscape(filterRef, handleBoardClick, isOpened);
+
   return (
     <div className="info__wrap">
       <div className="info__num">{totalCards} items</div>
-      <div className={`info__select ${isOpened ? 'info__select--opened' : ''}`}>
+      <div ref={filterRef} className={`info__select ${isOpened ? 'info__select--opened' : ''}`}>
         <button className="btn info__board" type="button" onClick={handleBoardClick}>{activeFilter}</button>
         <div className="info__drop">
           {filters.map((filter) => (

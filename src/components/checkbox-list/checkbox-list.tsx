@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, RefObject } from 'react';
 import { labels } from '../../const';
-import { useAppSelector, useAppDispatch } from '../../hooks';
+import { useAppSelector, useAppDispatch, useClickOutsideAndEscape } from '../../hooks';
 import { getMedia } from '../../store/site-process/selectors';
 import { setOverlay } from '../../store/site-process/site-process';
 import { lockScroll } from '../../utils';
@@ -65,6 +65,8 @@ function CheckboxList({handleCheckboxChange, activeCheckboxes, headerRef}: Check
       choice.removeEventListener('touchend', onTouchEnd);
     };
   }, [isActiveToggler, dispatch, isMobile, headerRef]);
+
+  useClickOutsideAndEscape(choiceRef, handleToggler, isActiveToggler);
 
   return (
     <div className="info__case">

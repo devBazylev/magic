@@ -28,3 +28,8 @@ function UserStatus({ activePage }: { activePage: AppRoute }): JSX.Element {
 }
 
 export default UserStatus;
+
+// eslint-disable-next-line no-console
+// eslint-disable-next-line react-hooks/exhaustive-deps
+/* eslint-disable */
+// @ts-ignore

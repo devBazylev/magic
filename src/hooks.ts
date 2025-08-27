@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import type { State, AppDispatch } from './types';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { setMedia, setOverlay } from './store/site-process/site-process';
+import { RefObject } from 'react';
 
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<State> = useSelector;
@@ -37,4 +38,37 @@ export const useOverlay = (flag: boolean) => {
     };
 
   }, [flag, dispatch]);
+};
+
+export const useClickOutsideAndEscape = (
+  ref: RefObject<HTMLElement>,
+  callback: () => void,
+  flag: boolean = false
+) => {
+  useEffect(() => {
+    if (!flag) {
+      return;
+    }
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        callback();
+      }
+    };
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        callback();
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleEscape);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscape);
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [flag]);
 };

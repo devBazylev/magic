@@ -1,6 +1,6 @@
 import ModalList from '../modal-list/modal-list';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { useEffect, RefObject } from 'react';
+import { useAppDispatch, useAppSelector, useClickOutsideAndEscape } from '../../hooks';
+import { useEffect, RefObject, useRef } from 'react';
 import { getCart, getModal } from '../../store/site-process/selectors';
 import { setCart, setModal, setOverlay } from '../../store/site-process/site-process';
 import { calcElems, lockScroll } from '../../utils';
@@ -15,6 +15,7 @@ function Modal({ headerRef }: ModalProps): JSX.Element {
   const cart = useAppSelector(getCart);
   const totalItems = calcElems(cart?.map((item) => item.amount ?? 0) ?? []);
   const totalPrice = calcElems(cart?.map((item) => (item.amount ?? 0) * (item.price ?? 0)) ?? []);
+  const modalRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     lockScroll(isModal ?? false);
@@ -35,8 +36,10 @@ function Modal({ headerRef }: ModalProps): JSX.Element {
     dispatch(setCart([]));
   };
 
+  useClickOutsideAndEscape(modalRef, handleCloseModal, isModal ?? false);
+
   return (
-    <section className={`modal ${isModal ? 'modal--opened' : ''}`}>
+    <section ref={modalRef} className={`modal ${isModal ? 'modal--opened' : ''}`}>
       <div className="modal__cont">
         <h2 className="modal__title">Cart</h2>
         <button className="btn modal__cross" type="button" onClick={handleCloseModal}>
