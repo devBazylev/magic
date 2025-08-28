@@ -6,7 +6,7 @@ import Modal from '../../components/modal/modal';
 import Overlay from '../../components/overlay/overlay';
 import Back from '../../components/back/back';
 import { HelmetProvider } from 'react-helmet-async';
-import { useState, useRef } from 'react';
+import { useState, useRef, useCallback, useMemo } from 'react';
 import { filters, labels, BackPath } from '../../const';
 import { getCards } from '../../store/site-data/selectors';
 import { useAppSelector } from '../../hooks';
@@ -17,13 +17,13 @@ function Main(): JSX.Element {
     labels.filter((label) => label.checked).map((label) => label.id)
   );
   const cards = useAppSelector(getCards);
-  const checkedCards = cards.filter((card) => activeCheckboxes.includes(card.tag));
-  const totalCards = checkedCards.length;
+  const checkedCards = useMemo(() => cards.filter((card) => activeCheckboxes.includes(card.tag)), [cards, activeCheckboxes]);
+  const totalCards = useMemo(() => checkedCards.length, [checkedCards]);
   const headerRef = useRef<HTMLHeadingElement>(null);
 
-  const handleCheckboxChange = (checkboxes: string[]) => {
+  const handleCheckboxChange = useCallback((checkboxes: string[]) => {
     setActiveCheckboxes(checkboxes);
-  };
+  }, []);
 
   return (
     <div className="wrapper">
