@@ -1,4 +1,4 @@
-import { RefObject, useRef, useState } from 'react';
+import { RefObject, useRef, useState, memo, useCallback, useEffect } from 'react';
 import { filters } from '../../const';
 import { useAppDispatch, useClickOutsideAndEscape } from '../../hooks';
 import { setOverlay } from '../../store/site-process/site-process';
@@ -16,20 +16,27 @@ function Filter({ totalCards, activeFilter, setActiveFilter, headerRef }: Filter
   const dispatch = useAppDispatch();
   const filterRef = useRef<HTMLDivElement>(null);
 
-  const handleBoardClick = () => {
-    setIsOpened(!isOpened);
-    dispatch(setOverlay(!isOpened));
-    lockScroll(!isOpened);
-    headerRef.current?.classList.add('header--zindex');
-  };
+  const handleBoardClick = useCallback(() => {
+    setIsOpened((prev) => !prev);
+  }, []);
 
-  const handleOptionClick = (filter: string) => {
+  const handleOptionClick = useCallback((filter: string) => {
     setActiveFilter(filter);
-    setIsOpened(!isOpened);
-    dispatch(setOverlay(!isOpened));
-    lockScroll(!isOpened);
-    headerRef.current?.classList.remove('header--zindex');
-  };
+    setIsOpened(false);
+  }, [setActiveFilter]);
+
+  useEffect(() => {
+    if (isOpened) {
+      dispatch(setOverlay(true));
+      lockScroll(true);
+      headerRef.current?.classList.add('header--zindex');
+    } else {
+      dispatch(setOverlay(false));
+      lockScroll(false);
+      headerRef.current?.classList.remove('header--zindex');
+    }
+  }, [isOpened, dispatch, headerRef]);
+
 
   useClickOutsideAndEscape(filterRef, handleBoardClick, isOpened);
 
@@ -48,4 +55,4 @@ function Filter({ totalCards, activeFilter, setActiveFilter, headerRef }: Filter
   );
 }
 
-export default Filter;
+export const MemoizedFilter = memo(Filter);
