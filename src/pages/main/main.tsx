@@ -1,7 +1,7 @@
 import Header from '../../components/header/header';
 import Filter from '../../components/filter/filter';
-import CheckboxList from '../../components/checkbox-list/checkbox-list';
-import CardList from '../../components/card-list/card-list';
+import { MemoizedCheckboxList } from '../../components/checkbox-list/checkbox-list';
+import { MemoizedCardList } from '../../components/card-list/card-list';
 import Modal from '../../components/modal/modal';
 import Overlay from '../../components/overlay/overlay';
 import Back from '../../components/back/back';
@@ -34,9 +34,9 @@ function Main(): JSX.Element {
       <main>
         <section className="info">
           <h2 className="info__title">Shop</h2>
-          <CheckboxList handleCheckboxChange={handleCheckboxChange} activeCheckboxes={activeCheckboxes} headerRef={headerRef} />
+          <MemoizedCheckboxList handleCheckboxChange={handleCheckboxChange} activeCheckboxes={activeCheckboxes} headerRef={headerRef} />
           <Filter totalCards={totalCards} activeFilter={activeFilter} setActiveFilter={setActiveFilter} headerRef={headerRef} />
-          <CardList checkedCards={checkedCards} activeFilter={activeFilter}/>
+          <MemoizedCardList checkedCards={checkedCards} activeFilter={activeFilter}/>
         </section>
         <Modal headerRef={headerRef} />
       </main>

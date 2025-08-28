@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo, useCallback, useMemo } from 'react';
 import Card from '../card/card';
 import Spinner from '../spinner/spinner';
 import { getCards, getIsCardsLoading } from '../../store/site-data/selectors';
@@ -14,24 +14,15 @@ function CardList({checkedCards, activeFilter}: {checkedCards: CardProps[]; acti
   const cart = useAppSelector(getCart);
   const cards = useAppSelector(getCards);
 
-  if (isLoading) {
-    return <Spinner />;
-  }
+  const cardsMap = useMemo(() => new Map(cards.map((card) => [card.id, card])), [cards]);
 
-  if (!checkedCards || checkedCards.length === 0) {
-    return (
-      <div className="info__nomatch">No cards match selected filters</div>
-    );
-  }
-
-  const sortedCards = checkedCards.sort(comprator[activeFilter as keyof typeof comprator]);
-
-  const handleAddToCart = (evt: React.MouseEvent<HTMLButtonElement>) => {
+  const handleAddToCart = useCallback((evt: React.MouseEvent<HTMLButtonElement>) => {
     const btnId = evt.currentTarget.dataset.btnId;
     if (!btnId) {
       return;
     }
-    const selectedCard = cards.find((card) => card.id === +btnId);
+
+    const selectedCard = cardsMap.get(+btnId);
     if (!selectedCard) {
       return;
     }
@@ -47,7 +38,20 @@ function CardList({checkedCards, activeFilter}: {checkedCards: CardProps[]; acti
     } else {
       dispatch(setCart([...newCart, { ...selectedCard, amount: 1 }]));
     }
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cart, cardsMap]);
+
+  const sortedCards = useMemo(() => checkedCards.sort(comprator[activeFilter as keyof typeof comprator]), [checkedCards, activeFilter]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  if (!checkedCards || checkedCards.length === 0) {
+    return (
+      <div className="info__nomatch">No cards match selected filters</div>
+    );
+  }
 
   return (
     <ul className="info__list">
@@ -58,4 +62,4 @@ function CardList({checkedCards, activeFilter}: {checkedCards: CardProps[]; acti
   );
 }
 
-export default CardList;
+export const MemoizedCardList = memo(CardList);

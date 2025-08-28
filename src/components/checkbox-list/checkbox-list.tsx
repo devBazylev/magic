@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, RefObject } from 'react';
+import { useState, useRef, useEffect, RefObject, memo, useCallback } from 'react';
 import { labels } from '../../const';
 import { useAppSelector, useAppDispatch, useClickOutsideAndEscape } from '../../hooks';
 import { getMedia } from '../../store/site-process/selectors';
@@ -18,16 +18,20 @@ function CheckboxList({handleCheckboxChange, activeCheckboxes, headerRef}: Check
 
   const choiceRef = useRef<HTMLDivElement>(null);
 
-  const handleCheckbox = (id: string, checked: boolean) => {
+  const handleCheckbox = useCallback((id: string, checked: boolean) => {
     const newCheckboxes = checked ? [...activeCheckboxes, id] : activeCheckboxes.filter((item) => item !== id);
     handleCheckboxChange(newCheckboxes);
-  };
+  }, [activeCheckboxes, handleCheckboxChange]);
 
-  const handleToggler = () => {
-    setActiveToggler(!isActiveToggler);
-    dispatch(setOverlay(!isActiveToggler));
-    lockScroll(!isActiveToggler);
-  };
+  const handleToggler = useCallback(() => {
+    setActiveToggler((prev) => !prev);
+  }, []);
+
+  useEffect(() => {
+    dispatch(setOverlay(isActiveToggler));
+    lockScroll(isActiveToggler);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isActiveToggler]);
 
   useEffect(() => {
     const choice = choiceRef.current;
@@ -45,9 +49,7 @@ function CheckboxList({handleCheckboxChange, activeCheckboxes, headerRef}: Check
       const endY = touch.changedTouches[0].clientY;
 
       if (endY - startY > 30) {
-        setActiveToggler(!isActiveToggler);
-        dispatch(setOverlay(!isActiveToggler));
-        lockScroll(!isActiveToggler);
+        setActiveToggler((prev) => !prev);
       }
     };
 
@@ -64,7 +66,8 @@ function CheckboxList({handleCheckboxChange, activeCheckboxes, headerRef}: Check
       choice.removeEventListener('touchstart', onTouchStart);
       choice.removeEventListener('touchend', onTouchEnd);
     };
-  }, [isActiveToggler, dispatch, isMobile, headerRef]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isMobile, headerRef]);
 
   useClickOutsideAndEscape(choiceRef, handleToggler, isActiveToggler);
 
@@ -92,4 +95,4 @@ function CheckboxList({handleCheckboxChange, activeCheckboxes, headerRef}: Check
   );
 }
 
-export default CheckboxList;
+export const MemoizedCheckboxList = memo(CheckboxList);
