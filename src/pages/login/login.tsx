@@ -54,7 +54,7 @@ function Login(): JSX.Element {
       formRef.current.classList.remove('login__form--check');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isSignIn]);
 
   return (
     <div className="wrapper">
