@@ -1,7 +1,9 @@
-function Spinner (): JSX.Element {
+import { memo } from 'react';
+
+function Spinner(): JSX.Element {
   return (
     <div>Loading...</div>
   );
 }
 
-export default Spinner;
+export const MemoizedSpinner = memo(Spinner);

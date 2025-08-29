@@ -1,16 +1,22 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
+import { memo, useMemo } from 'react';
 
 function Nav({ activePage }: { activePage: AppRoute }): JSX.Element {
+  const navLinks = useMemo(() => [
+    { route: AppRoute.Root, label: 'Shop' },
+    { route: AppRoute.Tavern, label: 'Tavern' },
+    { route: AppRoute.Quests, label: 'Quests' },
+    { route: AppRoute.Inventory, label: 'Inventory' }
+  ], []);
 
   return (
     <nav className="header__nav">
-      <Link className={`btn header__link ${activePage === AppRoute.Root ? 'header__link--active' : ''}`} to={AppRoute.Root}>Shop</Link>
-      <Link className={`btn header__link ${activePage === AppRoute.Tavern ? 'header__link--active' : ''}`} to={AppRoute.Tavern}>Tavern</Link>
-      <Link className={`btn header__link ${activePage === AppRoute.Quests ? 'header__link--active' : ''}`} to={AppRoute.Quests}>Quests</Link>
-      <Link className={`btn header__link ${activePage === AppRoute.Inventory ? 'header__link--active' : ''}`} to={AppRoute.Inventory}>Inventory</Link>
+      {navLinks.map(({ route, label }) => (
+        <Link key={route} className={`btn header__link ${activePage === route ? 'header__link--active' : ''}`} to={route}>{label}</Link>
+      ))}
     </nav>
   );
 }
 
-export default Nav;
+export const MemoizedNav = memo(Nav);

@@ -1,11 +1,11 @@
+import type { UserAuth } from '../../types';
 import Header from '../../components/header/header';
 import Modal from '../../components/modal/modal';
-import Overlay from '../../components/overlay/overlay';
+import { MemoizedOverlay } from '../../components/overlay/overlay';
 import Back from '../../components/back/back';
-import type { UserAuth } from '../../types';
-import { HelmetProvider } from 'react-helmet-async';
+import { Helmet } from 'react-helmet-async';
 import { BackPath } from '../../const';
-import { FormEvent, useRef, useState } from 'react';
+import { FormEvent, useCallback, useRef, useState, memo } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loginUser, registerUser } from '../../store/action';
 import { getUserError } from '../../store/user-process/selectors';
@@ -18,7 +18,7 @@ function Login(): JSX.Element {
   const dispatch = useAppDispatch();
   const error = useAppSelector(getUserError);
 
-  const handleSignInButton = () => {
+  const handleSignInButton = useCallback(() => {
     if (formRef.current) {
       formRef.current.classList.add('login__form--check');
     }
@@ -26,9 +26,10 @@ function Login(): JSX.Element {
     if (error) {
       dispatch(clearError());
     }
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const handleSignUpButton = () => {
+  const handleSignUpButton = useCallback(() => {
     if (formRef.current) {
       formRef.current.classList.add('login__form--check');
     }
@@ -36,9 +37,10 @@ function Login(): JSX.Element {
     if (error) {
       dispatch(clearError());
     }
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = useCallback((evt: FormEvent<HTMLFormElement>) => {
     const form = formRef.current;
     if (form) {
       evt.preventDefault();
@@ -51,13 +53,14 @@ function Login(): JSX.Element {
       }
       formRef.current.classList.remove('login__form--check');
     }
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="wrapper">
-      <HelmetProvider>
-        <title>Authorization page</title>
-      </HelmetProvider>
+      <Helmet>
+        <title>Authorization</title>
+      </Helmet>
       <Header headerRef={headerRef} />
       <main>
         <section className="login">
@@ -75,9 +78,9 @@ function Login(): JSX.Element {
         <Modal headerRef={headerRef} />
       </main>
       <Back path={BackPath.Login}/>
-      <Overlay />
+      <MemoizedOverlay />
     </div>
   );
 }
 
-export default Login;
+export const MemoizedLogin = memo(Login);

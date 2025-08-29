@@ -3,9 +3,9 @@ import { MemoizedFilter } from '../../components/filter/filter';
 import { MemoizedCheckboxList } from '../../components/checkbox-list/checkbox-list';
 import { MemoizedCardList } from '../../components/card-list/card-list';
 import Modal from '../../components/modal/modal';
-import Overlay from '../../components/overlay/overlay';
+import { MemoizedOverlay } from '../../components/overlay/overlay';
 import Back from '../../components/back/back';
-import { HelmetProvider } from 'react-helmet-async';
+import { Helmet } from 'react-helmet-async';
 import { useState, useRef, useCallback, useMemo } from 'react';
 import { filters, labels, BackPath } from '../../const';
 import { getCards } from '../../store/site-data/selectors';
@@ -27,13 +27,13 @@ function Main(): JSX.Element {
 
   return (
     <div className="wrapper">
-      <HelmetProvider >
-        <title>You can buy something</title>
-      </HelmetProvider>
+      <Helmet >
+        <title>Shop</title>
+      </Helmet>
       <Header headerRef={headerRef} />
       <main>
         <section className="info">
-          <h2 className="info__title">Shop</h2>
+          <h1 className="info__title">Shop</h1>
           <MemoizedCheckboxList handleCheckboxChange={handleCheckboxChange} activeCheckboxes={activeCheckboxes} headerRef={headerRef} />
           <MemoizedFilter totalCards={totalCards} activeFilter={activeFilter} setActiveFilter={setActiveFilter} headerRef={headerRef} />
           <MemoizedCardList checkedCards={checkedCards} activeFilter={activeFilter}/>
@@ -41,7 +41,7 @@ function Main(): JSX.Element {
         <Modal headerRef={headerRef} />
       </main>
       <Back path={BackPath.Root}/>
-      <Overlay />
+      <MemoizedOverlay />
     </div>
   );
 }

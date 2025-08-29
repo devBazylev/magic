@@ -3,16 +3,18 @@ import { AuthorizationStatus, AppRoute } from '../../const';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import { logoutUser } from '../../store/action';
+import { memo, useCallback } from 'react';
 
 function UserStatus({ activePage }: { activePage: AppRoute }): JSX.Element {
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
-  const handleSignOutClick = () => {
+  const handleSignOutClick = useCallback(() => {
     if (authorizationStatus === AuthorizationStatus.Auth) {
       dispatch(logoutUser());
     }
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     authorizationStatus === AuthorizationStatus.Auth ? (
@@ -27,8 +29,7 @@ function UserStatus({ activePage }: { activePage: AppRoute }): JSX.Element {
   );
 }
 
-export default UserStatus;
-
+export const MemoizedUserStatus = memo(UserStatus);
 // eslint-disable-next-line no-console
 // eslint-disable-next-line react-hooks/exhaustive-deps
 /* eslint-disable */

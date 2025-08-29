@@ -1,8 +1,8 @@
 import Header from '../../components/header/header';
 import Modal from '../../components/modal/modal';
-import Overlay from '../../components/overlay/overlay';
+import { MemoizedOverlay } from '../../components/overlay/overlay';
 import Back from '../../components/back/back';
-import { HelmetProvider } from 'react-helmet-async';
+import { Helmet } from 'react-helmet-async';
 import { useRef } from 'react';
 import { BackPath } from '../../const';
 
@@ -11,18 +11,18 @@ function Favorites(): JSX.Element {
 
   return (
     <div className="wrapper">
-      <HelmetProvider >
+      <Helmet >
         <title>Favorites</title>
-      </HelmetProvider>
+      </Helmet>
       <Header headerRef={headerRef} />
       <main>
         <section className="favorites">
-          <h2 className="favorites__title">Favorites</h2>
+          <h1 className="favorites__title">Favorites</h1>
         </section>
         <Modal headerRef={headerRef} />
       </main>
       <Back path={BackPath.Favorites}/>
-      <Overlay />
+      <MemoizedOverlay />
     </div>
   );
 }

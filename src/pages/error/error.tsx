@@ -1,7 +1,7 @@
 import Header from '../../components/header/header';
 import Modal from '../../components/modal/modal';
-import Overlay from '../../components/overlay/overlay';
-import { HelmetProvider } from 'react-helmet-async';
+import { MemoizedOverlay } from '../../components/overlay/overlay';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { BackPath } from '../../const';
 import Back from '../../components/back/back';
@@ -11,9 +11,9 @@ function Error(): JSX.Element {
   const headerRef = useRef<HTMLHeadingElement>(null);
   return (
     <div className="wrapper">
-      <HelmetProvider>
-        <title>Страница отсутствует</title>
-      </HelmetProvider>
+      <Helmet>
+        <title>Page not found</title>
+      </Helmet>
       <Header headerRef={headerRef} />
       <section className="error">
         <h1 className="error__title">404 not found</h1>
@@ -21,7 +21,7 @@ function Error(): JSX.Element {
         <Modal headerRef={headerRef} />
       </section>
       <Back path={BackPath.Error}/>
-      <Overlay />
+      <MemoizedOverlay />
     </div>
   );
 }

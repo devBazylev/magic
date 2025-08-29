@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useMemo } from 'react';
 import Card from '../card/card';
-import Spinner from '../spinner/spinner';
+import { MemoizedSpinner } from '../spinner/spinner';
 import { getCards, getIsCardsLoading } from '../../store/site-data/selectors';
 import { comprator } from '../../const';
 import { setCart } from '../../store/site-process/site-process';
@@ -44,7 +44,7 @@ function CardList({checkedCards, activeFilter}: {checkedCards: CardProps[]; acti
   const sortedCards = useMemo(() => checkedCards.sort(comprator[activeFilter as keyof typeof comprator]), [checkedCards, activeFilter]);
 
   if (isLoading) {
-    return <Spinner />;
+    return <MemoizedSpinner />;
   }
 
   if (!checkedCards || checkedCards.length === 0) {

@@ -1,11 +1,11 @@
-import Logo from '../../components/logo/logo';
-import Nav from '../../components/nav/nav';
-import UserStatus from '../../components/user-status/user-status';
+import { MemoizedLogo } from '../../components/logo/logo';
+import { MemoizedNav } from '../../components/nav/nav';
+import { MemoizedUserStatus } from '../../components/user-status/user-status';
 import { Link, useLocation } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { useAppSelector, useAppDispatch, useClickOutsideAndEscape } from '../../hooks';
 import { getCart, getMedia } from '../../store/site-process/selectors';
-import { useState, useEffect, RefObject } from 'react';
+import { useState, useEffect, RefObject, useCallback, useMemo } from 'react';
 import { setModal, setOverlay } from '../../store/site-process/site-process';
 import { calcElems, lockScroll } from '../../utils';
 
@@ -20,7 +20,7 @@ function Header({ headerRef }: HeaderProps): JSX.Element {
   const [activePage, setActivePage] = useState(AppRoute.Root);
   const location = useLocation();
   const cart = useAppSelector(getCart);
-  const totalItems = calcElems(cart?.map((item) => item.amount ?? 0) ?? []);
+  const totalItems = useMemo(() => calcElems(cart?.map((item) => item.amount ?? 0) ?? []), [cart]);
 
   useEffect(() => {
     dispatch(setOverlay(false));
@@ -29,15 +29,17 @@ function Header({ headerRef }: HeaderProps): JSX.Element {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
-  const handleToggleMenu = () => {
+  const handleToggleMenu = useCallback(() => {
     setActiveHeader(!isActiveHeader);
     dispatch(setOverlay(!isActiveHeader));
     lockScroll(!isActiveHeader);
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isActiveHeader]);
 
-  const handleOpenModal = () => {
+  const handleOpenModal = useCallback(() => {
     dispatch(setModal(true));
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useClickOutsideAndEscape(headerRef as RefObject<HTMLElement>, handleToggleMenu, isActiveHeader);
 
@@ -45,13 +47,13 @@ function Header({ headerRef }: HeaderProps): JSX.Element {
     <header ref={headerRef || undefined} className={`header ${isActiveHeader ? 'header--opened' : ''}`}>
       <div className="header__wrap">
         {isMobile && <button className="btn header__toggler" type="button" aria-label="Toggle menu." onClick={handleToggleMenu}></button>}
-        <Logo />
+        <MemoizedLogo />
         <button className="btn header__cart" type="button" aria-label="Items in the cart." onClick={handleOpenModal}><span>{totalItems}</span></button>
       </div>
       <div className="header__cont">
-        <Nav activePage={activePage} />
+        <MemoizedNav activePage={activePage} />
         <div className="header__tools">
-          <UserStatus activePage={activePage} />
+          <MemoizedUserStatus activePage={activePage} />
           <Link className={`btn header__tool ${activePage === AppRoute.Favorites ? 'header__tool--fav' : ''}`} to={AppRoute.Favorites}>
             <svg className="header__heart" fill="transparent" height="200" width="200" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-label="Favorite.">
               <path d="M475.226,76.141c-24.802-27.568-59.176-42.75-96.791-42.75c-41.655,0-78.895,19.546-107.697,56.524c-5.791,7.435-10.682,14.864-14.738,21.751c-4.056-6.888-8.947-14.316-14.738-21.751C212.46,52.937,175.22,33.391,133.565,33.391c-37.615,0-71.989,15.182-96.791,42.75C13.059,102.499,0,137.806,0,175.557c0,42.904,18.5,84.194,58.22,129.938c35.093,40.416,84.726,82.429,142.195,131.076c14.418,12.205,29.326,24.825,44.72,38.018c3.127,2.68,6.995,4.019,10.866,4.019c3.87,0,7.739-1.34,10.866-4.019c15.393-13.194,30.301-25.814,44.72-38.018c57.47-48.648,107.102-90.661,142.195-131.076C493.5,259.751,512,218.461,512,175.557C512,137.806,498.941,102.499,475.226,76.141z"/>
