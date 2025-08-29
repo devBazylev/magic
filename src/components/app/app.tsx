@@ -1,13 +1,13 @@
-import Main from '../../pages/main/main';
+import history from '../../browser-history';
+import HistoryRouter from '../history-route/history-route';
+import { MemoizedMain } from '../../pages/main/main';
 import { MemoizedLogin } from '../../pages/login/login';
-import Error from '../../pages/error/error';
+import { MemoizedError } from '../../pages/error/error';
 import { ScrollToTop } from '../../utils';
 import { Routes, Route } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import history from '../../browser-history';
-import HistoryRouter from '../history-route/history-route';
 import { useMedia } from '../../hooks';
-import Favorites from '../../pages/favorites/favorites';
+import { MemoizedFavorites } from '../../pages/favorites/favorites';
 
 function App(): JSX.Element {
   useMedia();
@@ -16,10 +16,10 @@ function App(): JSX.Element {
       <ScrollToTop />
       <Routes>
         <Route path="/">
-          <Route index element={<Main />}/>
+          <Route index element={<MemoizedMain />}/>
           <Route path={AppRoute.Login} element={<MemoizedLogin />}/>
-          <Route path={AppRoute.Favorites} element={<Favorites />}/>
-          <Route path="*" element={<Error />}/>
+          <Route path={AppRoute.Favorites} element={<MemoizedFavorites />}/>
+          <Route path="*" element={<MemoizedError />}/>
         </Route>
       </Routes>
     </HistoryRouter>

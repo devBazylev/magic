@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { BackPath } from '../../const';
 import Back from '../../components/back/back';
-import { useRef } from 'react';
+import { useRef, memo } from 'react';
 
 function Error(): JSX.Element {
   const headerRef = useRef<HTMLHeadingElement>(null);
@@ -26,4 +26,4 @@ function Error(): JSX.Element {
   );
 }
 
-export default Error;
+export const MemoizedError = memo(Error);

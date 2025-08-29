@@ -3,7 +3,7 @@ import Modal from '../../components/modal/modal';
 import { MemoizedOverlay } from '../../components/overlay/overlay';
 import Back from '../../components/back/back';
 import { Helmet } from 'react-helmet-async';
-import { useRef } from 'react';
+import { useRef, memo } from 'react';
 import { BackPath } from '../../const';
 
 function Favorites(): JSX.Element {
@@ -27,4 +27,4 @@ function Favorites(): JSX.Element {
   );
 }
 
-export default Favorites;
+export const MemoizedFavorites = memo(Favorites);
