@@ -1,5 +1,5 @@
 import Header from '../../components/header/header';
-import Modal from '../../components/modal/modal';
+import { MemoizedModal } from '../../components/modal/modal';
 import { MemoizedOverlay } from '../../components/overlay/overlay';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -18,7 +18,7 @@ function Error(): JSX.Element {
       <section className="error">
         <h1 className="error__title">404 not found</h1>
         <Link className="error__link" to="/">Go to main page</Link>
-        <Modal headerRef={headerRef} />
+        <MemoizedModal headerRef={headerRef} />
       </section>
       <Back path={BackPath.Error}/>
       <MemoizedOverlay />

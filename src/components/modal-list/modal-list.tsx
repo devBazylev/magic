@@ -1,7 +1,8 @@
-import ModalCard from '../modal-card/modal-card';
+import { MemoizedModalCard } from '../modal-card/modal-card';
 import { useAppSelector } from '../../hooks';
 import { getCart } from '../../store/site-process/selectors';
 import { CardProps } from '../../types';
+import { memo } from 'react';
 
 function ModalList(): JSX.Element {
   const cart = useAppSelector(getCart);
@@ -9,10 +10,10 @@ function ModalList(): JSX.Element {
   return (
     <ul className="modal__list">
       {cart?.map((card: CardProps) => (
-        <ModalCard key={card.id} {...card}/>
+        <MemoizedModalCard key={card.id} {...card}/>
       ))}
     </ul>
   );
 }
 
-export default ModalList;
+export const MemoizedModalList = memo(ModalList);

@@ -1,6 +1,6 @@
 import type { UserAuth } from '../../types';
 import Header from '../../components/header/header';
-import Modal from '../../components/modal/modal';
+import { MemoizedModal } from '../../components/modal/modal';
 import { MemoizedOverlay } from '../../components/overlay/overlay';
 import Back from '../../components/back/back';
 import { Helmet } from 'react-helmet-async';
@@ -75,7 +75,7 @@ function Login(): JSX.Element {
             <button className="login__submit login__submit--signup btn" type="submit" onClick={handleSignUpButton}>Sign up</button>
           </form>
         </section>
-        <Modal headerRef={headerRef} />
+        <MemoizedModal headerRef={headerRef} />
       </main>
       <Back path={BackPath.Login}/>
       <MemoizedOverlay />

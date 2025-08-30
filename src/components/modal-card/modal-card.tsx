@@ -2,27 +2,29 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getCart } from '../../store/site-process/selectors';
 import { setCart } from '../../store/site-process/site-process';
 import { CardProps } from '../../types';
+import { memo, useCallback } from 'react';
 
 function ModalCard({id, name, alt, price, image, amount }: CardProps): JSX.Element {
   const dispatch = useAppDispatch();
   const cart = useAppSelector(getCart);
 
-  const handleMinus = () => {
+  const handleMinus = useCallback(() => {
     if (cart) {
       dispatch(setCart(cart.map((item) => item.id === id ? { ...item, amount: item.amount ? item.amount - 1 : 0 } : item)));
     }
-  };
+  }, [cart, dispatch, id]);
 
-  const handlePlus = () => {
+  const handlePlus = useCallback(() => {
     if (cart) {
       dispatch(setCart(cart.map((item) => item.id === id ? { ...item, amount: item.amount ? item.amount + 1 : 1 } : item)));
     }
-  };
-  const handleDelete = () => {
+  }, [cart, dispatch, id]);
+
+  const handleDelete = useCallback(() => {
     if (cart) {
       dispatch(setCart(cart.filter((item) => item.id !== id)));
     }
-  };
+  }, [cart, dispatch, id]);
 
   return (
     <li className="modal__item" data-id={id}>
@@ -45,4 +47,5 @@ function ModalCard({id, name, alt, price, image, amount }: CardProps): JSX.Eleme
   );
 }
 
-export default ModalCard;
+export const MemoizedModalCard = memo(ModalCard);
+

@@ -1,6 +1,6 @@
 import Header from '../../components/header/header';
-import Modal from '../../components/modal/modal';
 import Back from '../../components/back/back';
+import { MemoizedModal } from '../../components/modal/modal';
 import { MemoizedFilter } from '../../components/filter/filter';
 import { MemoizedCheckboxList } from '../../components/checkbox-list/checkbox-list';
 import { MemoizedCardList } from '../../components/card-list/card-list';
@@ -42,7 +42,7 @@ function Main(): JSX.Element {
           <MemoizedFilter totalCards={totalCards} activeFilter={activeFilter} setActiveFilter={handleFilterChange} headerRef={headerRef} />
           <MemoizedCardList checkedCards={checkedCards} activeFilter={activeFilter}/>
         </section>
-        <Modal headerRef={headerRef} />
+        <MemoizedModal headerRef={headerRef} />
       </main>
       <Back path={BackPath.Root}/>
       <MemoizedOverlay />
