@@ -12,9 +12,18 @@ function Nav({ activePage }: { activePage: AppRoute }): JSX.Element {
 
   return (
     <nav className="header__nav">
-      {navLinks.map(({ route, label }) => (
-        <Link key={route} className={`btn header__link ${activePage === route ? 'header__link--active' : ''}`} to={route}>{label}</Link>
-      ))}
+      {navLinks.map(({ route, label }) => {
+        const isDisabled = route === AppRoute.Tavern || route === AppRoute.Quests || route === AppRoute.Inventory;
+        return (
+          <Link
+            key={route}
+            className={`btn header__link ${activePage === route ? 'header__link--active' : ''} ${isDisabled ? 'header__link--disabled' : ''}`}
+            to={route}
+          >
+            {label}
+          </Link>
+        );
+      })}
     </nav>
   );
 }
