@@ -1453,10 +1453,8 @@ button,
 .header__link--disabled {
   position: relative;
   text-decoration: line-through;
-  text-decoration-color: #ff0000;
+  text-decoration-color: #fc2621;
   text-decoration-thickness: 2px;
-  opacity: 0.6;
-  pointer-events: none;
 }
 .header__tools {
   display: flex;

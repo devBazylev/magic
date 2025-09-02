@@ -209,10 +209,8 @@
   &__link--disabled {
     position: relative;
     text-decoration: line-through;
-    text-decoration-color: #ff0000;
+    text-decoration-color: $color-red-orange;
     text-decoration-thickness: 2px;
-    opacity: 0.6;
-    pointer-events: none;
   }
 
   &__tools {
