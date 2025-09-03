@@ -2,7 +2,7 @@ import type { UserAuth } from '../../types';
 import Header from '../../components/header/header';
 import { MemoizedModal } from '../../components/modal/modal';
 import { MemoizedOverlay } from '../../components/overlay/overlay';
-import Back from '../../components/back/back';
+import { MemoizedBack } from '../../components/back/back';
 import { Helmet } from 'react-helmet-async';
 import { BackPath } from '../../const';
 import { FormEvent, useCallback, useRef, useState, memo } from 'react';
@@ -77,7 +77,7 @@ function Login(): JSX.Element {
         </section>
         <MemoizedModal headerRef={headerRef} />
       </main>
-      <Back path={BackPath.Login}/>
+      <MemoizedBack path={BackPath.Login}/>
       <MemoizedOverlay />
     </div>
   );

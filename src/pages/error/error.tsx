@@ -4,7 +4,7 @@ import { MemoizedOverlay } from '../../components/overlay/overlay';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { BackPath } from '../../const';
-import Back from '../../components/back/back';
+import { MemoizedBack } from '../../components/back/back';
 import { useRef, memo } from 'react';
 
 function Error(): JSX.Element {
@@ -20,7 +20,7 @@ function Error(): JSX.Element {
         <Link className="error__link" to="/">Go to main page</Link>
         <MemoizedModal headerRef={headerRef} />
       </section>
-      <Back path={BackPath.Error}/>
+      <MemoizedBack path={BackPath.Error}/>
       <MemoizedOverlay />
     </div>
   );

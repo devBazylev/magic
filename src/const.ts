@@ -3,8 +3,8 @@ export const filters = ['popular','expensive', 'cheap', 'rare'] as const;
 export enum BackPath {
   Root = 'main',
   Login = 'gate',
+  Favorites = 'fire',
   Error = 'volcano',
-  Favorites = 'tree',
 }
 
 export enum StoreSlice {

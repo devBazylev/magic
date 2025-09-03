@@ -1,7 +1,7 @@
 import Header from '../../components/header/header';
 import { MemoizedModal } from '../../components/modal/modal';
 import { MemoizedOverlay } from '../../components/overlay/overlay';
-import Back from '../../components/back/back';
+import { MemoizedBack } from '../../components/back/back';
 import { Helmet } from 'react-helmet-async';
 import { useRef, memo } from 'react';
 import { BackPath } from '../../const';
@@ -21,7 +21,7 @@ function Favorites(): JSX.Element {
         </section>
         <MemoizedModal headerRef={headerRef} />
       </main>
-      <Back path={BackPath.Favorites}/>
+      <MemoizedBack path={BackPath.Favorites}/>
       <MemoizedOverlay />
     </div>
   );

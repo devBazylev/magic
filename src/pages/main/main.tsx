@@ -1,5 +1,5 @@
 import Header from '../../components/header/header';
-import Back from '../../components/back/back';
+import { MemoizedBack } from '../../components/back/back';
 import { MemoizedModal } from '../../components/modal/modal';
 import { MemoizedFilter } from '../../components/filter/filter';
 import { MemoizedCheckboxList } from '../../components/checkbox-list/checkbox-list';
@@ -44,7 +44,7 @@ function Main(): JSX.Element {
         </section>
         <MemoizedModal headerRef={headerRef} />
       </main>
-      <Back path={BackPath.Root}/>
+      <MemoizedBack path={BackPath.Root}/>
       <MemoizedOverlay />
     </div>
   );
