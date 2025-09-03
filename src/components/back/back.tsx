@@ -8,7 +8,7 @@ function Back({path}: {path: BackPath}): JSX.Element {
       case BackPath.Login:
         return 'gate';
       case BackPath.Favorites:
-        return 'tree';
+        return 'fire';
       case BackPath.Error:
         return 'volcano';
       default:
