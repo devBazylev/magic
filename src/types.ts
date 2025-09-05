@@ -14,6 +14,7 @@ export type CardProps = {
   image: string;
   fav?: boolean;
   amount?: number;
+  desc?: string;
 };
 
 export type User = {

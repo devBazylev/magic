@@ -48,4 +48,3 @@ function ModalCard({id, name, alt, price, image, amount }: CardProps): JSX.Eleme
 }
 
 export const MemoizedModalCard = memo(ModalCard);
-

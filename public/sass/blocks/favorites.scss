@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: center;
   gap: 1vw;
-  padding: 0 5vw 5vw;
+  padding: 5vw 10vw 10vw;
 
   @include vp-1023 {
     gap: 20px;
@@ -29,4 +29,237 @@
       text-align: left;
     }
   }
+
+  &__nomatch {
+    padding: 10vw 0 0;
+    text-align: center;
+    font-size: clamp(30px, 3vw, 3vw);
+
+    @include vp-1023 {
+      padding: 20px;
+      font-size: clamp(20px, 5vw, 30px);
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2vw;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    @include vp-1023 {
+      gap: 20px;
+    }
+  }
+
+  &__item {
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    gap: 3vw;
+    width: 60vw;
+    padding: 2vw;
+    border-radius: 0.7vw;
+    backdrop-filter: blur(3vw);
+    -webkit-backdrop-filter: blur(3vw);
+    cursor: pointer;
+    transition: box-shadow $trans-default, transform $trans-default;
+
+    @include vp-1023 {
+      gap: 10px;
+      width: 100%;
+      padding: 20px;
+    }
+
+    @include vp-767 {
+      grid-template-columns: 1fr;
+    }
+
+    &:hover {
+      transform: translateY(-0.2vw);
+      box-shadow:
+        0 0.5vw 2vw $color-lemon-trans-30,
+        0 1vw 4vw $color-safety-orange-trans-20,
+        0 2vw 8vw $color-red-orange-trans-10;
+    }
+  }
+
+  &__pic {
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+
+    @include vp-767 {
+      width: 150px;
+    }
+  }
+
+  &__cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1vw;
+
+    @include vp-767 {
+      gap: 10px;
+    }
+  }
+
+  & img {
+    width: 100%;
+  }
+
+  &__text {
+    font-size: clamp(20px, 1.6vw, 2vw);
+    text-align: center;
+    font-style: normal;
+    line-height: 100%;
+    letter-spacing: 0.1vw;
+
+    @include vp-1023 {
+      font-size: clamp(20px, 5vw, 30px);
+    }
+  }
+
+  &__bag {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include vp-1023 {
+      margin: auto 0 0;
+    }
+  }
+
+  &__price {
+    font-size: clamp(14px, 1.3vw, 1.3vw);
+    font-style: normal;
+    font-weight: 600;
+    line-height: 100%;
+    letter-spacing: 0.1vw;
+
+    @include vp-1023 {
+      font-size: clamp(14px, 4vw, 21px);
+    }
+  }
+
+  &__price span {
+    position: relative;
+    top: 1px;
+    left: 3px;
+    font-size: clamp(14px, 0.9vw, 0.9vw);
+    letter-spacing: 0.1vw;
+
+    @include vp-1023 {
+      font-size: clamp(14px, 4vw, 21px);
+    }
+  }
+
+  &__btn {
+    width: 4vw;
+    height: 1.6vw;
+    padding: 0.3vw 0;
+    flex-shrink: 0;
+    border-radius: 0.4vw;
+    opacity: 0;
+    transition: opacity $trans-default;
+    background: $linear-yellow-red;
+
+    @include vp-1023 {
+      min-width: 40px;
+      min-height: 20px;
+      border-radius: 5px;
+      opacity: 1;
+    }
+  }
+
+  &__item:hover &__btn {
+    opacity: 1;
+  }
+
+  &__item:hover &__btn:hover,
+  &__item:hover &__btn:focus {
+    opacity: 0.7;
+  }
+
+  &__item:hover &__btn:active {
+    opacity: 0.4;
+  }
+
+  &__plus {
+    width: 1vw;
+    height: 1vw;
+    min-height: 15px;
+    min-width: 15px;
+  }
+
+  &__fav {
+    position: absolute;
+    top: 1vw;
+    right: 2vw;
+    width: 2vw;
+    height: 2vw;
+    min-width: 35px;
+    min-height: 35px;
+    flex-shrink: 0;
+    opacity: 0;
+    transition: opacity $trans-default;
+
+    @include vp-1023 {
+      opacity: 1;
+    }
+  }
+
+  &__heart {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: fill $trans-default;
+  }
+
+  &__fav--active &__heart {
+    fill: $color-red-orange;
+  }
+
+  &__item:hover &__fav {
+    opacity: 1;
+  }
+
+  &__item &__fav:hover {
+    opacity: 0.7;
+  }
+
+  &__item:hover &__fav:focus {
+    opacity: 0.7;
+  }
+
+  &__item:hover &__fav:active {
+    opacity: 0.4;
+  }
+
+  & &__fav--active {
+    opacity: 1;
+  }
+
+  &__desc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    font-size: clamp(20px, 1.3vw, 1.3vw);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: 0.1vw;
+
+    @include vp-1023 {
+      padding: 10px;
+      font-size: clamp(20px, 4vw, 30px);
+    }
+  }
+
 }

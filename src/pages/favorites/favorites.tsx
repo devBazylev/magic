@@ -5,6 +5,7 @@ import { MemoizedBack } from '../../components/back/back';
 import { Helmet } from 'react-helmet-async';
 import { useRef, memo } from 'react';
 import { BackPath } from '../../const';
+import { MemoizedFavoritesList } from '../../components/favorites-list/favorites-list';
 
 function Favorites(): JSX.Element {
   const headerRef = useRef<HTMLHeadingElement>(null);
@@ -18,6 +19,7 @@ function Favorites(): JSX.Element {
       <main>
         <section className="favorites">
           <h1 className="favorites__title">Favorites</h1>
+          <MemoizedFavoritesList />
         </section>
         <MemoizedModal headerRef={headerRef} />
       </main>
