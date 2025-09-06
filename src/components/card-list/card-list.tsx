@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import Card from '../card/card';
 import { MemoizedSpinner } from '../spinner/spinner';
 import { getCards, getIsCardsLoading, getFavoritesStore } from '../../store/site-data/selectors';
@@ -18,13 +18,8 @@ function CardList({checkedCards, activeFilter}: {checkedCards: CardProps[]; acti
   const favorites = useAppSelector(getFavoritesStore);
   const favoritesSet = useMemo(() => new Set(favorites), [favorites]);
 
-  const handleAddToCart = useCallback((evt: React.MouseEvent<HTMLButtonElement>) => {
-    const btnId = evt.currentTarget.dataset.btnId;
-    if (!btnId) {
-      return;
-    }
-
-    const selectedCard = cardsMap.get(+btnId);
+  const handleAddToCart = useCallback((cardId: number) => {
+    const selectedCard = cardsMap.get(cardId);
     if (!selectedCard) {
       return;
     }
@@ -65,7 +60,7 @@ function CardList({checkedCards, activeFilter}: {checkedCards: CardProps[]; acti
   return (
     <ul className="info__list">
       {sortedCards?.map((card) => (
-        <Card key={card.id} {...card} isFav={favoritesSet.has(card.id)} handleAddToCart={handleAddToCart} handleFav={() => handleFav(card.id)} />
+        <Card key={card.id} {...card} isFav={favoritesSet.has(card.id)} handleAddToCart={() => handleAddToCart(card.id)} handleFav={() => handleFav(card.id)} />
       ))}
     </ul>
   );
