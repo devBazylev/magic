@@ -64,6 +64,14 @@ export const loginUser = createAsyncThunk<{ email: string; favorites: number[]; 
           const mergedFavorites = mergeFavorites(serverFavorites, localFavorites);
           saveFavorites(mergedFavorites);
 
+          try {
+            await api.patch(`${APIRoute.LOGIN}/${userData.id}`, {
+              favorites: mergedFavorites
+            });
+          } catch (syncError) {
+            //
+          }
+
           const path = joinPaths(import.meta.env.BASE_URL || '', AppRoute.Root);
           history.push(path);
           return { email: userData.email || '', favorites: mergedFavorites, id: userData.id || undefined };
@@ -110,6 +118,14 @@ export const fetchUserStatus = createAsyncThunk<User | null, undefined, { extra:
       const localFavorites = loadFavorites();
       const mergedFavorites = mergeFavorites(serverFavorites, localFavorites);
       saveFavorites(mergedFavorites);
+
+      try {
+        await api.patch(`${APIRoute.LOGIN}/${data.id}`, {
+          favorites: mergedFavorites
+        });
+      } catch (syncError) {
+        //
+      }
 
       return {
         email: data.email || '',
