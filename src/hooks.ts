@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import type { State, AppDispatch, CardProps } from './types';
+import type { State, AppDispatch } from './types';
+import { useEffect } from 'react';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { setMedia, setOverlay } from './store/site-process/site-process';
 import { RefObject } from 'react';
@@ -73,15 +73,12 @@ export const useClickOutsideAndEscape = (
   }, [flag]);
 };
 
-export const useFavorites = () => {
-  const localStorageFavorites = localStorage.getItem('favorites');
-  const [favorites, setFavorites] = useState<CardProps[]>([]);
+export const useUpdatedFavorites = (evt: React.MouseEvent<HTMLButtonElement>) => {
+  const favId = evt.currentTarget.dataset.favId;
 
-  useEffect(() => {
-    if (localStorageFavorites) {
-      setFavorites(JSON.parse(localStorageFavorites) as CardProps[]);
-    }
-  }, [localStorageFavorites]);
+  if (!favId) {
+    return null;
+  }
 
-  return favorites;
+  return +favId;
 };

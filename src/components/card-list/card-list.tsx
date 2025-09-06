@@ -1,9 +1,10 @@
 import React, { memo, useCallback, useMemo } from 'react';
 import Card from '../card/card';
 import { MemoizedSpinner } from '../spinner/spinner';
-import { getCards, getIsCardsLoading } from '../../store/site-data/selectors';
+import { getCards, getIsCardsLoading, getFavoritesStore } from '../../store/site-data/selectors';
 import { comprator } from '../../const';
 import { setCart } from '../../store/site-process/site-process';
+import { setFavoritesStore } from '../../store/action';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getCart } from '../../store/site-process/selectors';
 import { CardProps } from '../../types';
@@ -13,8 +14,9 @@ function CardList({checkedCards, activeFilter}: {checkedCards: CardProps[]; acti
   const dispatch = useAppDispatch();
   const cart = useAppSelector(getCart);
   const cards = useAppSelector(getCards);
-
   const cardsMap = useMemo(() => new Map(cards.map((card) => [card.id, card])), [cards]);
+  const favorites = useAppSelector(getFavoritesStore);
+  const favoritesSet = useMemo(() => new Set(favorites), [favorites]);
 
   const handleAddToCart = useCallback((evt: React.MouseEvent<HTMLButtonElement>) => {
     const btnId = evt.currentTarget.dataset.btnId;
@@ -41,6 +43,13 @@ function CardList({checkedCards, activeFilter}: {checkedCards: CardProps[]; acti
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart, cardsMap]);
 
+  const handleFav = useCallback((cardId: number) => {
+    const newFavorites = favoritesSet.has(cardId)
+      ? favorites.filter((favId) => favId !== cardId)
+      : [...favorites, cardId];
+    dispatch(setFavoritesStore(newFavorites));
+  }, [favorites, favoritesSet, dispatch]);
+
   const sortedCards = useMemo(() => checkedCards.sort(comprator[activeFilter as keyof typeof comprator]), [checkedCards, activeFilter]);
 
   if (isLoading) {
@@ -56,7 +65,7 @@ function CardList({checkedCards, activeFilter}: {checkedCards: CardProps[]; acti
   return (
     <ul className="info__list">
       {sortedCards?.map((card) => (
-        <Card key={card.id} {...card} handleAddToCart={handleAddToCart}/>
+        <Card key={card.id} {...card} isFav={favoritesSet.has(card.id)} handleAddToCart={handleAddToCart} handleFav={() => handleFav(card.id)} />
       ))}
     </ul>
   );

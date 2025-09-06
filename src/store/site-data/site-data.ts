@@ -1,12 +1,12 @@
 import type { SiteData } from '../../types';
 import { createSlice } from '@reduxjs/toolkit';
 import { StoreSlice } from '../../const';
-import { fetchCards, setFavoritesLocal } from '../action';
+import { fetchCards, setFavoritesStore } from '../action';
 
 const initialState: SiteData = {
   cards: [],
   isCardsLoading: false,
-  favoritesLocal: [],
+  favoritesStore: [],
 };
 
 export const siteData = createSlice({
@@ -22,8 +22,8 @@ export const siteData = createSlice({
         state.cards = action.payload;
         state.isCardsLoading = false;
       })
-      .addCase(setFavoritesLocal, (state, action) => {
-        state.favoritesLocal = action.payload;
+      .addCase(setFavoritesStore, (state, action) => {
+        state.favoritesStore = action.payload;
       });
   }
 });

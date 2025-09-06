@@ -56,3 +56,8 @@ export const labels = [
   {name: 'artefacts', id: 'artefact', text: 'Artefacts', checked: true},
   {name: 'armors', id: 'armor', text: 'Armors', checked: true},
 ] as const;
+
+export enum LocalStorage {
+  Favorites = 'favorites',
+  Checkboxes = 'checkboxes',
+}

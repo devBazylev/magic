@@ -29,7 +29,7 @@ export type SortName = typeof filters[number];
 export type SiteData = {
   cards: CardProps[];
   isCardsLoading: boolean;
-  favoritesLocal: number[];
+  favoritesStore: number[];
 };
 
 export type SiteProcess = {

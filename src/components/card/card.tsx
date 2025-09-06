@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import type { CardProps } from '../../types';
 
-function Card({id, name, alt, price, tag, image, fav, handleAddToCart}: CardProps & { handleAddToCart: (evt: React.MouseEvent<HTMLButtonElement>) => void }): JSX.Element {
-  const [isFav, setIsFav] = useState(fav);
-  const handleFav = () => {
-    setIsFav(!isFav);
-  };
+function Card({id, name, alt, price, tag, image, isFav, handleAddToCart, handleFav}: CardProps & {
+  isFav: boolean;
+  handleAddToCart: (evt: React.MouseEvent<HTMLButtonElement>) => void;
+  handleFav: () => void;
+}): JSX.Element {
 
   return (
     <li className="info__item" data-id={id} data-tag={tag}>

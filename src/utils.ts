@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { LocalStorage } from './const';
 
 function ScrollToTop() {
   const {pathname} = useLocation();
@@ -35,9 +36,15 @@ const calcElems = (arr: number[]) => {
   return sum;
 };
 
+const loadFavorites = () => {
+  const favorites = localStorage.getItem(LocalStorage.Favorites);
+  return favorites ? JSON.parse(favorites) as number[] : [];
+};
+
 export {
   ScrollToTop,
   lockScroll,
   joinPaths,
   calcElems,
+  loadFavorites,
 };

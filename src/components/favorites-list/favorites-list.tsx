@@ -1,7 +1,7 @@
 import { memo, useMemo, useCallback } from 'react';
 import { MemoizedFavoritesCard } from '../favorites-card/favorites-card';
 import { MemoizedSpinner } from '../spinner/spinner';
-import { getCards, getIsCardsLoading } from '../../store/site-data/selectors';
+import { getCards, getIsCardsLoading, getFavoritesStore } from '../../store/site-data/selectors';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { getCart } from '../../store/site-process/selectors';
 import { setCart } from '../../store/site-process/site-process';
@@ -13,7 +13,8 @@ function FavoritesList(): JSX.Element {
   const dispatch = useAppDispatch();
   const cart = useAppSelector(getCart);
   const cardsMap = useMemo(() => new Map(cards.map((card) => [card.id, card])), [cards]);
-  const favoriteCards = useMemo(() => cards.filter((card) => card.fav), [cards]);
+  const favoritesStore = useAppSelector(getFavoritesStore);
+  const favoriteCards = useMemo(() => cards.filter((card) => favoritesStore.includes(card.id)), [cards, favoritesStore]);
 
   const handleAddToCart = useCallback((evt: React.MouseEvent<HTMLButtonElement>) => {
     const btnId = evt.currentTarget.dataset.btnId;
