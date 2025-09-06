@@ -36,9 +36,25 @@ const calcElems = (arr: number[]) => {
   return sum;
 };
 
-const loadFavorites = () => {
-  const favorites = localStorage.getItem(LocalStorage.Favorites);
-  return favorites ? JSON.parse(favorites) as number[] : [];
+const loadFavorites = (): number[] => {
+  try {
+    const favorites = localStorage.getItem(LocalStorage.Favorites);
+    return favorites ? JSON.parse(favorites) as number[] : [];
+  } catch (error) {
+    return [];
+  }
+};
+
+const saveFavorites = (favorites: number[]): void => {
+  try {
+    if (favorites.length === 0) {
+      localStorage.removeItem(LocalStorage.Favorites);
+    } else {
+      localStorage.setItem(LocalStorage.Favorites, JSON.stringify(favorites));
+    }
+  } catch (error) {
+    //
+  }
 };
 
 export {
@@ -47,4 +63,5 @@ export {
   joinPaths,
   calcElems,
   loadFavorites,
+  saveFavorites,
 };

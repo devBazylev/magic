@@ -21,4 +21,3 @@ export const store = configureStore({
 store.dispatch(fetchCards());
 store.dispatch(fetchUserStatus());
 store.dispatch(setFavoritesStore(loadFavorites()));
-// console.log(setFavoritesLocal(loadFavorites()));

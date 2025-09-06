@@ -1,7 +1,10 @@
 import type { State, AppDispatch } from './types';
-import { useEffect } from 'react';
+import { useEffect, useCallback, useMemo } from 'react';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { setMedia, setOverlay } from './store/site-process/site-process';
+import { setFavoritesStore } from './store/action';
+import { getFavoritesStore } from './store/site-data/selectors';
+import { saveFavorites } from './utils';
 import { RefObject } from 'react';
 
 export const useAppDispatch = () => useDispatch<AppDispatch>();
@@ -73,12 +76,49 @@ export const useClickOutsideAndEscape = (
   }, [flag]);
 };
 
-export const useUpdatedFavorites = (evt: React.MouseEvent<HTMLButtonElement>) => {
-  const favId = evt.currentTarget.dataset.favId;
 
-  if (!favId) {
-    return null;
-  }
+export const useFavorites = () => {
+  const dispatch = useAppDispatch();
+  const favorites = useAppSelector(getFavoritesStore);
+  const favoritesSet = useMemo(() => new Set(favorites), [favorites]);
 
-  return +favId;
+  const saveFavoritesMemo = useCallback((favoritesList: number[]) => {
+    saveFavorites(favoritesList);
+  }, []);
+
+  const toggleFavorite = useCallback((cardId: number) => {
+    const newFavorites = favoritesSet.has(cardId)
+      ? favorites.filter((favId: number) => favId !== cardId)
+      : [...favorites, cardId];
+
+    dispatch(setFavoritesStore(newFavorites));
+    saveFavoritesMemo(newFavorites);
+  }, [favorites, favoritesSet, dispatch, saveFavoritesMemo]);
+
+  const addToFavorites = useCallback((cardId: number) => {
+    if (!favoritesSet.has(cardId)) {
+      const newFavorites = [...favorites, cardId];
+      dispatch(setFavoritesStore(newFavorites));
+      saveFavoritesMemo(newFavorites);
+    }
+  }, [favorites, favoritesSet, dispatch, saveFavoritesMemo]);
+
+  const removeFromFavorites = useCallback((cardId: number) => {
+    if (favoritesSet.has(cardId)) {
+      const newFavorites = favorites.filter((favId: number) => favId !== cardId);
+      dispatch(setFavoritesStore(newFavorites));
+      saveFavoritesMemo(newFavorites);
+    }
+  }, [favorites, favoritesSet, dispatch, saveFavoritesMemo]);
+
+  const isFavorite = useCallback((cardId: number) => favoritesSet.has(cardId), [favoritesSet]);
+
+  return {
+    favorites,
+    favoritesSet,
+    toggleFavorite,
+    addToFavorites,
+    removeFromFavorites,
+    isFavorite
+  };
 };

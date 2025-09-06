@@ -1,11 +1,12 @@
-import { memo, useMemo, useCallback } from 'react';
+import { memo, useMemo, useCallback, useEffect } from 'react';
 import { MemoizedFavoritesCard } from '../favorites-card/favorites-card';
 import { MemoizedSpinner } from '../spinner/spinner';
-import { getCards, getIsCardsLoading, getFavoritesStore } from '../../store/site-data/selectors';
+import { getCards, getIsCardsLoading } from '../../store/site-data/selectors';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { getCart } from '../../store/site-process/selectors';
 import { setCart } from '../../store/site-process/site-process';
 import { CardProps } from '../../types';
+import { useFavorites } from '../../hooks';
 
 function FavoritesList(): JSX.Element {
   const isLoading = useAppSelector(getIsCardsLoading);
@@ -13,8 +14,12 @@ function FavoritesList(): JSX.Element {
   const dispatch = useAppDispatch();
   const cart = useAppSelector(getCart);
   const cardsMap = useMemo(() => new Map(cards.map((card) => [card.id, card])), [cards]);
-  const favoritesStore = useAppSelector(getFavoritesStore);
-  const favoriteCards = useMemo(() => cards.filter((card) => favoritesStore.includes(card.id)), [cards, favoritesStore]);
+  const { favoritesSet, toggleFavorite } = useFavorites();
+  const favoriteCards = useMemo(() => cards.filter((card) => favoritesSet.has(card.id)), [cards, favoritesSet]);
+
+  useEffect(() => {
+
+  }, [favoritesSet]);
 
   const handleAddToCart = useCallback((evt: React.MouseEvent<HTMLButtonElement>) => {
     const btnId = evt.currentTarget.dataset.btnId;
@@ -54,7 +59,7 @@ function FavoritesList(): JSX.Element {
   return (
     <ul className="favorites__list">
       {favoriteCards.map((card: CardProps) => (
-        <MemoizedFavoritesCard key={card.id} {...card} handleAddToCart={handleAddToCart} />
+        <MemoizedFavoritesCard key={card.id} {...card} handleAddToCart={handleAddToCart} handleFav={() => toggleFavorite(card.id)} />
       ))}
     </ul>
   );
