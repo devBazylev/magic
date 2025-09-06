@@ -1,11 +1,16 @@
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { getFavoritesLocal } from '../../store/site-data/selectors';
+import { setFavoritesLocal } from '../../store/action';
 import { CardProps } from '../../types';
-import { memo, useState } from 'react';
+import { memo } from 'react';
 
-function FavoritesCard({id, name, alt, price, tag, image, fav, desc}: CardProps): JSX.Element {
-  const [isFav, setIsFav] = useState(fav);
+function FavoritesCard({id, name, alt, price, tag, image, desc, handleAddToCart}: CardProps & { handleAddToCart: (evt: React.MouseEvent<HTMLButtonElement>) => void }): JSX.Element {
+  const dispatch = useAppDispatch();
+  const favoritesLocal = useAppSelector(getFavoritesLocal);
   const handleFav = () => {
-    setIsFav(!isFav);
+    dispatch(setFavoritesLocal([...favoritesLocal, id]));
   };
+
 
   return (
     <li className="favorites__item" data-id={id} data-tag={tag}>
@@ -17,7 +22,7 @@ function FavoritesCard({id, name, alt, price, tag, image, fav, desc}: CardProps)
         <p className="favorites__desc">{desc}</p>
         <div className="favorites__bag">
           <div className="favorites__price">{price}<span>gp</span></div>
-          <button className="favorites__btn btn" type="button" data-btn-id={id}>
+          <button className="favorites__btn btn" type="button" data-btn-id={id} onClick={handleAddToCart}>
             <svg className="favorites__plus" width={20} height={20} viewBox="0 0 20 20" fill="none">
               <path d="M10 4.16663V15.8333" stroke="#ffffff" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
               <path d="M4.16699 10H15.8337" stroke="#ffffff" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />

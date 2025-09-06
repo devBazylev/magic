@@ -15,6 +15,7 @@ export const Action = {
   SET_MEDIA: 'device/set',
   SET_OVERLAY: 'overlay/set',
   SET_SORTING: 'sorting/set',
+  SET_FAVORITES_LOCAL: 'favorites-local/set',
   FETCH_CARDS: 'cards/set',
   LOGIN_USER: 'user/login',
   LOGOUT_USER: 'user/logout',
@@ -25,6 +26,7 @@ export const Action = {
 export const setMedia = createAction<boolean>(Action.SET_MEDIA);
 export const setOverlay = createAction<boolean>(Action.SET_OVERLAY);
 export const setSorting = createAction<SortName>(Action.SET_SORTING);
+export const setFavoritesLocal = createAction<number[]>(Action.SET_FAVORITES_LOCAL);
 
 export const fetchCards = createAsyncThunk<CardProps[], undefined, { extra: ThunkExtraArg }>(
   Action.FETCH_CARDS,

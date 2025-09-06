@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import type { State, AppDispatch } from './types';
+import { useEffect, useState } from 'react';
+import type { State, AppDispatch, CardProps } from './types';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { setMedia, setOverlay } from './store/site-process/site-process';
 import { RefObject } from 'react';
@@ -71,4 +71,17 @@ export const useClickOutsideAndEscape = (
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [flag]);
+};
+
+export const useFavorites = () => {
+  const localStorageFavorites = localStorage.getItem('favorites');
+  const [favorites, setFavorites] = useState<CardProps[]>([]);
+
+  useEffect(() => {
+    if (localStorageFavorites) {
+      setFavorites(JSON.parse(localStorageFavorites) as CardProps[]);
+    }
+  }, [localStorageFavorites]);
+
+  return favorites;
 };
