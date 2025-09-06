@@ -6,6 +6,8 @@ import { AuthorizationStatus, StoreSlice } from '../../const';
 const initialState: UserProcess = {
   authorizationStatus: AuthorizationStatus.Unknown,
   user: '',
+  favorites: [],
+  userId: null,
   error: null,
 };
 
@@ -22,42 +24,60 @@ export const userProcess = createSlice({
       .addCase(fetchUserStatus.fulfilled, (state, action) => {
         if (action.payload) {
           state.user = action.payload.email || '';
+          state.favorites = action.payload.favorites || [];
+          state.userId = action.payload.id || null;
           state.authorizationStatus = AuthorizationStatus.Auth;
         } else {
           state.user = '';
+          state.favorites = [];
+          state.userId = null;
           state.authorizationStatus = AuthorizationStatus.NoAuth;
         }
       })
       .addCase(fetchUserStatus.rejected, (state) => {
         state.user = '';
+        state.favorites = [];
+        state.userId = null;
         state.authorizationStatus = AuthorizationStatus.NoAuth;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = action.payload.email;
+        state.favorites = action.payload.favorites;
+        state.userId = action.payload.id || null;
         state.authorizationStatus = AuthorizationStatus.Auth;
         state.error = null;
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.user = '';
+        state.favorites = [];
+        state.userId = null;
         state.authorizationStatus = AuthorizationStatus.NoAuth;
         state.error = action.payload as string || 'Error logging in.';
       })
       .addCase(registerUser.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = action.payload.email;
+        state.favorites = action.payload.favorites;
+        state.userId = null; // При регистрации ID может быть неизвестен
         state.authorizationStatus = AuthorizationStatus.Auth;
         state.error = null;
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.user = '';
+        state.favorites = [];
+        state.userId = null;
         state.authorizationStatus = AuthorizationStatus.NoAuth;
         state.error = action.payload as string || 'Error registering.';
       })
       .addCase(logoutUser.fulfilled, (state) => {
         state.user = '';
+        state.favorites = [];
+        state.userId = null;
         state.authorizationStatus = AuthorizationStatus.NoAuth;
       })
       .addCase(logoutUser.rejected, (state) => {
         state.user = '';
+        state.favorites = [];
+        state.userId = null;
         state.authorizationStatus = AuthorizationStatus.NoAuth;
       });
   }

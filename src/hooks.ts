@@ -2,7 +2,7 @@ import type { State, AppDispatch } from './types';
 import { useEffect, useCallback, useMemo } from 'react';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { setMedia, setOverlay } from './store/site-process/site-process';
-import { setFavoritesStore } from './store/action';
+import { setFavoritesStore, syncFavorites } from './store/action';
 import { getFavoritesStore } from './store/site-data/selectors';
 import { saveFavorites } from './utils';
 import { RefObject } from 'react';
@@ -93,6 +93,7 @@ export const useFavorites = () => {
 
     dispatch(setFavoritesStore(newFavorites));
     saveFavoritesMemo(newFavorites);
+    dispatch(syncFavorites(newFavorites));
   }, [favorites, favoritesSet, dispatch, saveFavoritesMemo]);
 
   const addToFavorites = useCallback((cardId: number) => {
@@ -100,6 +101,7 @@ export const useFavorites = () => {
       const newFavorites = [...favorites, cardId];
       dispatch(setFavoritesStore(newFavorites));
       saveFavoritesMemo(newFavorites);
+      dispatch(syncFavorites(newFavorites));
     }
   }, [favorites, favoritesSet, dispatch, saveFavoritesMemo]);
 
@@ -108,6 +110,7 @@ export const useFavorites = () => {
       const newFavorites = favorites.filter((favId: number) => favId !== cardId);
       dispatch(setFavoritesStore(newFavorites));
       saveFavoritesMemo(newFavorites);
+      dispatch(syncFavorites(newFavorites));
     }
   }, [favorites, favoritesSet, dispatch, saveFavoritesMemo]);
 

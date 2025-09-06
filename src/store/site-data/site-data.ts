@@ -1,7 +1,7 @@
 import type { SiteData } from '../../types';
 import { createSlice } from '@reduxjs/toolkit';
 import { StoreSlice } from '../../const';
-import { fetchCards, setFavoritesStore } from '../action';
+import { fetchCards, setFavoritesStore, loginUser, fetchUserStatus } from '../action';
 
 const initialState: SiteData = {
   cards: [],
@@ -24,6 +24,14 @@ export const siteData = createSlice({
       })
       .addCase(setFavoritesStore, (state, action) => {
         state.favoritesStore = action.payload;
+      })
+      .addCase(loginUser.fulfilled, (state, action) => {
+        state.favoritesStore = action.payload.favorites;
+      })
+      .addCase(fetchUserStatus.fulfilled, (state, action) => {
+        if (action.payload) {
+          state.favoritesStore = action.payload.favorites;
+        }
       });
   }
 });

@@ -20,6 +20,8 @@ export type CardProps = {
 export type User = {
   email: string;
   token: string;
+  favorites: number[];
+  id?: number;
 };
 
 export type UserAuth = Pick<User, 'email'> & { password: string };
@@ -43,5 +45,7 @@ export type SiteProcess = {
 export type UserProcess = {
   authorizationStatus: AuthorizationStatus;
   user: User['email'];
+  favorites: number[];
+  userId: number | null;
   error: string | null;
 }

@@ -12,7 +12,8 @@ export const store = configureStore({
     thunk: {
       extraArgument: {
         api,
-        history
+        history,
+        state: () => store.getState()
       },
     },
   }),
