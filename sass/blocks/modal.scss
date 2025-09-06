@@ -52,7 +52,7 @@
 
   &__cross {
     position: relative;
-    left: -1vw;
+    left: -0.5vw;
     width: 2.4vw;
     height: 2.4vw;
     padding: 0;
@@ -61,6 +61,7 @@
     border: 0.05vw solid $color-default-white;
 
     @include vp-1023 {
+      left: -1vw;
       width: 30px;
       height: 30px;
       border: 1px solid $color-default-white;
