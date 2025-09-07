@@ -168,11 +168,15 @@ export const useCart = () => {
 
   const decreaseAmount = useCallback((cardId: number) => {
     if (cart) {
-      dispatch(setCart(cart.map((item) =>
-        item.id === cardId
-          ? { ...item, amount: item.amount ? item.amount - 1 : 0 }
-          : item
-      )));
+      const newCart = cart
+        .map((item) =>
+          item.id === cardId
+            ? { ...item, amount: (item.amount ?? 0) - 1 }
+            : item
+        )
+        .filter((item) => (item.amount ?? 0) > 0);
+
+      dispatch(setCart(newCart));
     }
   }, [cart, dispatch]);
 

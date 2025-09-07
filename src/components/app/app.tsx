@@ -8,6 +8,8 @@ import { Routes, Route } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { useMedia } from '../../hooks';
 import { MemoizedFavorites } from '../../pages/favorites/favorites';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App(): JSX.Element {
   useMedia();
@@ -22,6 +24,18 @@ function App(): JSX.Element {
           <Route path="*" element={<MemoizedError />}/>
         </Route>
       </Routes>
+      <ToastContainer
+        position="top-center"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </HistoryRouter>
   );
 }

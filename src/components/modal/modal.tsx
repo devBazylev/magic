@@ -4,6 +4,7 @@ import { useEffect, RefObject, useRef, memo, useCallback, useMemo } from 'react'
 import { getCart, getModal } from '../../store/site-process/selectors';
 import { setModal, setOverlay } from '../../store/site-process/site-process';
 import { calcElems, lockScroll } from '../../utils';
+import { toast } from 'react-toastify';
 
 interface ModalProps {
   headerRef: RefObject<HTMLHeadingElement>;
@@ -18,6 +19,7 @@ function Modal({ headerRef }: ModalProps): JSX.Element {
   const totalItems = useMemo(() => calcElems(cart?.map((item) => item.amount ?? 0) ?? []), [cart]);
   const totalPrice = useMemo(() => calcElems(cart?.map((item) => (item.amount ?? 0) * (item.price ?? 0)) ?? []), [cart]);
   const modalClassName = useMemo(() => `modal ${isModal ? 'modal--opened' : ''}`, [isModal]);
+  const isCartEmpty = useMemo(() => !cart || cart.length === 0, [cart]);
 
   useEffect(() => {
     lockScroll(isModal ?? false);
@@ -40,6 +42,23 @@ function Modal({ headerRef }: ModalProps): JSX.Element {
     clearCart();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleConfirm = useCallback(() => {
+    if (!isCartEmpty) {
+      clearCart();
+      dispatch(setModal(false));
+
+      toast.success(`Purchased ${totalItems} items for ${totalPrice} gp!`, {
+        position: 'top-center',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isCartEmpty, totalItems, totalPrice]);
 
   useClickOutsideAndEscape(modalRef, handleCloseModal, isModal ?? false);
 
@@ -65,7 +84,7 @@ function Modal({ headerRef }: ModalProps): JSX.Element {
             <div className="modal__sign">Total</div>
             <div className="modal__total">{totalPrice}<span>&nbsp;gp</span></div>
           </div>
-          <button className="btn modal__submit" type="submit">Confirm</button>
+          <button className="btn modal__submit" type="button" disabled={isCartEmpty} onClick={handleConfirm}>Confirm</button>
         </div>
       </div>
     </section>
