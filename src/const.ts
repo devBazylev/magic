@@ -39,7 +39,7 @@ export enum APIRoute {
 }
 
 export const comprator = {
-  'popular': () => 0,
+  'popular': (a: { id: number }, b: { id: number }) => a.id - b.id,
   'cheap': (a: { price: number }, b: { price: number }) => a.price - b.price,
   'expensive': (a: { price: number }, b: { price: number }) => b.price - a.price,
   'rare': (a: { tag: string }, b: { tag: string }) => {
@@ -60,4 +60,5 @@ export const labels = [
 export enum LocalStorage {
   Favorites = 'favorites',
   Checkboxes = 'checkboxes',
+  Filter = 'filter',
 }

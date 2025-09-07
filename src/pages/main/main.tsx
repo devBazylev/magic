@@ -6,27 +6,33 @@ import { MemoizedCheckboxList } from '../../components/checkbox-list/checkbox-li
 import { MemoizedCardList } from '../../components/card-list/card-list';
 import { MemoizedOverlay } from '../../components/overlay/overlay';
 import { Helmet } from 'react-helmet-async';
-import { useState, useRef, useCallback, useMemo, memo } from 'react';
-import { filters, labels, BackPath } from '../../const';
+import { useState, useRef, useCallback, useMemo, memo, useEffect } from 'react';
+import { filters, BackPath } from '../../const';
 import { getCards } from '../../store/site-data/selectors';
 import { useAppSelector } from '../../hooks';
+import { loadCheckboxes, saveCheckboxes, loadFilter, saveFilter } from '../../utils';
 
 function Main(): JSX.Element {
   const [activeFilter, setActiveFilter] = useState<string>(filters[0]);
-  const [activeCheckboxes, setActiveCheckboxes] = useState<string[]>(
-    labels.filter((label) => label.checked).map((label) => label.id)
-  );
+  const [activeCheckboxes, setActiveCheckboxes] = useState<string[]>([]);
   const cards = useAppSelector(getCards);
   const checkedCards = useMemo(() => cards.filter((card) => activeCheckboxes.includes(card.tag)), [cards, activeCheckboxes]);
   const totalCards = useMemo(() => checkedCards.length, [checkedCards]);
   const headerRef = useRef<HTMLHeadingElement>(null);
 
+  useEffect(() => {
+    setActiveCheckboxes(loadCheckboxes());
+    setActiveFilter(loadFilter());
+  }, []);
+
   const handleCheckboxChange = useCallback((checkboxes: string[]) => {
     setActiveCheckboxes(checkboxes);
+    saveCheckboxes(checkboxes);
   }, []);
 
   const handleFilterChange = useCallback((filter: string) => {
     setActiveFilter(filter);
+    saveFilter(filter);
   }, []);
 
   return (
