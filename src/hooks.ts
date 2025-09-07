@@ -1,11 +1,13 @@
 import type { State, AppDispatch } from './types';
 import { useEffect, useCallback, useMemo } from 'react';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { setMedia, setOverlay } from './store/site-process/site-process';
+import { setMedia, setOverlay, setCart } from './store/site-process/site-process';
 import { setFavoritesStore, syncFavorites } from './store/action';
 import { getFavoritesStore } from './store/site-data/selectors';
+import { getCart } from './store/site-process/selectors';
 import { saveFavorites } from './utils';
 import { RefObject } from 'react';
+import { CardProps } from './types';
 
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<State> = useSelector;
@@ -123,5 +125,67 @@ export const useFavorites = () => {
     addToFavorites,
     removeFromFavorites,
     isFavorite
+  };
+};
+
+export const useCart = () => {
+  const dispatch = useAppDispatch();
+  const cart = useAppSelector(getCart);
+
+  const addToCart = useCallback((cardId: number, cardsMap: Map<number, CardProps>) => {
+    const selectedCard = cardsMap.get(cardId);
+    if (!selectedCard) {
+      return;
+    }
+
+    const newCart = [...(cart || [])];
+    const existingCardIndex = newCart.findIndex((item) => item.id === selectedCard.id);
+
+    if (existingCardIndex >= 0) {
+      const newAmount = (newCart[existingCardIndex].amount ?? 0) + 1;
+      newCart[existingCardIndex] = { ...newCart[existingCardIndex], amount: newAmount };
+      dispatch(setCart(newCart));
+    } else {
+      dispatch(setCart([...newCart, { ...selectedCard, amount: 1 }]));
+    }
+  }, [cart, dispatch]);
+
+  const removeFromCart = useCallback((cardId: number) => {
+    if (cart) {
+      dispatch(setCart(cart.filter((item) => item.id !== cardId)));
+    }
+  }, [cart, dispatch]);
+
+  const increaseAmount = useCallback((cardId: number) => {
+    if (cart) {
+      dispatch(setCart(cart.map((item) =>
+        item.id === cardId
+          ? { ...item, amount: item.amount ? item.amount + 1 : 1 }
+          : item
+      )));
+    }
+  }, [cart, dispatch]);
+
+  const decreaseAmount = useCallback((cardId: number) => {
+    if (cart) {
+      dispatch(setCart(cart.map((item) =>
+        item.id === cardId
+          ? { ...item, amount: item.amount ? item.amount - 1 : 0 }
+          : item
+      )));
+    }
+  }, [cart, dispatch]);
+
+  const clearCart = useCallback(() => {
+    dispatch(setCart([]));
+  }, [dispatch]);
+
+  return {
+    cart,
+    addToCart,
+    removeFromCart,
+    increaseAmount,
+    decreaseAmount,
+    clearCart
   };
 };

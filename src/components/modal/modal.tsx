@@ -1,8 +1,8 @@
 import { MemoizedModalList } from '../modal-list/modal-list';
-import { useAppDispatch, useAppSelector, useClickOutsideAndEscape } from '../../hooks';
+import { useAppDispatch, useAppSelector, useClickOutsideAndEscape, useCart } from '../../hooks';
 import { useEffect, RefObject, useRef, memo, useCallback, useMemo } from 'react';
 import { getCart, getModal } from '../../store/site-process/selectors';
-import { setCart, setModal, setOverlay } from '../../store/site-process/site-process';
+import { setModal, setOverlay } from '../../store/site-process/site-process';
 import { calcElems, lockScroll } from '../../utils';
 
 interface ModalProps {
@@ -13,6 +13,7 @@ function Modal({ headerRef }: ModalProps): JSX.Element {
   const dispatch = useAppDispatch();
   const isModal = useAppSelector(getModal);
   const cart = useAppSelector(getCart);
+  const { clearCart } = useCart();
   const modalRef = useRef<HTMLElement>(null);
   const totalItems = useMemo(() => calcElems(cart?.map((item) => item.amount ?? 0) ?? []), [cart]);
   const totalPrice = useMemo(() => calcElems(cart?.map((item) => (item.amount ?? 0) * (item.price ?? 0)) ?? []), [cart]);
@@ -39,7 +40,7 @@ function Modal({ headerRef }: ModalProps): JSX.Element {
   }, []);
 
   const handleClearCart = useCallback(() => {
-    dispatch(setCart([]));
+    clearCart();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

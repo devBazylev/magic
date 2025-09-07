@@ -1,30 +1,21 @@
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { getCart } from '../../store/site-process/selectors';
-import { setCart } from '../../store/site-process/site-process';
+import { useCart } from '../../hooks';
 import { CardProps } from '../../types';
 import { memo, useCallback } from 'react';
 
 function ModalCard({id, name, alt, price, image, amount }: CardProps): JSX.Element {
-  const dispatch = useAppDispatch();
-  const cart = useAppSelector(getCart);
+  const { decreaseAmount, increaseAmount, removeFromCart } = useCart();
 
   const handleMinus = useCallback(() => {
-    if (cart) {
-      dispatch(setCart(cart.map((item) => item.id === id ? { ...item, amount: item.amount ? item.amount - 1 : 0 } : item)));
-    }
-  }, [cart, dispatch, id]);
+    decreaseAmount(id);
+  }, [decreaseAmount, id]);
 
   const handlePlus = useCallback(() => {
-    if (cart) {
-      dispatch(setCart(cart.map((item) => item.id === id ? { ...item, amount: item.amount ? item.amount + 1 : 1 } : item)));
-    }
-  }, [cart, dispatch, id]);
+    increaseAmount(id);
+  }, [increaseAmount, id]);
 
   const handleDelete = useCallback(() => {
-    if (cart) {
-      dispatch(setCart(cart.filter((item) => item.id !== id)));
-    }
-  }, [cart, dispatch, id]);
+    removeFromCart(id);
+  }, [removeFromCart, id]);
 
   return (
     <li className="modal__item" data-id={id}>
