@@ -67,7 +67,7 @@ function CheckboxList({handleCheckboxChange, activeCheckboxes, headerRef}: Check
       choice.removeEventListener('touchend', onTouchEnd);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isMobile, headerRef]);
+  }, [isMobile, isActiveToggler]);
 
   useClickOutsideAndEscape(choiceRef, handleToggler, isActiveToggler);
 

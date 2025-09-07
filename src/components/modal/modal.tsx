@@ -19,20 +19,17 @@ function Modal({ headerRef }: ModalProps): JSX.Element {
   const totalPrice = useMemo(() => calcElems(cart?.map((item) => (item.amount ?? 0) * (item.price ?? 0)) ?? []), [cart]);
   const modalClassName = useMemo(() => `modal ${isModal ? 'modal--opened' : ''}`, [isModal]);
 
-  const handleHeaderClass = useCallback(() => {
+  useEffect(() => {
+    lockScroll(isModal ?? false);
+    dispatch(setOverlay(isModal ?? false));
+
     if (isModal) {
       headerRef.current?.classList.add('header--zindex');
     } else {
       headerRef.current?.classList.remove('header--zindex');
     }
-  }, [isModal, headerRef]);
-
-  useEffect(() => {
-    lockScroll(isModal ?? false);
-    dispatch(setOverlay(isModal ?? false));
-    handleHeaderClass();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isModal, handleHeaderClass]);
+  }, [isModal]);
 
   const handleCloseModal = useCallback(() => {
     dispatch(setModal(false));
