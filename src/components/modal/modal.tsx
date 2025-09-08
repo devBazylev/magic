@@ -5,13 +5,18 @@ import { getCart, getModal } from '../../store/site-process/selectors';
 import { setModal, setOverlay } from '../../store/site-process/site-process';
 import { calcElems, lockScroll } from '../../utils';
 import { toast } from 'react-toastify';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { useNavigate } from 'react-router-dom';
+import { AppRoute, AuthorizationStatus } from '../../const';
 
 interface ModalProps {
   headerRef: RefObject<HTMLHeadingElement>;
 }
 
 function Modal({ headerRef }: ModalProps): JSX.Element {
+  const isAuth = useAppSelector(getAuthorizationStatus);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const isModal = useAppSelector(getModal);
   const cart = useAppSelector(getCart);
   const { clearCart } = useCart();
@@ -60,6 +65,12 @@ function Modal({ headerRef }: ModalProps): JSX.Element {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isCartEmpty, totalItems, totalPrice]);
 
+  const handleLoginClick = useCallback(() => {
+    dispatch(setModal(false));
+    navigate(AppRoute.Login);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [navigate]);
+
   useClickOutsideAndEscape(modalRef, handleCloseModal, isModal ?? false);
 
   return (
@@ -84,7 +95,11 @@ function Modal({ headerRef }: ModalProps): JSX.Element {
             <div className="modal__sign">Total</div>
             <div className="modal__total">{totalPrice}<span>&nbsp;gp</span></div>
           </div>
-          <button className="btn modal__submit" type="button" disabled={isCartEmpty} onClick={handleConfirm}>Confirm</button>
+          {isAuth === AuthorizationStatus.Auth ? (
+            <button className="btn modal__submit" type="button" disabled={isCartEmpty} onClick={handleConfirm}>Confirm</button>
+          ) : (
+            <button className="btn modal__submit" type="button" onClick={handleLoginClick}>Confirm</button>
+          )}
         </div>
       </div>
     </section>

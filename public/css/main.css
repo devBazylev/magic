@@ -2751,7 +2751,6 @@ button,
 @media (max-width: 1023px) {
   .favorites__title {
     width: 100%;
-    max-width: 400px;
     font-size: clamp(32px, 8vw, 48px);
     font-style: normal;
     font-weight: 400;
