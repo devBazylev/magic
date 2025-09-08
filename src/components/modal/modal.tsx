@@ -49,7 +49,7 @@ function Modal({ headerRef }: ModalProps): JSX.Element {
   }, []);
 
   const handleConfirm = useCallback(() => {
-    if (!isCartEmpty) {
+    if (isAuth === AuthorizationStatus.Auth) {
       clearCart();
       dispatch(setModal(false));
 
@@ -61,15 +61,21 @@ function Modal({ headerRef }: ModalProps): JSX.Element {
         pauseOnHover: true,
         draggable: true,
       });
+    } else {
+      toast.info('Please log in to complete your purchase', {
+        position: 'top-center',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+
+      dispatch(setModal(false));
+      navigate(AppRoute.Login);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isCartEmpty, totalItems, totalPrice]);
-
-  const handleLoginClick = useCallback(() => {
-    dispatch(setModal(false));
-    navigate(AppRoute.Login);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [navigate]);
+  }, [isCartEmpty, totalItems, totalPrice, navigate]);
 
   useClickOutsideAndEscape(modalRef, handleCloseModal, isModal ?? false);
 
@@ -95,11 +101,7 @@ function Modal({ headerRef }: ModalProps): JSX.Element {
             <div className="modal__sign">Total</div>
             <div className="modal__total">{totalPrice}<span>&nbsp;gp</span></div>
           </div>
-          {isAuth === AuthorizationStatus.Auth ? (
-            <button className="btn modal__submit" type="button" disabled={isCartEmpty} onClick={handleConfirm}>Confirm</button>
-          ) : (
-            <button className="btn modal__submit" type="button" onClick={handleLoginClick}>Confirm</button>
-          )}
+          <button className="btn modal__submit" type="button" disabled={isCartEmpty} onClick={handleConfirm}>Confirm</button>
         </div>
       </div>
     </section>
