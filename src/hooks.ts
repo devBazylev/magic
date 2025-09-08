@@ -5,7 +5,7 @@ import { setMedia, setOverlay, setCart } from './store/site-process/site-process
 import { setFavoritesStore, syncFavorites } from './store/action';
 import { getFavoritesStore } from './store/site-data/selectors';
 import { getCart } from './store/site-process/selectors';
-import { saveFavorites } from './utils';
+import { saveFavorites, saveCart, loadCart } from './utils';
 import { RefObject } from 'react';
 import { CardProps } from './types';
 
@@ -131,6 +131,19 @@ export const useFavorites = () => {
 export const useCart = () => {
   const dispatch = useAppDispatch();
   const cart = useAppSelector(getCart);
+
+  useEffect(() => {
+    const savedCart = loadCart();
+    if (savedCart.length > 0) {
+      dispatch(setCart(savedCart));
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (cart) {
+      saveCart(cart);
+    }
+  }, [cart]);
 
   const addToCart = useCallback((cardId: number, cardsMap: Map<number, CardProps>) => {
     const selectedCard = cardsMap.get(cardId);

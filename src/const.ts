@@ -61,4 +61,5 @@ export enum LocalStorage {
   Favorites = 'favorites',
   Checkboxes = 'checkboxes',
   Filter = 'filter',
+  Cart = 'cart',
 }

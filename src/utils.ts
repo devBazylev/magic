@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { LocalStorage, labels, filters } from './const';
+import { CardProps } from './types';
 
 function ScrollToTop() {
   const {pathname} = useLocation();
@@ -108,6 +109,31 @@ const saveFilter = (filter: string): void => {
   }
 };
 
+const loadCart = (): CardProps[] => {
+  try {
+    const cart = localStorage.getItem(LocalStorage.Cart);
+    if (!cart) {
+      return [];
+    }
+    const parsed: unknown = JSON.parse(cart);
+    return Array.isArray(parsed) ? parsed as CardProps[] : [];
+  } catch (error) {
+    return [];
+  }
+};
+
+const saveCart = (cart: CardProps[] | null): void => {
+  try {
+    if (cart) {
+      localStorage.setItem(LocalStorage.Cart, JSON.stringify(cart));
+    } else {
+      localStorage.removeItem(LocalStorage.Cart);
+    }
+  } catch (error) {
+    //
+  }
+};
+
 export {
   ScrollToTop,
   lockScroll,
@@ -120,4 +146,6 @@ export {
   saveCheckboxes,
   loadFilter,
   saveFilter,
+  loadCart,
+  saveCart,
 };
