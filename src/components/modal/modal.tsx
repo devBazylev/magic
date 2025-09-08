@@ -51,7 +51,6 @@ function Modal({ headerRef }: ModalProps): JSX.Element {
   const handleConfirm = useCallback(() => {
     if (isAuth === AuthorizationStatus.Auth) {
       clearCart();
-      dispatch(setModal(false));
 
       toast.success(`Purchased ${totalItems} items for ${totalPrice} gp!`, {
         position: 'top-center',
@@ -71,9 +70,9 @@ function Modal({ headerRef }: ModalProps): JSX.Element {
         draggable: true,
       });
 
-      dispatch(setModal(false));
       navigate(AppRoute.Login);
     }
+    dispatch(setModal(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isCartEmpty, totalItems, totalPrice, navigate]);
 
