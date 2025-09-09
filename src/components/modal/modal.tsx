@@ -35,17 +35,14 @@ function Modal({ headerRef }: ModalProps): JSX.Element {
     } else {
       headerRef.current?.classList.remove('header--zindex');
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isModal]);
 
   const handleCloseModal = useCallback(() => {
     dispatch(setModal(false));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleClearCart = useCallback(() => {
     clearCart();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleConfirm = useCallback(() => {
@@ -73,7 +70,6 @@ function Modal({ headerRef }: ModalProps): JSX.Element {
       navigate(AppRoute.Login);
     }
     dispatch(setModal(false));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isCartEmpty, totalItems, totalPrice, navigate]);
 
   useClickOutsideAndEscape(modalRef, handleCloseModal, isModal ?? false);

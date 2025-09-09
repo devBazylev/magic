@@ -13,7 +13,6 @@ function UserStatus({ activePage }: { activePage: AppRoute }): JSX.Element {
     if (authorizationStatus === AuthorizationStatus.Auth) {
       dispatch(logoutUser());
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authorizationStatus]);
 
   return (

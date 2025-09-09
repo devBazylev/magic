@@ -26,7 +26,6 @@ function Login(): JSX.Element {
     if (error) {
       dispatch(clearError());
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSignUpButton = useCallback(() => {
@@ -37,7 +36,6 @@ function Login(): JSX.Element {
     if (error) {
       dispatch(clearError());
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleFormSubmit = useCallback((evt: FormEvent<HTMLFormElement>) => {
@@ -53,7 +51,6 @@ function Login(): JSX.Element {
       }
       formRef.current.classList.remove('login__form--check');
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSignIn]);
 
   return (

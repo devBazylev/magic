@@ -30,7 +30,6 @@ function CheckboxList({handleCheckboxChange, activeCheckboxes, headerRef}: Check
   useEffect(() => {
     dispatch(setOverlay(isActiveToggler));
     lockScroll(isActiveToggler);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isActiveToggler]);
 
   useEffect(() => {
@@ -66,7 +65,6 @@ function CheckboxList({handleCheckboxChange, activeCheckboxes, headerRef}: Check
       choice.removeEventListener('touchstart', onTouchStart);
       choice.removeEventListener('touchend', onTouchEnd);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMobile, isActiveToggler]);
 
   useClickOutsideAndEscape(choiceRef, handleToggler, isActiveToggler);

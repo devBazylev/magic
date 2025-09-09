@@ -26,19 +26,16 @@ function Header({ headerRef }: HeaderProps): JSX.Element {
     dispatch(setOverlay(false));
     lockScroll(false);
     setActivePage(location.pathname as AppRoute);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
   const handleToggleMenu = useCallback(() => {
     setActiveHeader(!isActiveHeader);
     dispatch(setOverlay(!isActiveHeader));
     lockScroll(!isActiveHeader);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isActiveHeader]);
 
   const handleOpenModal = useCallback(() => {
     dispatch(setModal(true));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useClickOutsideAndEscape(headerRef as RefObject<HTMLElement>, handleToggleMenu, isActiveHeader);

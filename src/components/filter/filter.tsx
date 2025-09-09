@@ -35,7 +35,6 @@ function Filter({ totalCards, activeFilter, setActiveFilter, headerRef }: Filter
       lockScroll(false);
       headerRef.current?.classList.remove('header--zindex');
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpened]);
 
 

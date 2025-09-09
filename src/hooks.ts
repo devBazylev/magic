@@ -28,7 +28,6 @@ export const useMedia = () => {
     return () => {
       mob.removeEventListener('change', onMOb);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 };
 
@@ -74,7 +73,6 @@ export const useClickOutsideAndEscape = (
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('keydown', handleEscape);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [flag]);
 };
 
