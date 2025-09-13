@@ -1,4 +1,4 @@
-# [🌟 View Live Application](https://devbazylev.github.io/magic/)
+# [🌟 View Live Application (click on the link)](https://devbazylev.github.io/magic/)
 
 ## 🧙‍♂️ Magic Shop - Fantasy Items Store
 
