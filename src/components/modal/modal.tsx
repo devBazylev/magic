@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import { useNavigate } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
+import { getToken } from '../../services/token';
 
 interface ModalProps {
   headerRef: RefObject<HTMLHeadingElement>;
@@ -46,7 +47,9 @@ function Modal({ headerRef }: ModalProps): JSX.Element {
   }, []);
 
   const handleConfirm = useCallback(() => {
-    if (isAuth === AuthorizationStatus.Auth) {
+    const token = getToken();
+
+    if (token && isAuth === AuthorizationStatus.Auth) {
       clearCart();
 
       toast.success(`Purchased ${totalItems} items for ${totalPrice} gp!`, {
@@ -70,7 +73,7 @@ function Modal({ headerRef }: ModalProps): JSX.Element {
       navigate(AppRoute.Login);
     }
     dispatch(setModal(false));
-  }, [isCartEmpty, totalItems, totalPrice, navigate]);
+  }, [isAuth, totalItems, totalPrice, navigate, clearCart]);
 
   useClickOutsideAndEscape(modalRef, handleCloseModal, isModal ?? false);
 

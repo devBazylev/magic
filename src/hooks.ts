@@ -41,7 +41,7 @@ export const useOverlay = (flag: boolean) => {
       dispatch(setOverlay(false));
     };
 
-  }, [flag, dispatch]);
+  }, [flag]);
 };
 
 export const useClickOutsideAndEscape = (
@@ -94,7 +94,7 @@ export const useFavorites = () => {
     dispatch(setFavoritesStore(newFavorites));
     saveFavoritesMemo(newFavorites);
     dispatch(syncFavorites(newFavorites));
-  }, [favorites, favoritesSet, dispatch, saveFavoritesMemo]);
+  }, [favorites, favoritesSet, saveFavoritesMemo]);
 
   const addToFavorites = useCallback((cardId: number) => {
     if (!favoritesSet.has(cardId)) {
@@ -103,7 +103,7 @@ export const useFavorites = () => {
       saveFavoritesMemo(newFavorites);
       dispatch(syncFavorites(newFavorites));
     }
-  }, [favorites, favoritesSet, dispatch, saveFavoritesMemo]);
+  }, [favorites, favoritesSet, saveFavoritesMemo]);
 
   const removeFromFavorites = useCallback((cardId: number) => {
     if (favoritesSet.has(cardId)) {
@@ -112,7 +112,7 @@ export const useFavorites = () => {
       saveFavoritesMemo(newFavorites);
       dispatch(syncFavorites(newFavorites));
     }
-  }, [favorites, favoritesSet, dispatch, saveFavoritesMemo]);
+  }, [favorites, favoritesSet, saveFavoritesMemo]);
 
   const isFavorite = useCallback((cardId: number) => favoritesSet.has(cardId), [favoritesSet]);
 
@@ -135,7 +135,7 @@ export const useCart = () => {
     if (savedCart.length > 0) {
       dispatch(setCart(savedCart));
     }
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     if (cart) {
@@ -159,13 +159,13 @@ export const useCart = () => {
     } else {
       dispatch(setCart([...newCart, { ...selectedCard, amount: 1 }]));
     }
-  }, [cart, dispatch]);
+  }, [cart]);
 
   const removeFromCart = useCallback((cardId: number) => {
     if (cart) {
       dispatch(setCart(cart.filter((item) => item.id !== cardId)));
     }
-  }, [cart, dispatch]);
+  }, [cart]);
 
   const increaseAmount = useCallback((cardId: number) => {
     if (cart) {
@@ -175,7 +175,7 @@ export const useCart = () => {
           : item
       )));
     }
-  }, [cart, dispatch]);
+  }, [cart]);
 
   const decreaseAmount = useCallback((cardId: number) => {
     if (cart) {
@@ -189,11 +189,11 @@ export const useCart = () => {
 
       dispatch(setCart(newCart));
     }
-  }, [cart, dispatch]);
+  }, [cart]);
 
   const clearCart = useCallback(() => {
     dispatch(setCart([]));
-  }, [dispatch]);
+  }, []);
 
   return {
     cart,
