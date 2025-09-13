@@ -1,7 +1,6 @@
-## 🌟 Live Demo
-**[🚀 View Live Application](https://devbazylev.github.io/magic/)**
+#**[🌟 View Live Application](https://devbazylev.github.io/magic/)**
 
-# 🧙‍♂️ Magic Shop - Fantasy Items Store
+## 🧙‍♂️ Magic Shop - Fantasy Items Store
 
 <div align="center">
   <img src="https://img.shields.io/badge/React-18.2.0-blue?style=for-the-badge&logo=react" alt="React" />
