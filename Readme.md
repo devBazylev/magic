@@ -1,4 +1,4 @@
-# [🌟 View Live Application (click on the link)](https://magic-cfv9pi7y2-devbazylevs-projects.vercel.app/)
+# [🌟 View Live Application (click on the link)](https://magic-six-nu.vercel.app/)
 
 ## 🧙‍♂️ Magic Shop - Fantasy Items Store
 
