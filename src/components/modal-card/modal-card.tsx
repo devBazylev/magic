@@ -21,7 +21,7 @@ function ModalCard({id, name, alt, price, image, amount }: CardProps): JSX.Eleme
     <li className="modal__item" data-id={id}>
       <div className="modal__card">
         <div className="modal__pic">
-          <img src={`${import.meta.env.BASE_URL}img/${image}@1x.png`} srcSet={`${import.meta.env.BASE_URL}img/${image}@2x.png 2x`} width={96} height={96} alt={`${alt}.`} loading="lazy" />
+          <img src={`img/${image}@1x.png`} srcSet={`img/${image}@2x.png 2x`} width={96} height={96} alt={`${alt}.`} loading="lazy" />
         </div>
         <div className="modal__box">
           <div className="modal__name">{name}</div>

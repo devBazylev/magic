@@ -3,15 +3,14 @@ import { BackPath } from '../../const';
 
 function Back({path}: {path: BackPath}): JSX.Element {
   const imageName = useMemo(() => path || 'volcano', [path]);
-  const baseUrl = useMemo(() => import.meta.env.BASE_URL, []);
 
   const imageSources = useMemo(() => ({
-    webpLarge: `${baseUrl}img/${imageName}-l@1x.webp, ${baseUrl}img/${imageName}-l@2x.webp 2x`,
-    jpgLarge: `${baseUrl}img/${imageName}-l@1x.jpg, ${baseUrl}img/${imageName}-l@2x.jpg 2x`,
-    webpSmall: `${baseUrl}img/${imageName}-s@1x.webp, ${baseUrl}img/${imageName}-s@2x.webp 2x`,
-    jpgSmall: `${baseUrl}img/${imageName}-s@1x.jpg`,
-    jpgSmallSrcSet: `${baseUrl}img/${imageName}-s@2x.jpg 2x`,
-  }), [baseUrl, imageName]);
+    webpLarge: `img/${imageName}-l@1x.webp, img/${imageName}-l@2x.webp 2x`,
+    jpgLarge: `img/${imageName}-l@1x.jpg, img/${imageName}-l@2x.jpg 2x`,
+    webpSmall: `img/${imageName}-s@1x.webp, img/${imageName}-s@2x.webp 2x`,
+    jpgSmall: `img/${imageName}-s@1x.jpg`,
+    jpgSmallSrcSet: `img/${imageName}-s@2x.jpg 2x`,
+  }), [imageName]);
 
   return (
     <div className="back">

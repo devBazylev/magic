@@ -5,7 +5,7 @@ import { memo } from 'react';
 function Logo(): JSX.Element {
   return(
     <Link className="btn header__logo" to={AppRoute.Root}>
-      <img src={`${import.meta.env.BASE_URL}img/logo-@1x.png`} srcSet={`${import.meta.env.BASE_URL}img/logo-@2x.png 2x`} width={100} height={100} alt="Magic logo." />
+      <img src='img/logo-@1x.png' srcSet='img/logo-@2x.png 2x' width={100} height={100} alt="Magic logo." />
     </Link>
   );
 }

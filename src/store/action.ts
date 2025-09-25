@@ -72,12 +72,12 @@ export const loginUser = createAsyncThunk<{ email: string; favorites: number[]; 
             //
           }
 
-          const path = joinPaths(import.meta.env.BASE_URL || '', AppRoute.Root);
+          const path = joinPaths('/', AppRoute.Root);
           history.push(path);
           return { email: userData.email || '', favorites: mergedFavorites, id: userData.id || undefined };
         } catch (userError) {
           const localFavorites = loadFavorites();
-          const path = joinPaths(import.meta.env.BASE_URL || '', AppRoute.Root);
+          const path = joinPaths('/', AppRoute.Root);
           history.push(path);
           return { email, favorites: localFavorites };
         }
@@ -97,7 +97,7 @@ export const logoutUser = createAsyncThunk<void, undefined, { extra: ThunkExtraA
     const { history } = extra;
 
     dropToken();
-    const path = joinPaths(import.meta.env.BASE_URL || '', AppRoute.Root);
+    const path = joinPaths('/', AppRoute.Root);
     history.push(path);
   }
 );
@@ -156,7 +156,7 @@ export const registerUser = createAsyncThunk<{ email: string; favorites: number[
 
       if (token) {
         saveToken(token);
-        const path = joinPaths(import.meta.env.BASE_URL || '', AppRoute.Root);
+        const path = joinPaths('/', AppRoute.Root);
         history.push(path);
         return { email, favorites };
       }

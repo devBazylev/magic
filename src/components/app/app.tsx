@@ -14,7 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 function App(): JSX.Element {
   useMedia();
   return (
-    <HistoryRouter history={history} basename={import.meta.env.BASE_URL} >
+    <HistoryRouter history={history} basename="/" >
       <ScrollToTop />
       <Routes>
         <Route path="/">

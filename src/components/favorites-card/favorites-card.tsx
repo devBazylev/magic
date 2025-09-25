@@ -6,7 +6,7 @@ function FavoritesCard({id, name, alt, price, tag, image, desc, handleAddToCart,
   return (
     <li className="favorites__item" data-id={id} data-tag={tag}>
       <div className="favorites__pic">
-        <img src={`${import.meta.env.BASE_URL}img/${image}@1x.png`} srcSet={`${import.meta.env.BASE_URL}img/${image}@2x.png 2x`} width={278} height={278} alt={`${alt}.`} loading="lazy" />
+        <img src={`img/${image}@1x.png`} srcSet={`img/${image}@2x.png 2x`} width={278} height={278} alt={`${alt}.`} loading="lazy" />
       </div>
       <div className="favorites__cont">
         <div className="favorites__text">{name}</div>
