@@ -2,6 +2,10 @@
   "name": "magic",
   "version": "14.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=22.19.0",
+    "npm": ">=10.0.0"
+  },
   "scripts": {
     "start": "npm run sass && vite --open",
     "build": "npm run sass && tsc && vite build",
@@ -49,6 +53,7 @@
     "sass": "^1.89.2",
     "typescript": "5.2.2",
     "vite": "^7.0.6",
+    "vite-plugin-compression": "^0.5.1",
     "vitest": "^3.2.4"
   },
   "browserslist": {
