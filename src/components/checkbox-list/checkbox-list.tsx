@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, RefObject, memo, useCallback } from 'react';
+import { useState, useRef, useEffect, RefObject, useCallback } from 'react';
 import { labels } from '../../const';
 import { useAppSelector, useAppDispatch, useClickOutsideAndEscape } from '../../hooks';
 import { getMedia } from '../../store/site-process/selectors';
@@ -93,4 +93,4 @@ function CheckboxList({handleCheckboxChange, activeCheckboxes, headerRef}: Check
   );
 }
 
-export const MemoizedCheckboxList = memo(CheckboxList);
+export default CheckboxList;

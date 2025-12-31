@@ -1,14 +1,13 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import { memo, useMemo } from 'react';
 
 function Nav({ activePage }: { activePage: AppRoute }): JSX.Element {
-  const navLinks = useMemo(() => [
+  const navLinks = [
     { route: AppRoute.Root, label: 'Shop' },
     { route: AppRoute.Tavern, label: 'Tavern' },
     { route: AppRoute.Quests, label: 'Quests' },
     { route: AppRoute.Inventory, label: 'Inventory' }
-  ], []);
+  ];
 
   return (
     <nav className="header__nav">
@@ -28,4 +27,4 @@ function Nav({ activePage }: { activePage: AppRoute }): JSX.Element {
   );
 }
 
-export const MemoizedNav = memo(Nav);
+export default Nav;

@@ -1,6 +1,6 @@
 import { memo, useMemo, useCallback } from 'react';
 import { MemoizedFavoritesCard } from '../favorites-card/favorites-card';
-import { MemoizedSpinner } from '../spinner/spinner';
+import Spinner from '../spinner/spinner';
 import { getCards, getIsCardsLoading } from '../../store/site-data/selectors';
 import { useAppSelector, useFavorites, useCart } from '../../hooks';
 import { CardProps } from '../../types';
@@ -18,7 +18,7 @@ function FavoritesList(): JSX.Element {
   }, [addToCart, cardsMap]);
 
   if (isLoading) {
-    return <MemoizedSpinner />;
+    return <Spinner />;
   }
 
   if (!favoriteCards || favoriteCards.length === 0) {

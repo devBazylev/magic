@@ -1,6 +1,6 @@
 import { MemoizedModalList } from '../modal-list/modal-list';
 import { useAppDispatch, useAppSelector, useClickOutsideAndEscape, useCart } from '../../hooks';
-import { useEffect, RefObject, useRef, memo, useCallback, useMemo } from 'react';
+import { useEffect, RefObject, useRef, useCallback, useMemo } from 'react';
 import { getCart, getModal } from '../../store/site-process/selectors';
 import { setModal, setOverlay } from '../../store/site-process/site-process';
 import { calcElems, lockScroll } from '../../utils';
@@ -106,4 +106,4 @@ function Modal({ headerRef }: ModalProps): JSX.Element {
   );
 }
 
-export const MemoizedModal = memo(Modal);
+export default Modal;

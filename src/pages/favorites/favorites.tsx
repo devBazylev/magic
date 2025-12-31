@@ -1,9 +1,9 @@
 import Header from '../../components/header/header';
-import { MemoizedModal } from '../../components/modal/modal';
-import { MemoizedOverlay } from '../../components/overlay/overlay';
-import { MemoizedBack } from '../../components/back/back';
+import Modal from '../../components/modal/modal';
+import Overlay from '../../components/overlay/overlay';
+import Back from '../../components/back/back';
 import { Helmet } from 'react-helmet-async';
-import { useRef, memo } from 'react';
+import { useRef } from 'react';
 import { BackPath } from '../../const';
 import { MemoizedFavoritesList } from '../../components/favorites-list/favorites-list';
 
@@ -21,12 +21,12 @@ function Favorites(): JSX.Element {
           <h1 className="favorites__title">Favorites</h1>
           <MemoizedFavoritesList />
         </section>
-        <MemoizedModal headerRef={headerRef} />
+        <Modal headerRef={headerRef} />
       </main>
-      <MemoizedBack path={BackPath.Favorites}/>
-      <MemoizedOverlay />
+      <Back path={BackPath.Favorites}/>
+      <Overlay />
     </div>
   );
 }
 
-export const MemoizedFavorites = memo(Favorites);
+export default Favorites;

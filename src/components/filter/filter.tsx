@@ -1,4 +1,4 @@
-import { RefObject, useRef, useState, memo, useCallback, useEffect } from 'react';
+import { RefObject, useRef, useState, useCallback, useEffect } from 'react';
 import { filters } from '../../const';
 import { useAppDispatch, useClickOutsideAndEscape } from '../../hooks';
 import { setOverlay } from '../../store/site-process/site-process';
@@ -55,4 +55,4 @@ function Filter({ totalCards, activeFilter, setActiveFilter, headerRef }: Filter
   );
 }
 
-export const MemoizedFilter = memo(Filter);
+export default Filter;

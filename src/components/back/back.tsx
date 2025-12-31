@@ -1,4 +1,4 @@
-import { memo, useMemo } from 'react';
+import { useMemo } from 'react';
 import { BackPath } from '../../const';
 
 function Back({path}: {path: BackPath}): JSX.Element {
@@ -24,4 +24,4 @@ function Back({path}: {path: BackPath}): JSX.Element {
   );
 }
 
-export const MemoizedBack = memo(Back);
+export default Back;

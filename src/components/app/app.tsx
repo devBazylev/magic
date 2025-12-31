@@ -8,13 +8,11 @@ import { useMedia } from '../../hooks';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// Lazy loading страниц для code splitting
-const Main = lazy(() => import('../../pages/main/main').then((module) => ({ default: module.MemoizedMain })));
-const Login = lazy(() => import('../../pages/login/login').then((module) => ({ default: module.MemoizedLogin })));
-const Favorites = lazy(() => import('../../pages/favorites/favorites').then((module) => ({ default: module.MemoizedFavorites })));
-const Error = lazy(() => import('../../pages/error/error').then((module) => ({ default: module.MemoizedError })));
+const Main = lazy(() => import('../../pages/main/main'));
+const Login = lazy(() => import('../../pages/login/login'));
+const Favorites = lazy(() => import('../../pages/favorites/favorites'));
+const Error = lazy(() => import('../../pages/error/error'));
 
-// Компонент загрузки
 const PageLoader = () => (
   <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
     <div style={{ fontSize: '1.5rem' }}>Loading...</div>

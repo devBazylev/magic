@@ -1,11 +1,11 @@
 import Header from '../../components/header/header';
-import { MemoizedModal } from '../../components/modal/modal';
-import { MemoizedOverlay } from '../../components/overlay/overlay';
+import Modal from '../../components/modal/modal';
+import Overlay from '../../components/overlay/overlay';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { BackPath } from '../../const';
-import { MemoizedBack } from '../../components/back/back';
-import { useRef, memo } from 'react';
+import Back from '../../components/back/back';
+import { useRef } from 'react';
 
 function Error(): JSX.Element {
   const headerRef = useRef<HTMLHeadingElement>(null);
@@ -18,12 +18,12 @@ function Error(): JSX.Element {
       <section className="error">
         <h1 className="error__title">404 not found</h1>
         <Link className="error__link" to="/">Go to main page</Link>
-        <MemoizedModal headerRef={headerRef} />
+        <Modal headerRef={headerRef} />
       </section>
-      <MemoizedBack path={BackPath.Error}/>
-      <MemoizedOverlay />
+      <Back path={BackPath.Error}/>
+      <Overlay />
     </div>
   );
 }
 
-export const MemoizedError = memo(Error);
+export default Error;

@@ -1,11 +1,11 @@
 import type { UserAuth } from '../../types';
 import Header from '../../components/header/header';
-import { MemoizedModal } from '../../components/modal/modal';
-import { MemoizedOverlay } from '../../components/overlay/overlay';
-import { MemoizedBack } from '../../components/back/back';
+import Modal from '../../components/modal/modal';
+import Overlay from '../../components/overlay/overlay';
+import Back from '../../components/back/back';
 import { Helmet } from 'react-helmet-async';
 import { BackPath } from '../../const';
-import { FormEvent, useCallback, useRef, useState, memo } from 'react';
+import { FormEvent, useCallback, useRef, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loginUser, registerUser } from '../../store/action';
 import { getUserError } from '../../store/user-process/selectors';
@@ -72,12 +72,12 @@ function Login(): JSX.Element {
             <button className="login__submit login__submit--signup btn" type="submit" onClick={handleSignUpButton}>Sign up</button>
           </form>
         </section>
-        <MemoizedModal headerRef={headerRef} />
+        <Modal headerRef={headerRef} />
       </main>
-      <MemoizedBack path={BackPath.Login}/>
-      <MemoizedOverlay />
+      <Back path={BackPath.Login}/>
+      <Overlay />
     </div>
   );
 }
 
-export const MemoizedLogin = memo(Login);
+export default Login;

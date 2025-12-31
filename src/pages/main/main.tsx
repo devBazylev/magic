@@ -1,12 +1,12 @@
 import Header from '../../components/header/header';
-import { MemoizedBack } from '../../components/back/back';
-import { MemoizedModal } from '../../components/modal/modal';
-import { MemoizedFilter } from '../../components/filter/filter';
-import { MemoizedCheckboxList } from '../../components/checkbox-list/checkbox-list';
+import Back from '../../components/back/back';
+import Modal from '../../components/modal/modal';
+import Filter from '../../components/filter/filter';
+import CheckboxList from '../../components/checkbox-list/checkbox-list';
 import { MemoizedCardList } from '../../components/card-list/card-list';
-import { MemoizedOverlay } from '../../components/overlay/overlay';
+import Overlay from '../../components/overlay/overlay';
 import { Helmet } from 'react-helmet-async';
-import { useState, useRef, useCallback, useMemo, memo, useEffect } from 'react';
+import { useState, useRef, useCallback, useMemo, useEffect } from 'react';
 import { filters, BackPath } from '../../const';
 import { getCards } from '../../store/site-data/selectors';
 import { useAppSelector } from '../../hooks';
@@ -44,16 +44,16 @@ function Main(): JSX.Element {
       <main>
         <section className="info">
           <h1 className="info__title">Shop</h1>
-          <MemoizedCheckboxList handleCheckboxChange={handleCheckboxChange} activeCheckboxes={activeCheckboxes} headerRef={headerRef} />
-          <MemoizedFilter totalCards={totalCards} activeFilter={activeFilter} setActiveFilter={handleFilterChange} headerRef={headerRef} />
+          <CheckboxList handleCheckboxChange={handleCheckboxChange} activeCheckboxes={activeCheckboxes} headerRef={headerRef} />
+          <Filter totalCards={totalCards} activeFilter={activeFilter} setActiveFilter={handleFilterChange} headerRef={headerRef} />
           <MemoizedCardList checkedCards={checkedCards} activeFilter={activeFilter}/>
         </section>
-        <MemoizedModal headerRef={headerRef} />
+        <Modal headerRef={headerRef} />
       </main>
-      <MemoizedBack path={BackPath.Root}/>
-      <MemoizedOverlay />
+      <Back path={BackPath.Root}/>
+      <Overlay />
     </div>
   );
 }
 
-export const MemoizedMain = memo(Main);
+export default Main;
